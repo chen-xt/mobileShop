@@ -1,0 +1,267 @@
+ 
+<link rel='stylesheet' href='/stylesheets/index.css' />
+<% include header.ejs %>
+
+<!--搜索框
+<!-- <div id="search">
+	<div class="input-group" style="width: 400px;">
+	    <input type="text" class="form-control input-sm"><span class="input-group-addon btn ">搜索</span>
+	</div>
+</div> -->
+
+<!--  中间内容区 -->
+<div class ="content">
+	<!-- 商品分类(左边导航) -->
+	<div class ="catalog">
+      <ul class="prod-nav-ul"> 
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="魅族">魅族</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="/good?name='魅族MX6'">魅族MX6</a></p>
+             <p><a href="/good?name='魅族note5'">魅蓝note5</a></p>
+           </div>
+         </li>
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="小米">小米</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="">小米5</a></p>
+             <p><a href="">小米5s</a></p>
+           </div>
+         </li>
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="苹果">苹果</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="">Apple iPhone 6</a></p>
+             <p><a href="">iPhone 7 Plus</a></p>
+           </div>
+         </li>
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="华为">华为</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="">华为 Mate 9</a></p>
+             <p><a href="">华为 P9</a></p>
+           </div>
+         </li>
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="三星">三星</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="">三星 Galaxy C5</a></p>
+             <p><a href="">三星 Galaxy Note5</a></p>
+           </div>
+         </li>
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="努比亚">努比亚</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="">nubia N1</a></p>
+             <p><a href="">nubia Z11</a></p>
+           </div>
+         </li>
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="OPPO">OPPO</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="">OPPO A57</a></p>
+             <p><a href="">OPPO R9s</a></p>
+           </div>
+         </li>
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="vivo">vivo</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="">vivo X9Plus</a></p>
+             <p><a href="">vivo Y67</a></p>
+           </div>
+         </li>
+        <li class="prod-nav-li">
+           <a class="prod-nav-li-a" href="#" title="荣耀">荣耀</a>
+           <div class="prod-nav-li-pull">
+             <p><a href="">荣耀5</a></p>
+             <p><a href="">荣耀V8</a></p>
+           </div>
+         </li>
+      </ul> 
+	</div>
+	<!-- 图片轮播 -->
+	<div id="carousel">
+		<div id="myCarousel" class="carousel slide">
+		   <!-- 轮播指标 -->
+		   <ol class="carousel-indicators">
+		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		      <li data-target="#myCarousel" data-slide-to="1"></li>
+		      <li data-target="#myCarousel" data-slide-to="2"></li>
+		   </ol>  
+		   <!-- 轮播项目 -->
+		   <div class="carousel-inner">
+		      <div class="item active">
+		         <img src="images/sl-1.jpg" alt="First slide">
+		      </div>
+		      <div class="item">
+		         <img src="images/sl-3.jpg" alt="Second slide">
+		      </div>
+		      <div class="item">
+		         <img src="images/sl-2.jpg" alt="Third slide">
+		      </div>
+		   </div>
+		   <!-- 轮播导航 -->
+       <a class="carousel-control left " href="#myCarousel"
+          data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span>
+       </a>
+       <a class="carousel-control right" href="#myCarousel"
+          data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span>
+       </a>
+		</div>
+	</div>
+</div><!-- id="content" -->
+
+<!-- 商品详情链接 -->
+<div class ="commodity">
+	  <!-- 标题 -->
+	  <div class="projectHeader">
+       <p class="title">今日大牌</p>
+    </div>
+    <!-- 商品链接 -->
+    <div class="project ">
+      <div class="row">
+        <div class="col-md-2 projectitem" id="projectitem_0">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/goods/mi5-2.jpg" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+        <div class="col-md-2" id="projectitem_1">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+        <div class="col-md-2" id="projectitem_2">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+        <div class="col-md-2" id="projectitem_3">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+        <div class="col-md-2" id="projectitem_4">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- 标题 -->
+    <div class="projectHeader">
+       <p class="title">今日热销</p>
+    </div>
+    <div class="project ">
+      <div class="row">
+        <div class="col-md-2" id="projectitem_5">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+        <div class="col-md-2" id="projectitem_6">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+        <div class="col-md-2" id="projectitem_7">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+        <div class="col-md-2" id="projectitem_8">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+        <div class="col-md-2" id="projectitem_9">
+          <a href="#" target="_blank">
+              <div class="project_img">
+                  <img src="images/3.png" width="200" height="300"/>
+              </div>     
+              <div class="project_info">
+                  <p class="title">小米</p>
+              </div>    
+          </a>
+        </div>
+    </div>
+</div>
+
+<!-- 保障服务 -->
+<div class ="module">
+    <ul class="content_list" data-options-ease="1" data-options-speed="1">
+        <li>
+          <a title="7天无理由退货"  target="_blank" >
+            <img src="images/h1.png" width="250" height="100" />
+          </a>
+          <a title="品质保障"  target="_blank" >
+            <img src="images/h2.png" width="250" height="100" />
+          </a>
+          <a title="满150元包邮"  target="_blank" >
+            <img src="images/h3.png" width="250" height="100" />
+          </a>
+          <a title="帮助中心"  target="_blank" >
+            <img src="images/h4.png" width="250" height="100" />
+          </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 底部 -->
+<div class = "footer">
+  <p> 
+    All Rights Reserved. xiaoting 版权所有
+  </p>
+</div>
+
+
+
+
+
+
+
+	

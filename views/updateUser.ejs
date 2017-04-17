@@ -1,0 +1,17 @@
+
+<% include header.ejs %>
+
+<div style="margin:100px auto;width: 500px;" class="add_c">
+    <h1>修改用户信息</h1>
+
+    <form action="#"  role="form" method="post" >
+        <input style="margin-top: 30px;" id="username" type="text" class="form-control"  name="username" value="<%= user.username %>" />
+        <input style="margin-top: 30px;" id="password" class="form-control" name="password" value="<%= user.password %>" />
+        <input style="margin-top: 30px;" id="QQ" type="text" class="form-control"  name="QQ" value="<%= user.QQ %>" />
+        <input style="margin-top: 30px;" id="email" class="form-control" name="email" value="<%= user.email %>" />
+        <input style="margin-top: 30px;" id="address" class="form-control" name="address" value="<%= user.address %>" />
+         <input style="margin-top: 30px;" id="tel" class="form-control" name="tel" value="<%= user.tel %>" />
+        <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="修改" />
+        <a href="/user-manage" class="btn btn-success btn-block" style="margin-top: 30px;">返回用户管理</a>
+    </form>
+</div>

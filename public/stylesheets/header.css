@@ -1,0 +1,21 @@
+body{
+	 margin: 0 auto;
+	 padding: 0 auto;
+	 background-color:#f6f6f6; 
+}
+/* 导航栏 */
+.header { 
+	padding: 20px 0;
+    background-color:#f6f6f6; 
+    width: 1200px;
+    margin-left: 80px;
+}
+
+.header .logo{
+	height: 60px;
+}
+.header a{
+	text-decoration: none;
+	color: #333;
+	line-height: 40px;
+}

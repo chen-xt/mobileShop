@@ -1,0 +1,97 @@
+
+<link rel='stylesheet' href='/stylesheets/index.css' />
+<link rel='stylesheet' href='/stylesheets/good.css' />
+<% include header.ejs %>
+
+<div id="goodshow">
+    <div id="imags" style="overflow: visible">
+        <div class="imgbox">
+            <!-- 商品大图 -->
+            <a class="smallimg" href="#">
+                <img id="smallimg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>1.jpg">
+            </a>
+            <!--商品细节大图-->
+            <div class="bigbox">
+                <img id="bimg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>1.jpg">
+            </div>
+            <!--大图上的显示区域遮罩层-->
+            <div id="layer">
+            </div>
+        </div><!-- class="imgbox" -->
+        
+        <!--缩略图-->
+        <div class="imgsbox">
+            <ul id="imgslist">
+                <li class="imglist selected">
+                    <!-- 商品小图 -->
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>1.jpg">
+                </li>
+                <li class="imglist">
+                    <!-- 商品小图 -->
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>2.jpg">
+                </li>
+                <li class="imglist">
+                    <!-- 商品小图 -->
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>3.jpg">
+                </li>
+                <li class="imglist">
+                    <!-- 商品小图 -->
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>4.jpg">
+                </li>
+                <li class="imglist">
+                    <!-- 商品小图 -->
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>5.jpg">
+                </li>
+            </ul>
+        </div><!-- class="imgsbox" -->
+    </div><!-- id="imags" -->
+
+    <div id="imgtxt">
+        <h2><%= commodity.name %></h2>
+        <div class="goodinfo">
+             <!-- 魅族 MX6 4GB+32GB 全网通公开版 香槟金 移动联通电信4G手机 双卡双待 -->
+             <%= commodity.info %>
+        </div>
+        <div class="goodinfo">
+            价格&nbsp;&nbsp;&nbsp;&nbsp;<span class="price">
+            ￥<%= commodity.price %></span>
+        </div>
+        <div class="goodinfo">
+            配送&nbsp;&nbsp;&nbsp;&nbsp;<span class="price">包邮</span>
+        </div>
+     <!--    <div class="goodinfo" id="size">购买方式&nbsp;&nbsp;&nbsp;&nbsp;
+         <p class="block">标配</p>
+         <p class="block">套餐1</p>
+         <p class="block">套餐1</p>
+     </div> -->
+        <div class="goodinfo" id="color">颜色&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- <p class="block">月光银</p>
+            <p class="block">玫瑰金</p>
+            <p class="block">香槟金</p> -->
+            <%= commodity.color %>
+        </div>
+        <div class="goodinfo">
+            数量：&nbsp;&nbsp;&nbsp;&nbsp;<%= commodity.quantity %>
+        </div>
+        <div class="goodinfo">
+            <input type="button" value="立即购买" class="btngood" id="btnbuy"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" value="加入购物车" class="btngood" id="btnadd"/>
+        </div>
+    </div><!-- id="imgtxt" -->
+</div><!-- id="goodshow" -->
+
+<!--显示高清大图-->
+<div id="showbigimg">
+    <img src="images/goods/<%= commodity.imgSrc %>1.jpg" id="bigimg">
+</div>
+
+<!-- 底部 -->
+<div class = "footer">
+  <p> 
+    All Rights Reserved. xiaoting 版权所有
+  </p>
+</div>
+
+<script src="javascripts/publicgood.js"></script>
+<script type="text/javascript" src="javascripts/mejqzoom.js"></script>
+

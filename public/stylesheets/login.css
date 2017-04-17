@@ -1,0 +1,53 @@
+
+.group{
+	margin-bottom: 35px;
+}
+.panel-title{
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+}
+.content {
+	width: 1200px;
+	/*height: 700px;*/
+	margin-left: 80px;
+	margin-top: 5px;
+	background-image: url(/images/00.jpg);
+	position: relative;
+	/*background: #eee;*/
+}
+.btn{
+	width: 130px;
+	margin-left: 50px;
+	/*background: #6d747d;*/
+}
+.login-a{
+	float: right;
+	margin-top: 20px;
+	text-decoration: none;
+	color: #333;
+}
+.row{
+	margin: 60px auto;		
+}
+
+/* 底部 */
+.footer {
+    background: #fff;
+    width: 1200px;
+    /*position: relative;*/
+    height: 50px;
+    /*margin-top: 1000px;*/
+    margin-left: 80px;
+    border: 3px solid #f6f6f6;
+}
+
+.footer p {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #8e8e8e;
+    height: 20px;
+    line-height: 20px;
+}
+

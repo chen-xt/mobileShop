@@ -1,0 +1,165 @@
+<link rel='stylesheet' href='/stylesheets/vip.css' />
+<% include header.ejs %>
+
+<div class="content">
+	<!-- 右边导航栏 -->
+	<div class="guide">
+		<div class="name">
+			<!-- <h2>陈小婷</h2> -->
+		</div>
+		<ul class="nav nav-pills nav-stacked">
+			<li>
+				<a href="#infomation" title="个人资料">个人资料</a>
+			</li>
+			<li>
+				<a href="#address" title="收货地址">收货地址</a>
+			</li>
+			<li>
+				<a href="#order" title="我的订单">我的订单</a>
+			</li>
+			<li>
+				<a href="#track" title="我的足迹">我的足迹</a>
+			</li>
+			<li>
+				<a href="#collect" title="我的收藏">我的收藏</a>
+			</li>
+			<li>
+				<a href="#share" title="我的分享">我的优惠券</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 具体内容显示区 -->
+	<div class="tab-content">
+		<div id="infomation" class="active tab-pane">
+			<h3>个人资料</h3>
+				<div class="info"><span>用户名：</span>陈小婷</div>
+				<div class="info"><span>性别：</span>女</div>
+				<div class="info"><span>生日：</span>10.1</div>
+				<div class="info"><span>邮箱：</span>1250548605@qq.com</div>
+				<div class="info"><span>居住地址：</span>惠安县</div>
+				<div class="info"><span>联系电话：</span>18396589684</div>
+				<div class="info"><span>个人爱好：</span>听音乐</div>
+		</div>
+		<div id="address" class="hide tab-pane">
+			<h3>收货地址</h3>
+			<div>
+				<table class="addr">
+					<tr>
+						<th>收货人</th>
+						<th>地址</th>
+						<th>邮编</th>
+						<th>电话</th>
+						<th>操作</th>
+					</tr>
+					<tr>
+						<td>陈小婷</td>
+						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
+						<td>354300</td>
+						<td>183483984</td>
+						<td><a href="#">删除</a></td>
+					</tr>
+					<tr>
+						<td>陈小婷</td>
+						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
+						<td>354300</td>
+						<td>183483984</td>
+						<td><a href="#">删除</a></td>
+					</tr>
+					<tr>
+						<td>陈小婷</td>
+						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
+						<td>354300</td>
+						<td>183483984</td>
+						<td><a href="#">删除</a></td>
+					</tr>
+				</table>
+		    </div>
+		</div>
+		<div id="order" class="hide tab-pane">
+			<h3>我的订单</h3>
+			<div class="coll"><a href="#">小米2s</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">魅蓝note3</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">小米2s</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">魅蓝note3</a>
+				<i class="fa fa-trash"></i>
+            </div>    
+		</div>
+		<div id="track" class="hide tab-pane">
+			<h3>我的足迹</h3>
+			<div class="coll"><a href="#">小米2s</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">魅蓝note3</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">小米2s</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">魅蓝note3</a>
+				<i class="fa fa-trash"></i>
+            </div>    
+		</div>
+		<div id="collect" class="hide tab-pane">
+			<h3>我的收藏</h3>
+            <div class="coll"><a href="#">小米2s</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">魅蓝note3</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">小米2s</a>
+				<i class="fa fa-trash"></i>
+            </div> 
+            <div class="coll"><a href="#">魅蓝note3</a>
+				<i class="fa fa-trash"></i>
+            </div>    
+		</div>
+		<div id="share" class="hide tab-pane">
+	        <h1>优惠券</h1>
+			<div class="shar">
+				<p class="shar-price">10.00元</p>
+	            <p class="shar-condition">订单满299.00元使用</p>
+			</div>
+			<div class="shar">
+				<p class="shar-price">10.00元</p>
+	            <p class="shar-condition">订单满299.00元使用</p>
+			</div>
+			<div class="shar">
+				<p class="shar-price">10.00元</p>
+	            <p class="shar-condition">订单满299.00元使用</p>
+			</div>
+	    </div>
+	</div>
+</div>
+
+
+<!-- 底部 -->
+<div class = "footer">
+  <p> 
+    All Rights Reserved. xiaoting 版权所有
+  </p>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$('.guide li a').click(function(){
+			var _self = $(this);
+			var c = _self.attr('href').substr(1);
+			$('.tab-content').find('.tab-pane').each(function(){	
+				if($(this).hasClass("active")){
+					$(this).removeClass('active').addClass("hide");
+				}
+				if($(this).attr('id') == c){
+					$(this).removeClass('hide').addClass('active');					console.log($(this));	
+				}
+			})
+		});
+	});
+</script>
+

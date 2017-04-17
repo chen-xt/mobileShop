@@ -1,0 +1,17 @@
+
+<% include header.ejs %>
+
+<div style="margin:100px auto;width: 500px;" class="add_c">
+    <h1>添加用户</h1>
+
+    <form action="#"  role="form" method="post" >
+        <input style="margin-top: 30px;" id="username" type="text" class="form-control"  name="username" placeholder="用户名" />
+        <input style="margin-top: 30px;" id="password" class="form-control" name="password"  placeholder="用户密码" />
+        <input style="margin-top: 30px;" id="QQ" type="text" class="form-control"  name="QQ" placeholder="QQ" />
+        <input style="margin-top: 30px;" id="email" class="form-control" name="email"  placeholder="用户邮箱" />
+        <input style="margin-top: 30px;" id="address" class="form-control" name="address"  placeholder="居住地址" />
+         <input style="margin-top: 30px;" id="tel" class="form-control" name="tel"  placeholder="联系电话" />
+        <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="添 加" />
+        <a href="/user-manage" class="btn btn-success btn-block" style="margin-top: 30px;">返回用户管理</a>
+    </form>
+</div>

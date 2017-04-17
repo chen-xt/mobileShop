@@ -1,0 +1,167 @@
+
+
+/* 搜索框 */
+/* #search {
+    width: 407px;
+    height: 45px;
+    margin: 0px auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
+} */
+
+/* 中间内容区 */
+.content{
+	height: 500px;
+	width: 1200px;
+	float: left;
+	margin-top: 10px;
+    margin-left: 80px;
+    background-color:#f6f6f6;
+}
+/* 左侧商品分类导航栏 */
+.catalog{
+    width: 150px;
+    height: 500px;
+    /*border: 1px solid #cc6688;*/
+    float: left;  
+    padding-top: 5px;  
+}
+.prod-nav-li{
+    list-style: none;
+    height: 30px;
+    font-size: 16px;
+    line-height: 20px;
+    padding-top: 5px;
+}
+.prod-nav-li-pull p{
+    /*float: left;*/
+    margin-left: 15px;
+    color: #F5F5F5;
+    margin-top: 5px;
+}
+.prod-nav-li{
+    position: relative;
+    z-index: 1;
+    margin-top: 20px;
+}
+.prod-nav-li-pull{
+    position: absolute;
+    left: 100%;
+    top: 0;
+    display:none;
+    width:130px;
+    background-image:url(/images/bc.png);
+}
+.prod-nav-li:hover .prod-nav-li-pull{
+    display: block;
+}
+.prod-nav-li a{
+    color: #333;
+    text-decoration: none;
+}
+
+/* 轮播图 */
+#carousel{
+	width: 1050px;
+	float: left;
+}
+
+
+/* 商品详情链接 */
+.commodity{
+	width: 1200px;
+    background-color:#f6f6f6;
+    margin-left: 80px;
+    float: left;
+}
+/* 今日大牌 */
+.commodity .projectHeader { 
+	width: 1200px; 
+	text-align: left; 
+    float: left;
+    margin-left: 30px;
+}
+.commodity .projectHeader p.title {
+    font-size: 18px;
+    text-align: center;
+    margin: 30px auto 20px; 
+    color: #545454; 
+    display: inline-block; 
+}
+/* 商品链接 */
+.commodity .project{
+	text-align: center; 
+	width: 1200px;
+}
+.commodity .project{
+    margin-left: 80px;
+}
+.commodity .project .project_img{
+    margin: 8px ;
+    width: 200px;
+    height: 250px;
+    position: relative;
+}
+.commodity .project .project_img img{
+    display: block;
+    background: #fff;
+    width: 200px;
+    height: 200px;
+}
+.commodity .project .project_info{
+    font-size: 14px;
+    color: #999;
+    font-family: "微软雅黑";
+    line-height: 24px;
+    position: absolute;
+    left: 100;
+    top: 200;
+}
+
+/* 保障服务 */
+.module{
+    height: 175px;
+    width: 1200px;
+    padding: 40px 70px 40px 0px;
+    background-color: #f6f6f6; 
+}
+.module .content_list{
+    width: 1200px;
+    border-left: 1px solid #f6f6f6;
+    border-right: 1px solid #f6f6f6;
+}
+.module ul{
+    background-color: #fff;
+}
+.module ul:after{
+    display: block;
+    clear: both;
+}
+.module ul li{
+     list-style-type: none;
+}
+.module ul li img{
+    width: 230px;
+    margin: 0 40px 15px 0;
+}
+
+/* 底部 */
+.footer {
+    background: #fff;
+    width: 1200px;
+    position: relative;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 0px;
+    border-left: 1px solid #f6f6f6;
+    border-right: 1px solid #f6f6f6;
+    /*border: 3px solid #f6f6f6;*/
+}
+.footer p {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #8e8e8e;
+    height: 20px;
+    line-height: 20px
+}

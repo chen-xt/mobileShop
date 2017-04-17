@@ -1,0 +1,204 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+#goodshow {
+    width: 1200px;
+    height: 520px;
+    border: 1px solid #e4e4e4;
+    margin-top: 20px;
+    margin-left: 80px;
+}
+#imags li {
+    float: left;
+}
+#imags, #imgtxt, #recommend {
+    float: left;
+    overflow: hidden; /*否则超出宽度图片还是会显示，清除浮动*/
+    margin: 20px;
+}
+#imags{
+    margin-left: 50px;
+}
+#imags, #bigimgs, #bigimgs li, #bigimgs img, #smallimgs {
+    width: 400px;
+}
+.imgbox {
+    width: 400px;
+    height: 400px;
+    position: relative;
+}
+.smallimg,#smallimg {
+    width: 100%;
+    height: 100%;
+}
+.smallimg {
+    display: block;
+}
+#smallimgs img, #smallimgs li {
+    width: 70px;
+    height: 70px;
+}
+#smallimgs li {
+    margin: 10px 5px 0 0;
+    border: 2px solid transparent;
+}
+.bigbox {
+    position: absolute;
+    top: 0px;
+    left: 420px;
+    width: 400px;
+    height: 400px;
+    border: 1px solid #CCC;
+    display: none;
+    overflow: hidden;
+}
+#bimg {
+    position: absolute;
+    width: 1000px;
+    height: 1000px;;
+}
+#layer {
+    width: 128px;
+    height: 128px;
+    background: url(../images/mask.png) repeat 0 0;
+    position: absolute;
+    top: 0px;
+    left: 0px;/**visibility 属性规定元素是否可见*/
+    visibility: hidden;
+    cursor: move;
+}
+#imgslist {
+    list-style-type: none;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.imglist {
+    float: left;
+    margin: 10px 5px 0 0;
+    border: 2px solid transparent;
+}
+.selected {
+    border: 2px solid #cc6688;
+}
+.imglist,.simg {
+    width: 70px;
+    height: 70px;
+}
+#imgtxt {
+    width: 500px;
+    line-height: 35px;
+    margin-left: 60px;
+}
+#imgtxt h2 {
+    font-weight: bold;
+    font-size: medium;
+    padding-bottom: 10px;
+}
+.goodinfo {
+    padding-bottom: 8px;
+    font-size: 13px;
+}
+.price {
+    font-size: large;
+    color: #4d4d4d;
+    font-weight: bold;
+}
+#num {
+    width: 60px;
+    height: 30px;
+}
+.imgsbox {
+    width: 400px;
+    height: 84px;
+    position: relative;
+}
+#showbigimg {
+    position: absolute;
+    margin: auto;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 800px;
+    height: 500px;
+    line-height: 500px;
+    text-align: center;
+    background: black;
+    overflow: hidden;
+    display: none;
+    z-index: 100;
+}
+#showbigimg img {
+    width: 600px;
+    height: 500px;
+}
+#imags, #bigimgs, #bigimgs li, #bigimgs img, #smallimgs {
+    width: 400px;
+}
+
+#bigimgs > ul {
+    width: 100000px; /*存储所有图片，通过位置切换显示*/
+    position: absolute;
+    left: 0px;
+}
+#bigimgs,#bigimgs li, #bigimgs img, #bigimgs > ul {
+    height: 400px;
+}
+#bigimgs {
+    position: relative;
+}
+.goodinfo {
+    padding-bottom: 8px;
+    font-size: 13px;
+}
+.block {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 45px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid #e4e4e4;
+    margin-right: 8px;
+}
+.block:hover {
+    border: 1px solid #241f20;
+}
+.btngood {
+    border: none;
+    outline: none;
+    background-color: #b96d7f;
+    width: 120px;
+    height: 35px;
+    font-size: medium;
+    color: white;
+    margin-top: 15px;
+}
+
+.blockactive {
+    border: 1px solid #cc6688;
+}
+
+/* 底部 */
+.footer {
+    background: #fff;
+    width: 1200px;
+    position: relative;
+    height: 50px;
+    margin-top: 0px;
+    margin-left: 80px;
+    border: 3px solid #f6f6f6;
+}
+.footer p {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #8e8e8e;
+    height: 20px;
+    line-height: 20px;
+}

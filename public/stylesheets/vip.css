@@ -1,0 +1,98 @@
+li{
+	list-style: none;
+}
+.content{
+	width: 1200px;
+	margin-left: 80px; 
+	/*background: #F0F8FF;*/
+	height: 400px;
+	margin-top: 5px;
+}
+
+/* 左边导航栏 */
+.guide{
+	width: 250px;
+	/*border: 1px solid black;*/
+	float: left;
+	height: 400px;
+	background: #DCDCDC;
+}
+.name{
+	text-align: left; 
+	margin: 5px;
+}
+.guide ul li{
+	font-size: 17px;
+	text-align: center; 
+	letter-spacing: 4px;
+	/*margin-left: 30px;*/
+}
+.guide ul li a{
+	color: #6e6e6e;
+	line-height: 30px;
+}	
+
+/* 右边内容 */
+.tab-content{
+	width: 950px;
+	height: 400px;
+	/*border: 1px solid black;*/
+	float: left;
+	background: #faf7f0;
+}
+/* 个人资料 */
+.info{
+	height: 40px;
+	margin-left: 50px;
+}
+.info span{
+	font-weight: bold;
+}
+/* 我的收藏 */
+.coll{
+	height: 40px;
+	margin-left: 50px;
+}
+/* 收货地址 */
+table{
+	border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+    width: 937px;
+}
+th,td{
+	height: 40px;
+}
+.addr{
+	margin-left: 15px;
+}
+/* 优惠券 */
+.shar{
+	margin-left: 35px;
+}
+.shar-price{
+	font-weight: bold;
+}
+.shar-condition{
+	margin-left: 50px;
+}
+/* 底部 */
+ .footer {
+	clear: both;
+    background: #fff;
+    width: 1200px;
+    position: relative;
+    height: 50px;
+    /*margin-top: 1000px;*/
+    margin-left: 80px;
+    border: 3px solid #f6f6f6;
+}
+
+.footer p {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #8e8e8e;
+    height: 20px;
+    line-height: 20px;
+} 
