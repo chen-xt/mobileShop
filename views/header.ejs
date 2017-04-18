@@ -19,28 +19,30 @@
           <li class="">
             <a href="/" title="首页">首页</a>
           </li>
-          <li>
-            <a href="/login" title="登录">登录</a>
-          </li>
-          <li>
-            <a href="/cart" title="我的购物车">我的购物车</a>
-          </li>
-          <li>
-            <a href="/vip" title="会员中心">会员中心</a>
-          </li>
-          <li>
-            <a href="/comment" title="留言板">留言板</a>
-          </li>
-          <li>
-            <a href="/commodity-manage" title="商品管理">商品管理</a>
-          </li>
-          <li>
-            <a href="/user-manage" title="用户管理">用户管理</a>
-          </li>
-          <li>
-            <a href="/" title="退出">退出</a>
-          </li>
-          
+          <% if(!user) { %>
+             <li>
+                <a href="/login" title="登录">登录</a>
+             </li>
+          <% }else{ %>
+              <li>
+                <a href="/cart" title="我的购物车">我的购物车</a>
+              </li>
+              <li>
+                <a href="/vip" title="会员中心">会员中心</a>
+              </li>
+              <li>
+                <a href="/comment" title="留言板">留言板</a>
+              </li>
+              <li>
+                <a href="/commodity-manage" title="商品管理">商品管理</a>
+              </li>
+              <li>
+                <a href="/user-manage" title="用户管理">用户管理</a>
+              </li>
+              <li>
+                <a href="/logout" title="退出">退出</a>
+              </li>
+          <% } %>        
         </ul>              
     </div>
        <script src="/javascripts/jquery-3.1.1.js"></script>

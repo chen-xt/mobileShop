@@ -10,14 +10,19 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 //session会话
-// var session = require('express-session');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);//mongodb使用
+//引入 flash 模块来实现页面通知
+var flash = require('connect-flash');
 
-
+//创建项目实例
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(flash());//定义使用 flash 功能
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -27,19 +32,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
 
-/*//提供session支持
+//提供session支持
 app.use(session({
     resave: false,
     saveUninitialized: true,
     secret:'secret',
     cookie:{
         maxAge: 1000*60*30
-    }
+    },
+    store: new MongoStore({   //创建新的mongodb数据库
+       db: 'session',      //数据库的名称
+       url: 'mongodb://localhost:27017'
+       
+    })
 }));
-// 中间件传递信息
+
+/*// 中间件传递信息
 app.use(function(req, res, next){
     res.locals.user = req.session.user;
     var err = req.session.error;
@@ -48,6 +57,22 @@ app.use(function(req, res, next){
     next();
 });
 */
+app.use(function(req, res, next){
+    console.log("视图交互");
+    //res.locals.xxx实现xxx变量全局化，在其他页面直接访问变量名即可
+    //访问session数据：用户信息
+    res.locals.user = req.session.user;
+    //显示错误信息
+    var error = req.flash('error');//获取flash中存储的error信息
+    res.locals.error = error.length ? error : null;
+    //显示成功信息
+    var success = req.flash('success');
+    res.locals.success = success.length ? success : null;
+    next();
+});
+
+app.use('/', routes);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

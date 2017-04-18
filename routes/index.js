@@ -22,10 +22,12 @@ router.post('/reg', function(req, res, next) {
     var password = req.body.password;
     var password1 = req.body.password1;
     if( username == ''|| password  == ''|| password1  == ''){
-        console.log('用户名或密码不能为空');
+        // console.log('输入框不能为空');
+        req.flash('error', "输入框不能为空！");
         res.redirect('/reg');
     }else if(password != password1){
-        console.log('密码不一致');
+        // console.log('密码不一致');
+        req.flash("error", '两次输入密码不一致！');
         res.redirect('/reg');
     }
     else{
@@ -34,13 +36,16 @@ router.post('/reg', function(req, res, next) {
                     console.log("error :" + err);
                 }
                 else if(user){
-                    console.log("用户名已存在");
+                    // console.log("用户名已存在");
+                    req.flash("error", '用户名已存在');
                     res.redirect('/reg');
                 }
                 else{
                      User.create({username: username, password: password}, function(error, user) {
                         if (err) return next(err); 
-                        console.log('注册成功');
+                        req.session.user = user;
+                        // console.log('注册成功');
+                        req.flash('success', req.session.user.username + '注册成功');
                         res.redirect('/login');
                 });
                 }       
@@ -56,7 +61,8 @@ router.post('/login', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
     if( username == ''|| password  == ''){
-        console.log('用户名或密码不能为空');
+        // console.log('用户名或密码不能为空');
+        req.flash('error', '用户名或密码不能为空');
         res.redirect('/login');
     }
     else{
@@ -65,16 +71,21 @@ router.post('/login', function(req, res, next) {
             console.log("error :" + err);
         }
         else if(!user){
-            console.log("用户名不存在");
+            // console.log("用户名不存在");
+            req.flash('error', '用户名不存在');
             res.redirect('/login');
         }
         else{
             if(password != user.password){
-                    console.log("密码错误"); 
+                    // console.log("密码错误"); 
+                    req.flash('error', '密码错误');
                     res.redirect('/login');
                }else{
-                    console.log(username); 
+                    // console.log(username); 
+                    req.session.user = user;//保存用户信息
+                    req.flash('success', '登陆成功！');
                     res.redirect('/?userid=' + user._id);
+                    console.log(req.session.user); 
                }
         }       
     }); 
@@ -301,5 +312,11 @@ router.get('/delCommodity', function(req, res) {
     });  
 });
 
+// 退出
+router.get('/logout', function (req, res) {
+    req.session.user = null;//清空session
+    req.flash('sucess', '退出成功！');
+    res.redirect('/');
+});
 
 module.exports = router;
