@@ -2,8 +2,9 @@
 <% include header.ejs %>
 
 <div style="margin:100px auto;width: 500px;" class="add_c">
+    <% include alert.ejs %>
     <h1>添加商品</h1>
-
+    
     <form action="#"  role="form" method="post" >
         <input style="margin-top: 30px;" id="name" type="text" class="form-control"  name="name" placeholder="商品名称" />
         <input style="margin-top: 30px;" id="info" class="form-control" name="info"  placeholder="商品描述" />

@@ -8,12 +8,12 @@ var Commodity = require('../models/commodity');
 
 /* GET home page. */
 
-//首页
+//首页(ok)
 router.get('/', function(req, res) {
 	  res.render('index', { title: '主页' });
 });
 
-//注册
+//注册(ok)
 router.get('/reg', function(req, res) {
     res.render('reg', { title: '用户注册' });
 });
@@ -53,7 +53,7 @@ router.post('/reg', function(req, res, next) {
     }    
 });
 
-// 登录
+// 登录(ok)
 router.get('/login', function(req, res) {
     res.render('login', { title: '用户登录' });
 });
@@ -61,8 +61,8 @@ router.post('/login', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
     if( username == ''|| password  == ''){
-        // console.log('用户名或密码不能为空');
-        req.flash('error', '用户名或密码不能为空');
+        console.log('用户名或密码不能为空');
+        req.flash('error', '用户名不存在');
         res.redirect('/login');
     }
     else{
@@ -92,24 +92,8 @@ router.post('/login', function(req, res, next) {
   }    
 });
 
-//商品详情页（有错误：无法查询单条数据）
-router.get('/good', function(req, res) {
-    Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
-        if(err){
-            console.log("error :" + err);
-         }
-        else{
-            res.render('good', {
-            title: '商品详情',
-            commodity: commodity
-         });
-         /*console.log(req.query.name);
-           console.log(commodity);*/
-        }               
-    }); 
-});
 
-//用户管理
+//用户管理(ok)
 router.get('/user-manage', function(req, res) {
    User.find(function(err, user) {
         res.render('user-manage', {
@@ -119,7 +103,7 @@ router.get('/user-manage', function(req, res) {
    });
 });
 
-//添加用户
+//添加用户(ok)
 router.get('/addUser', function(req, res) {
     res.render('addUser', { title: '添加用户' });
 });
@@ -131,18 +115,21 @@ router.post('/addUser', function(req, res) {
     var address = req.body.address;
     var tel = req.body.tel;
     if( username == ''|| password  == ''|| QQ  == ''|| email  == ''|| address  == ''|| tel  == ''){
-        console.log('输入框不能为空');
+        // console.log('输入框不能为空');
+        req.flash('error', '输入框不能为空');
         res.redirect('/addUser');
     }
     else{
-        User.find({username: username},function(err, user){
+        User.findOne({username: username},function(err, user){
             if(err){
                 console.log("error :" + err);
             }
-            /*else if(user){
-                console.log("用户已经存在");
+            else if(user){
+                // console.log(user);
+                // console.log("用户已经存在，请重新添加新用户");
+                req.flash('error', '用户已经存在，请重新添加新用户');
                 res.redirect('/addUser');
-            }*/
+            }
             else{
                  User.create({
                     username: username, 
@@ -153,7 +140,8 @@ router.post('/addUser', function(req, res) {
                     tel: tel
                 }, function(err, commodity) {
                     if (err) return next(err); 
-                    console.log('添加成功');
+                    // console.log('添加成功');
+                    req.flash('success', '添加用户成功！');
                     res.redirect('/user-manage');
             });
            }       
@@ -161,20 +149,21 @@ router.post('/addUser', function(req, res) {
     }    
 });
 
-//删除用户
+//删除用户(ok)
 router.get('/delUser', function(req, res) {
     var id = req.query.id;
     User.remove({ _id: id}, function(err) {
         if(err) {
             console.log(error);
         } else {
-            console.log('删除成功');
+            // console.log('删除成功');
+            req.flash('success', '删除成功！');
             res.redirect('/user-manage');         
         }
     });  
 });
 
-// 修改用户信息
+// 修改用户信息(ok)
 router.get('/updateUser', function(req, res) {
     var id = req.query.id;console.log(id);
     User.findOne({ _id: id}, function(err, user) {
@@ -198,26 +187,14 @@ router.post('/updateUser', function(req, res) {
         if(err) {
             console.log(error);
         } else {
-            console.log('修改成功!');
+            // console.log('修改成功!');
+            req.flash('success', '修改成功！');
             res.redirect('/user-manage');
         }
     });
 });
 
-
-router.get('/cart', function(req, res) {
-    res.render('cart', { title: '购物车' });
-});
-router.get('/comment', function(req, res) {
-    res.render('comment', { title: '留言板' });
-});
-router.get('/vip', function(req, res) {
-    res.render('vip', { title: '会员中心' });
-});
-
-
-/* 管理员 */
-//商品管理
+//商品管理(ok)
 router.get('/commodity-manage', function(req, res) {
    Commodity.find(function(err, commodity) {
         res.render('commodity-manage', {
@@ -227,7 +204,7 @@ router.get('/commodity-manage', function(req, res) {
    });
 });
 
-// 添加商品
+// 添加商品(ok)
 router.get('/addCommodity', function(req, res) {
     res.render('addCommodity', { title: '添加商品' });
 });
@@ -239,16 +216,19 @@ router.post('/addCommodity', function(req, res) {
     var quantity = req.body.quantity;
     var imgSrc = req.body.imgSrc;
     if( name == ''|| info  == ''|| color  == ''|| price  == ''|| quantity  == ''|| imgSrc  == ''){
-        console.log('输入框不能为空');
+        // console.log('输入框不能为空');
+        req.flash('error', '输入框不能为空');
         res.redirect('/addCommodity');
     }
     else{
-        Commodity.find({name: name},function(err, commodity){
+        Commodity.findOne({name: name},function(err, commodity){
             if(err){
                 console.log("error :" + err);
             }
             else if(commodity){
-                console.log("商品已经存在");
+                // console.log("商品已经存在");
+                console.log(commodity);
+                req.flash('error', '商品已经存在');
                 res.redirect('/addCommodity');
             }
             else{
@@ -261,7 +241,8 @@ router.post('/addCommodity', function(req, res) {
                     imgSrc: imgSrc
                 }, function(err, commodity) {
                     if (err) return next(err); 
-                    console.log('添加成功');
+                    // console.log('添加成功');
+                    req.flash('success', '添加成功！');
                     res.redirect('/commodity-manage');
             });
            }       
@@ -269,7 +250,7 @@ router.post('/addCommodity', function(req, res) {
     }    
 });
 
-// 修改商品
+// 修改商品(ok)
 router.get('/updateCommodity', function(req, res) {
     var id = req.query.id;console.log(id);
     Commodity.findOne({ _id: id}, function(err, commodity) {
@@ -293,30 +274,67 @@ router.post('/updateCommodity', function(req, res) {
         if(err) {
             console.log(error);
         } else {
-            console.log('修改成功!');
+            // console.log('修改成功!');
+            req.flash('success', '修改成功！');
             res.redirect('/commodity-manage');
         }
     });
 });
 
-// 删除商品
+// 删除商品(ok)
 router.get('/delCommodity', function(req, res) {
     var id = req.query.id;
     Commodity.remove({ _id: id}, function(err) {
         if(err) {
             console.log(error);
         } else {
-            console.log('删除成功');
+            // console.log('删除成功');
+            req.flash('success', '删除成功！');
             res.redirect('/commodity-manage');         
         }
     });  
 });
 
-// 退出
+// 退出(ok)
 router.get('/logout', function (req, res) {
     req.session.user = null;//清空session
     req.flash('sucess', '退出成功！');
     res.redirect('/');
 });
+
+
+
+
+
+//商品详情页（有错误：无法查询单条数据）
+router.get('/good', function(req, res) {
+    Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
+        if(err){
+            console.log("error :" + err);
+         }
+        else{
+            res.render('good', {
+            title: '商品详情',
+            commodity: commodity
+         });
+         /*console.log(req.query.name);
+           console.log(commodity);*/
+        }               
+    }); 
+});
+
+router.get('/cart', function(req, res) {
+    res.render('cart', { title: '购物车' });
+});
+router.get('/comment', function(req, res) {
+    res.render('comment', { title: '留言板' });
+});
+router.get('/vip', function(req, res) {
+    res.render('vip', { title: '会员中心' });
+});
+
+
+
+
 
 module.exports = router;
