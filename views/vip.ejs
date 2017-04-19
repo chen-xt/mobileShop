@@ -1,6 +1,16 @@
 <link rel='stylesheet' href='/stylesheets/vip.css' />
 <% include header.ejs %>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		// 修改个人资料显示输入框及内容，隐藏原本显示的内容
+		$("#update").click(function(){
+			$(".info span").hide();
+			$(".info input").show();
+		});
+	});
+</script>
+
 <div class="content">
 	<!-- 右边导航栏 -->
 	<div class="guide">
@@ -10,6 +20,9 @@
 		<ul class="nav nav-pills nav-stacked">
 			<li>
 				<a href="#infomation" title="个人资料">个人资料</a>
+			</li>
+			<li>
+				<a href="#password" title="密码重置">密码重置</a>
 			</li>
 			<li>
 				<a href="#address" title="收货地址">收货地址</a>
@@ -24,21 +37,57 @@
 				<a href="#collect" title="我的收藏">我的收藏</a>
 			</li>
 			<li>
-				<a href="#share" title="我的分享">我的优惠券</a>
+				<a href="#share" title="我的优惠券">我的优惠券</a>
 			</li>
 		</ul>
 	</div>
 	<!-- 具体内容显示区 -->
 	<div class="tab-content">
 		<div id="infomation" class="active tab-pane">
-			<h3>个人资料</h3>
-				<div class="info"><span>用户名：</span>陈小婷</div>
-				<div class="info"><span>性别：</span>女</div>
-				<div class="info"><span>生日：</span>10.1</div>
-				<div class="info"><span>邮箱：</span>1250548605@qq.com</div>
-				<div class="info"><span>居住地址：</span>惠安县</div>
-				<div class="info"><span>联系电话：</span>18396589684</div>
-				<div class="info"><span>个人爱好：</span>听音乐</div>
+			<h3>陈小婷的个人资料</h3>
+			<div class="info">
+				<strong>性别：</strong>
+			    <span>女</span>
+				<input type="text" value="女">
+			</div>
+			<div class="info">
+				<strong>QQ：</strong>
+				<span>12345678</span>
+				<input type="text" value="12345678">
+			</div>
+			<div class="info">
+				<strong>用户邮箱：</strong>	
+				<span>1250548605@qq.com</span>	
+				<input type="text" value="1250548605@qq.com">
+			</div>
+			<div class="info">
+				<strong>居住地址：</strong>
+				<span>惠安县</span>
+				<input type="text" value="惠安县">
+			</div>
+			<div class="info">
+				<strong>联系电话：</strong>
+				<span>18396589684</span>
+				<input type="text" value="18396589684">
+			</div>
+			<div class="info">
+				<a href="#" id="update" class="btn btn-primary">修改资料</a>
+			</div>
+		</div>
+		<div id="password" class="hide tab-pane">
+			<h3>密码重置</h3>	
+			<div>
+				原始密码：<input type="password">	
+			</div>
+			<div>
+				新密码：<input type="password">
+			</div>
+			<div>
+				确认新密码：<input type="password">
+			</div>
+			<div>
+				<a href="#" class="btn btn-primary">修改</a>
+			</div>
 		</div>
 		<div id="address" class="hide tab-pane">
 			<h3>收货地址</h3>

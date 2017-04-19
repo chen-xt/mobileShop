@@ -9,6 +9,7 @@
 
 <!-- 购物车内容 -->
 <div class ="content">
+  <% include alert.ejs %>
 	<div class="cart">
 		<table id="cartTable">
 			<!-- 展示商品 -->
@@ -16,6 +17,7 @@
 			  <tr>
 				<th><label><input type="checkbox" class="check-all check">&nbsp;全选<label></th>
 				<th>商品</th>
+				<th>颜色</th>
 				<th>单价</th>
 				<th>数量</th>
 				<th>小计</th>
@@ -23,21 +25,25 @@
 			  </tr>
 			</thead>
 			<tbody>
+			  <% for(var i in cart){ if(!cart[i].cId) continue %>
 				<tr>
 					<td><input type="checkbox" class="check-one check"></td>
-					<td class="goods"><img src="images/cart1.jpg" alt=""><span>魅族</span></td>
-					<td class="price">1500</td>
+					<td class="goods"><img src="images/cart1.jpg" alt=""><span><%=cart[i].cName%></span></td>
+					<td><%=cart[i].cColor%></td>
+					<td class="price"><%=cart[i].cPrice%></td>
 					<td class="count">
 						<span class="reduce"></span>
 						<input type="text" class="count-input" value="1">
 						<span class="add">+</span>
 					</td>
-					<td class="subtoal">1500</td>
+					<td class="subtoal"><%=cart[i].cPrice%></td>
 					<td class="operation"><span class="delete">删除</span></td>
 				</tr>
-				<tr>
+				<% } %>
+				<!-- <tr>
 					<td><input type="checkbox" class="check-one check"></td>
 					<td class="goods"><img src="images/cart2.jpg" alt=""><span>小米</span></td>
+					<td>金色</td>
 					<td class="price">2000</td>
 					<td class="count">
 						<span class="reduce"></span>
@@ -50,6 +56,7 @@
 				<tr>
 					<td><input type="checkbox" class="check-one check"></td>
 					<td class="goods"><img src="images/cart3.jpg" alt=""><span>ViVo</span></td>
+					<td>金色</td>
 					<td class="price">1000</td>
 					<td class="count">
 						<span class="reduce"></span>
@@ -62,6 +69,7 @@
 				<tr>
 					<td><input type="checkbox" class="check-one check"></td>
 					<td class="goods"><img src="images/cart4.jpg" alt=""><span>三星</span></td>
+					<td>金色</td>
 					<td class="price">2200</td>
 					<td class="count">
 						<span class="reduce"></span>
@@ -70,7 +78,7 @@
 					</td>
 					<td class="subtoal">2200</td>
 					<td class="operation"><span class="delete">删除</span></td>
-				</tr>
+				</tr> -->
 			</tbody>
 		</table>
 	</div>

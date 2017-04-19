@@ -38,7 +38,7 @@ window.onload=function(){
 			if(tr[i].getElementsByTagName('input')[0].checked){//每个tr的第1个input如果被选中
 				tr[i].className='on';
 				selected +=parseInt(tr[i].getElementsByTagName('input')[1].value);//将每个tr的第2个input的值相加
-				price += parseFloat(tr[i].cells[4].innerHTML);//tr.cells是表格的特有属性，表示的是所有的td元素
+				price += parseFloat(tr[i].cells[5].innerHTML);//tr.cells是表格的特有属性，表示的是所有的td元素
 				HTMLstr += '<div><img src="' + tr[i].getElementsByTagName('img')[0].src + '"><span class="del" index="' + i + '">取消选择</span></div>';//加入第一张图片
 			}else{
 				tr[i].className='';
@@ -56,10 +56,10 @@ window.onload=function(){
 	//小计价格的函数
 	function getSubTotal(tr){
 		var tds=tr.cells;
-		var price=parseFloat(tds[2].innerHTML);
+		var price=parseFloat(tds[3].innerHTML);
 		var count=parseInt(tr.getElementsByTagName('input')[1].value);
 		var SubTotal=parseFloat(price*count);
-		tds[4].innerHTML=SubTotal.toFixed(2);
+		tds[5].innerHTML=SubTotal.toFixed(2);
 	}
 
 

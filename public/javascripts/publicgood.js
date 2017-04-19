@@ -27,19 +27,19 @@ var check = function () {
     var detail = doc.getElementById("imgtxt"),
         goodname = detail.getElementsByTagName("h2")[0].innerHTML,
         goodprice = detail.getElementsByClassName("price")[0].innerHTML,
-        goodsize = doc.getElementById("size"),
+        // goodsize = doc.getElementById("size"),
         goodcolor = doc.getElementById("color"),
-        selectsize, selectcolor,count;
+        selectcolor,count;
     //验证是否选择
     function validateNull() {
-        var ssize = goodsize.getElementsByClassName("blockactive")[0],
-            scolor = goodcolor.getElementsByClassName("blockactive")[0];
-        if (ssize === undefined || scolor === undefined) {
-            alert("请选择尺码或颜色。");
+        // ssize = goodsize.getElementsByClassName("blockactive")[0],
+        var scolor = goodcolor.getElementsByClassName("blockactive")[0];
+        if ( scolor === undefined) {
+            alert("请选择颜色。");
             return false;
         }
         else {
-            selectsize = ssize.innerHTML;
+            // selectsize = ssize.innerHTML;
             selectcolor = scolor.innerHTML;
             count = doc.getElementById("num").value;
             return true;
@@ -51,7 +51,7 @@ var check = function () {
     function buygood() {
         var isselect = validateNull();
         if (isselect) {
-            var str = "您购买了如下商品：\n商品名称：" + goodname + "\n商品价格：" + goodprice + "\n商品尺码：" + selectsize + "\n商品颜色：" + selectcolor + "\n商品数量：" + count;
+            var str = "您购买了如下商品：\n商品名称：" + goodname + "\n商品价格：" + goodprice + "\n商品颜色：" + selectcolor + "\n商品数量：" + count;
             alert(str);
         }
         else {
@@ -64,7 +64,7 @@ var check = function () {
     function addgood() {
         var isselect = validateNull();
         if (isselect) {
-            var str = "您加入购物车商品如下：\n商品名称：" + goodname + "\n商品价格：" + goodprice + "\n商品尺码：" + selectsize + "\n商品颜色：" + selectcolor + "\n商品数量：" + count;
+            var str = "您加入购物车商品如下：\n商品名称：" + goodname + "\n商品价格：" + goodprice  + "\n商品颜色：" + selectcolor + "\n商品数量：" + count;
             alert(str);
         }
         else {

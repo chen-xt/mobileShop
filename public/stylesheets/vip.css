@@ -45,8 +45,8 @@ li{
 	height: 40px;
 	margin-left: 50px;
 }
-.info span{
-	font-weight: bold;
+.info input{
+	display: none;
 }
 /* 我的收藏 */
 .coll{

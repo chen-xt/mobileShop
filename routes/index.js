@@ -3,8 +3,9 @@ var router = express.Router();
 var mongoose = require('mongoose'); 
 mongoose.connect('mongodb://localhost/DB'); //连接数据库
 
-var User = require('../models/user');
-var Commodity = require('../models/commodity');
+var User = require('../models/user');  //用户
+var Commodity = require('../models/commodity');  //商品
+var Cart = require('../models/cart');  //购物车
 
 /* GET home page. */
 
@@ -91,7 +92,6 @@ router.post('/login', function(req, res, next) {
     }); 
   }    
 });
-
 
 //用户管理(ok)
 router.get('/user-manage', function(req, res) {
@@ -302,13 +302,78 @@ router.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
+//购物车
+router.get('/cart', function(req, res) {
+     // res.render('cart', { title: '购物车' });
+     if (!req.session.user) {
+            // req.session.error = "用户已过期，请重新登录:"
+            req.flash('error', '用户已过期，请重新登录');
+            res.redirect('/login');
+        } else {
+            Cart.find({ "uId": req.session.user._id }, 
+                function (err, cart) {
+                    res.render('cart', {
+                        title: '购物车',
+                        cart: cart
+                    });
+                    console.log(cart);
 
+                });
+        }
+});
+//加入购物车
+router.get("/addToCart/:id", function (req, res) {
+    if (!req.session.user) {
+        // req.session.error = "用户已过期，请重新登录:"
+        req.flash('error', '用户已过期，请重新登录');
+        res.redirect('/login');
+    } else {
+        Cart.findOne({"uId": req.session.user._id, "cId": req.params.id}, function (error, cart) {
+            //商品已存在 +1
+            if (cart) {
+                Cart.update({
+                    "uId": req.session.user._id,
+                    "cId": req.params.id
+                }, {$set: {cQuantity: cart.cQuantity + 1}}, function (error, cart) {
+                    //成功返回1  失败返回0
+                    if (cart > 0) {
+                        res.redirect('/cart');
+                    }
+                });
+                //商品未存在，添加 +1
+            } else {
+                Commodity.findOne({"_id": req.params.id}, function (error, cart) {
+                    if (cart) {
+                        Cart.create({
+                            uId: req.session.user._id,
+                            cId: req.params.id,
+                            cName: cart.name,
+                            cPrice: cart.price,
+                            cColor: cart.color,
+                            cImgSrc: cart.imgSrc,
+                            cQuantity: 1
+                        }, function (error, cart) {
+                            if (cart){
+                               // console.log(cart);
+                               console.log('加入成功');
+                               res.redirect('/cart');
+                            }
+                            
+                        });
+                    } else {
+
+                    }
+                });
+            }
+        });
+    }
+});
 
 
 
 //商品详情页（有错误：无法查询单条数据）
 router.get('/good', function(req, res) {
-    Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
+    Commodity.findOne({name: '魅族MX6'}, function(err, commodity){
         if(err){
             console.log("error :" + err);
          }
@@ -323,18 +388,14 @@ router.get('/good', function(req, res) {
     }); 
 });
 
-router.get('/cart', function(req, res) {
-    res.render('cart', { title: '购物车' });
-});
+
+
+
 router.get('/comment', function(req, res) {
     res.render('comment', { title: '留言板' });
 });
 router.get('/vip', function(req, res) {
     res.render('vip', { title: '会员中心' });
 });
-
-
-
-
 
 module.exports = router;
