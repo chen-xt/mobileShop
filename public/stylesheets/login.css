@@ -1,15 +1,8 @@
 
-.group{
-	margin-bottom: 35px;
-}
-.panel-title{
-	font-size: 24px;
-	font-weight: bold;
-	text-align: center;
-}
+
 .content {
 	width: 1200px;
-	/*height: 700px;*/
+	height: 500px;
 	margin-left: 80px;
 	margin-top: 5px;
 	background-image: url(/images/00.jpg);
@@ -51,3 +44,22 @@
     line-height: 20px;
 }
 
+.panel-title{
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 5px;
+}
+.form-group{
+	margin-bottom: 35px;
+}
+.container{
+	width: 800px;
+	padding-top: 50px;
+}
+.panel-body{
+	padding: 30px 50px 0 50px;
+}
+.panel, .form-control, .panel-heading{
+	background-color: rgba(255, 255, 255, 0.4);
+}

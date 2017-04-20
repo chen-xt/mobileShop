@@ -184,6 +184,38 @@
     border: 1px solid #cc6688;
 }
 
+/* 商品详情和售后保障 */
+.detail{
+    width: 1200px;
+    margin-left: 80px;
+}
+#description img{
+    width: 600px;
+    height: 600px;
+    margin:0 auto;
+    display: block;
+}
+#support{
+    padding: 20px 20px 20px 62px;
+}
+#support strong{
+    display: inline-block;
+    padding: 8px 0 3px;
+    font-size: 16px;
+}
+#support dd{
+    display: block;
+    padding: 10px 0 30px;
+    line-height: 18px;
+}
+/*#support i{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    padding-right: 10px;
+    vertical-align: bottom;
+}*/
 /* 底部 */
 .footer {
     background: #fff;

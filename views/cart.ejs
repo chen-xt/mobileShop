@@ -1,10 +1,46 @@
-<link rel='stylesheet' href='/stylesheets/cart.css' />
-<% include header.ejs %>
 
-<div class="title">
-	<!-- <i class="fa fa-shopping-cart icon" aria-hidden="true"></i> -->
-	<h3>我的购物车</h3>
-	<hr/>
+<% include header.ejs %>
+<link rel='stylesheet' href='/stylesheets/cart.css' />
+
+<!-- JS实现模糊查询 -->
+<script> 
+  function search() { 
+    // 声明变量 
+    var input, filter, table, tr, td, i; 
+    input = document.getElementById("cartInput"); 
+    filter = input.value.toUpperCase(); 
+    table = document.getElementById("cartTable"); 
+    tr = table.getElementsByTagName("tr"); 
+    // 循环表格每一行，查找匹配项 
+    for (i = 0; i < tr.length; i++) { 
+      td = tr[i].getElementsByTagName("td")[1]; 
+      if (td) { 
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) { 
+          tr[i].style.display = ""; 
+        } else { 
+          tr[i].style.display = "none"; 
+        } 
+      } 
+    } 
+  } 
+
+</script> 
+
+<!-- 头部 -->
+<div class="top">
+	<!-- 购物车标题 -->
+	<div class="title">
+		<h3>我的购物车</h3>
+	</div>
+	<!-- 搜索框 -->
+	<div class="input-group search">
+	  <input type="text" class="form-control" aria-describedby="basic-addon2" placeholder="搜索宝贝" id="cartInput">
+	  <span class="input-group-addon" id="basic-addon2" onclick="search()">搜索</span>
+	</div>
+</div>
+
+<!-- 横线 -->
+<div class="line">    
 </div>
 
 <!-- 购物车内容 -->
@@ -28,64 +64,29 @@
 			  <% for(var i in cart){ if(!cart[i].cId) continue %>
 				<tr>
 					<td><input type="checkbox" class="check-one check"></td>
-					<td class="goods"><img src="images/cart1.jpg" alt=""><span><%=cart[i].cName%></span></td>
-					<td><%=cart[i].cColor%></td>
-					<td class="price"><%=cart[i].cPrice%></td>
+					<td class="goods"><img src="images/goods/<%= cart[i].cImgSrc %>1.jpg" alt=""><span><%= cart[i].cName %></span></td>
+					<td><%= cart[i].cColor %></td>
+					<td class="price"><%= cart[i].cPrice %></td>
 					<td class="count">
 						<span class="reduce"></span>
-						<input type="text" class="count-input" value="1">
+						<input type="text" class="count-input" value="<%= cart[i].cQuantity %>">
 						<span class="add">+</span>
 					</td>
-					<td class="subtoal"><%=cart[i].cPrice%></td>
-					<td class="operation"><span class="delete">删除</span></td>
+					<td class="subtoal"><%= cart[i].cPrice %></td>
+					<td class="operation">
+					<!-- <span class="delete btn btn-primary">删除</span> -->
+					<a href="/delCart/<%= cart[i]._id %>">删除</a>
+					</td>
 				</tr>
 				<% } %>
-				<!-- <tr>
-					<td><input type="checkbox" class="check-one check"></td>
-					<td class="goods"><img src="images/cart2.jpg" alt=""><span>小米</span></td>
-					<td>金色</td>
-					<td class="price">2000</td>
-					<td class="count">
-						<span class="reduce"></span>
-						<input type="text" class="count-input" value="1">
-						<span class="add">+</span>
-					</td>
-					<td class="subtoal">2000</td>
-					<td class="operation"><span class="delete">删除</span></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" class="check-one check"></td>
-					<td class="goods"><img src="images/cart3.jpg" alt=""><span>ViVo</span></td>
-					<td>金色</td>
-					<td class="price">1000</td>
-					<td class="count">
-						<span class="reduce"></span>
-						<input type="text" class="count-input" value="1">
-						<span class="add">+</span>
-					</td>
-					<td class="subtoal">1000</td>
-					<td class="operation"><span class="delete">删除</span></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" class="check-one check"></td>
-					<td class="goods"><img src="images/cart4.jpg" alt=""><span>三星</span></td>
-					<td>金色</td>
-					<td class="price">2200</td>
-					<td class="count">
-						<span class="reduce"></span>
-						<input type="text" class="count-input" value="1">
-						<span class="add">+</span>
-					</td>
-					<td class="subtoal">2200</td>
-					<td class="operation"><span class="delete">删除</span></td>
-				</tr> -->
+				
 			</tbody>
 		</table>
 	</div>
 	<div class="foot" id="foot">
 		<!-- 结算部分 -->
 		<label class="fl select-all"><input type="checkbox" class="check-all check">&nbsp;全选</label>
-		<a href="#" class="fl delete" id="deleteAll">删除</a>
+		<a href="#" class="fl delete" id="deleteAll">删除已勾选商品</a>
 		<div class="fr closing">结算</div>
 		<div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
 		<div class="fr selected" id="selected">已选商品

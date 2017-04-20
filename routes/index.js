@@ -302,7 +302,7 @@ router.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
-//购物车
+//查看购物车商品(ok)
 router.get('/cart', function(req, res) {
      // res.render('cart', { title: '购物车' });
      if (!req.session.user) {
@@ -316,53 +316,69 @@ router.get('/cart', function(req, res) {
                         title: '购物车',
                         cart: cart
                     });
-                    console.log(cart);
-
                 });
         }
 });
-//加入购物车
+
+// 删除购物车商品(ok)
+router.get("/delCart/:id", function (req, res) {
+    Cart.remove({"_id": req.params.id}, function (err) {
+        if(err) {
+            console.log(error);
+        } else {
+            req.flash('success', '删除成功！');
+            res.redirect('/cart');
+        }
+        console.log(req.params.id);
+    });
+});
+
+//添加购物车商品(ok)
 router.get("/addToCart/:id", function (req, res) {
     if (!req.session.user) {
-        // req.session.error = "用户已过期，请重新登录:"
         req.flash('error', '用户已过期，请重新登录');
         res.redirect('/login');
-    } else {
-        Cart.findOne({"uId": req.session.user._id, "cId": req.params.id}, function (error, cart) {
-            //商品已存在 +1
-            if (cart) {
+    } 
+    else {
+        Cart.findOne({"uId": req.session.user._id, "cId": req.params.id}, function (err, cart) {
+            if(err){
+                console.log("error :" + err);
+            }
+            else if(cart){
+                // 商品已经存在
                 Cart.update({
                     "uId": req.session.user._id,
                     "cId": req.params.id
-                }, {$set: {cQuantity: cart.cQuantity + 1}}, function (error, cart) {
-                    //成功返回1  失败返回0
-                    if (cart > 0) {
+                }, {$set: {cQuantity: cart.cQuantity + 1}}, function (err) {
+                    if(err){
+                        console.log("error :" + err);
+                    }else{
+                        req.flash('success', '商品数量加1');
                         res.redirect('/cart');
-                    }
+                    }        
                 });
-                //商品未存在，添加 +1
-            } else {
-                Commodity.findOne({"_id": req.params.id}, function (error, cart) {
-                    if (cart) {
-                        Cart.create({
-                            uId: req.session.user._id,
-                            cId: req.params.id,
-                            cName: cart.name,
-                            cPrice: cart.price,
-                            cColor: cart.color,
-                            cImgSrc: cart.imgSrc,
-                            cQuantity: 1
-                        }, function (error, cart) {
-                            if (cart){
-                               // console.log(cart);
-                               console.log('加入成功');
-                               res.redirect('/cart');
-                            }
-                            
-                        });
-                    } else {
-
-                    }
+            }
+            else {
+                Commodity.findOne({"_id": req.params.id}, function (err, cart) {
+                        if(err){
+                            console.log("error :" + err);
+                        }
+                        else{
+                            Cart.create({
+                                uId: req.session.user._id,
+                                cId: req.params.id,
+                                cName: cart.name,
+                                cPrice: cart.price,
+                                cColor: cart.color,
+                                cImgSrc: cart.imgSrc,
+                                cQuantity: 1
+                            }, function(err, cart) {
+                                if (err) return next(err); 
+                                // console.log('添加成功');
+                                req.flash('success', '成功加入购物车！');
+                                res.redirect('/cart');
+                            });
+                        }       
                 });
             }
         });
@@ -373,7 +389,7 @@ router.get("/addToCart/:id", function (req, res) {
 
 //商品详情页（有错误：无法查询单条数据）
 router.get('/good', function(req, res) {
-    Commodity.findOne({name: '魅族MX6'}, function(err, commodity){
+    Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
         if(err){
             console.log("error :" + err);
          }
@@ -390,7 +406,9 @@ router.get('/good', function(req, res) {
 
 
 
-
+router.get('/cart-manage', function(req, res) {
+    res.render('cart-manage', { title: '购物车管理' });
+});
 router.get('/comment', function(req, res) {
     res.render('comment', { title: '留言板' });
 });

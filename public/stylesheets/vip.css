@@ -1,11 +1,22 @@
 li{
 	list-style: none;
 }
+h3{
+	text-align:left;
+	font-family: "Helvetica";
+	margin-left: 20px;
+	letter-spacing: 5px;
+}
+/* 标题下的横线 */
+.line{
+	background: #e6e6e6;
+    height: 1px;
+}
 .content{
 	width: 1200px;
 	margin-left: 80px; 
 	/*background: #F0F8FF;*/
-	height: 400px;
+	height: 650px;
 	margin-top: 5px;
 }
 
@@ -14,7 +25,7 @@ li{
 	width: 250px;
 	/*border: 1px solid black;*/
 	float: left;
-	height: 400px;
+	height: 650px;
 	background: #DCDCDC;
 }
 .name{
@@ -35,39 +46,109 @@ li{
 /* 右边内容 */
 .tab-content{
 	width: 950px;
-	height: 400px;
+	height: 500px;
 	/*border: 1px solid black;*/
 	float: left;
-	background: #faf7f0;
+	/*background: #faf7f0;*/
+	background-color:rgba(238, 239, 238, 0.16);
 }
 /* 个人资料 */
 .info{
 	height: 40px;
-	margin-left: 50px;
+	margin-left: 70px;
+	/*margin-top: 10px;*/
+	font-size: 18px;
 }
-.info input{
+.info span , .info input, .pass input{
+	margin-left: 20px;
+}
+
+.info input, #save{
 	display: none;
 }
-/* 我的收藏 */
-.coll{
+/* 密码重置 */
+.pass{
 	height: 40px;
-	margin-left: 50px;
+	margin-left: 70px;
+	margin-top: 10px;
+	font-size: 18px;
 }
 /* 收货地址 */
 table{
 	border-collapse: collapse;
     border-spacing: 0;
-    border: 0;
-    width: 937px;
+    border: 1px solid #eee;
+    width: 930px;
+    font-size: 16px;
 }
-th,td{
-	height: 40px;
-}
-.addr{
+.addr, .order{
 	margin-left: 15px;
 }
+.addr tr, .order tr{
+	height: 60px;
+	border: 1px solid #eee;
+}
+.addr td{
+	padding-left: 15px;
+}
+.addr th, .order th{
+	background: #eaeaea;	
+	text-align: center;
+	/*height: 40px;*/
+	border: 1px solid #eee;
+}
+/* 我的订单 */
+.order td{
+	padding-left: 15px;
+	text-align: center;
+}
+/* 我的足迹 */
+#track img{
+	width: 200px;
+	height: 200px;
+	background: rgba(221, 221, 221, 0.19);
+}
+.track-project{
+	margin: 30px;
+}
+.track-img{
+	position: relative;
+}
+.track-title{
+	position: absolute;
+	top: 160px;
+	left: 90px;
+	font-size: 17px;
+	color: #000;
+}
+#track a:hover .track-img img{
+    transform:rotate(9deg);
+}
+
+/* 我的收藏 */
+#collect img{
+	width: 200px;
+	height: 200px;
+	background: rgba(221, 221, 221, 0.19);
+}
+.collect-project{
+	margin: 30px;
+}
+.collect-img{
+	position: relative;
+}
+.collect-title{
+	position: absolute;
+	top: 160px;
+	left: 90px;
+	font-size: 17px;
+	color: #000;
+}
+#collect a:hover .collect-img img{
+	transform:rotate(9deg);
+}
 /* 优惠券 */
-.shar{
+/*.shar{
 	margin-left: 35px;
 }
 .shar-price{
@@ -75,7 +156,7 @@ th,td{
 }
 .shar-condition{
 	margin-left: 50px;
-}
+}*/
 /* 底部 */
  .footer {
 	clear: both;

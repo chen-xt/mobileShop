@@ -1,9 +1,35 @@
 
-/* 标题 */
-.title{
-	margin-left: 80px;
-	height: 50px;
+
+/* 头部 */
+.top{
+    margin-left: 80px;
+    height: 80px;
+    padding-bottom: 10px; 
 }
+.title{
+    float: left;
+    margin-left: 30px;
+    line-height: 80px;
+}
+.search{
+    float: right;
+    width: 407px;
+    /*position: absolute;
+    left: 50%;
+    top: 5px;*/
+    margin-top: 25px;
+    margin-right: 100px;
+}
+
+/* 横线 */
+.line{
+    width: 1200px;
+    margin-left: 80px;
+    clear: both;
+    background: #e6e6e6;
+    height: 2px;
+}
+
 /* 图标 */
 /*.icon{
     height: 50px;
@@ -11,17 +37,17 @@
     margin-right: 30px;
 }*/
 
-/* 购物车 */
+/* 购物车内容 */
 .content{
     width: 1200px;
     /*height: 550px;*/
     margin-left: 80px;
-    margin-top: 5px;
+    margin-top: 25px;
 }
 /* 表格 */
 .cart{
-    width: 1200px;
-    margin-left: 80px;
+    width: 100%;
+    /*margin-left: 80px;*/
 }
 .fl{
     float: left;
@@ -34,7 +60,8 @@ table {
     border-spacing: 0;
     border: 0;
     text-align: center;
-    width: 937px;
+    /*width: 937px;*/
+    width: 100%;
 }
 th, td {
     border: 1px solid #eee;
@@ -58,16 +85,20 @@ tbody tr:hover {
     width: 300px;
 }
 .goods span {
-    width: 180px;
+    /*width: 180px;*/
     margin-top: 20px;
     /*text-align: left;*/
     float: left;
+    line-height: 100px;
 }
 .price {
     width: 130px;
 }
 .count {
-    width: 90px;
+    width: 120px;
+}
+.count .reduce {
+    margin-left: 5px;
 }
 .count .add, .count input, .count .reduce {
     float: left;
@@ -85,9 +116,9 @@ tbody tr:hover {
     color: #444;
 }
 .count .add:hover, .count .reduce:hover {
-    color: #f50;
+    color: #000;
     z-index: 3;
-    border-color: #f60;
+    border-color: #000;
     cursor: pointer;
 }
 .count input {
@@ -109,21 +140,25 @@ tbody tr:hover {
 .operation {
     width: 80px;
 }
-.operation span:hover, a:hover {
+.operation span:hover, .operation a:hover {
     cursor: pointer;
     color: red;
-    text-decoration: underline;
+    text-decoration: none;
 }
 #cartTable img {
     width: 100px;
-    height: 80px;
+    height: 100px;
     /*border: 1px solid #ccc;*/
     margin-right: 10px;
     float: left;
 }
-#cartTable tr th{text-align: center;}
+#cartTable tr th{
+    text-align: center;
+}
+/* 表格底部 */
 .foot {
-    width: 935px;
+    /*width: 935px;*/
+    width: 100%;
     margin-top: 10px;
     color: #666;
     height: 48px;
@@ -132,7 +167,7 @@ tbody tr:hover {
     background-image:linear-gradient(RGB(241,241,241),RGB(226,226,226));
     position: relative;
     z-index: 8;
-    margin-left: 80px; 
+    /*margin-left: 80px; */
 }
 .foot div, .foot a {
     line-height: 48px;
@@ -223,13 +258,13 @@ tbody tr:hover {
 #selectedViewList div{
     display: inline-block;
     position: relative;
-    width: 100px;
+    width: 80px;
     height: 80px;
     border: 1px solid #ccc;
     margin: 10px;
 }
 #selectedViewList div img{
-	width: 100px;
+    width: 80px;
     height: 80px;
 }
 #selectedViewList div span {

@@ -1,5 +1,6 @@
-<link rel='stylesheet' href='/stylesheets/vip.css' />
+
 <% include header.ejs %>
+<link rel='stylesheet' href='/stylesheets/vip.css' />
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -7,6 +8,15 @@
 		$("#update").click(function(){
 			$(".info span").hide();
 			$(".info input").show();
+			$(".info #update").hide();
+			$(".info #save").show();
+		});
+		$("#save").click(function(){
+			$(".info span").show();
+			$(".info input").hide();
+			$(".info #update").show();
+			$(".info #save").hide();
+
 		});
 	});
 </script>
@@ -36,16 +46,19 @@
 			<li>
 				<a href="#collect" title="我的收藏">我的收藏</a>
 			</li>
-			<li>
+			<!-- <li>
 				<a href="#share" title="我的优惠券">我的优惠券</a>
-			</li>
+			</li> -->
 		</ul>
 	</div>
 	<!-- 具体内容显示区 -->
 	<div class="tab-content">
 		<div id="infomation" class="active tab-pane">
-			<h3>陈小婷的个人资料</h3>
-			<div class="info">
+			<h3>个人资料</h3>
+			<!-- 横线 -->
+			<div class="line">    
+			</div>
+			<div class="info" style="margin-top: 40px;">
 				<strong>性别：</strong>
 			    <span>女</span>
 				<input type="text" value="女">
@@ -72,104 +85,290 @@
 			</div>
 			<div class="info">
 				<a href="#" id="update" class="btn btn-primary">修改资料</a>
+				<a href="#" id="save" class="btn btn-primary">保存</a>
 			</div>
 		</div>
 		<div id="password" class="hide tab-pane">
-			<h3>密码重置</h3>	
-			<div>
-				原始密码：<input type="password">	
+			<h3>密码重置</h3>
+			<div class="line">    
+			</div>	
+			<div class="pass" style="margin-top: 40px;">
+				<strong>原始密码：</strong><input type="password">	
 			</div>
-			<div>
-				新密码：<input type="password">
+			<div class="pass">
+				<strong>新密码：</strong><input type="password">
 			</div>
-			<div>
-				确认新密码：<input type="password">
+			<div class="pass">
+				<strong>确认新密码：</strong><input type="password">
 			</div>
-			<div>
+			<div class="pass">
 				<a href="#" class="btn btn-primary">修改</a>
 			</div>
 		</div>
 		<div id="address" class="hide tab-pane">
 			<h3>收货地址</h3>
-			<div>
+			<div class="line">    
+			</div>
+			<div style="margin-top: 40px;">
 				<table class="addr">
 					<tr>
-						<th>收货人</th>
-						<th>地址</th>
-						<th>邮编</th>
-						<th>电话</th>
-						<th>操作</th>
+						<th class="col-md-1">收货人</th>
+						<th class="col-md-5">详细地址</th>
+						<th class="col-md-1">邮政编码</th>
+						<th class="col-md-1">电话</th>
+						<th class="col-md-1">操作</th>
 					</tr>
 					<tr>
 						<td>陈小婷</td>
 						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
 						<td>354300</td>
 						<td>183483984</td>
-						<td><a href="#">删除</a></td>
+						<td><a href="#">修改</a>|<a href="#">删除</a></td>
 					</tr>
 					<tr>
 						<td>陈小婷</td>
 						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
 						<td>354300</td>
 						<td>183483984</td>
-						<td><a href="#">删除</a></td>
+						<td><a href="#">修改</a>|<a href="#">删除</a></td>
 					</tr>
 					<tr>
 						<td>陈小婷</td>
 						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
 						<td>354300</td>
 						<td>183483984</td>
-						<td><a href="#">删除</a></td>
+						<td><a href="#">修改</a>|<a href="#">删除</a></td>
+					</tr>
+					<tr>
+						<td>陈小婷</td>
+						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
+						<td>354300</td>
+						<td>183483984</td>
+						<td><a href="#">修改</a>|<a href="#">删除</a></td>
 					</tr>
 				</table>
 		    </div>
 		</div>
 		<div id="order" class="hide tab-pane">
 			<h3>我的订单</h3>
-			<div class="coll"><a href="#">小米2s</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">魅蓝note3</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">小米2s</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">魅蓝note3</a>
-				<i class="fa fa-trash"></i>
-            </div>    
+			<div class="line">    
+			</div>
+			 <div style="margin-top: 40px;">
+				<table class="order">
+					<tr>
+						<th class="col-md-2">宝贝</th>
+						<th class="col-md-2">颜色</th>
+						<th class="col-md-2">单价</th>
+						<th class="col-md-2">数量</th>
+						<th class="col-md-2">实付款</th>
+						<th class="col-md-2">交易状态</th>
+					</tr>
+					<tr>
+						<td>魅族MX6</td>
+						<td>金色</td>
+						<td>1499</td>
+						<td>1</td>
+						<td>1499</td>
+						<td>交易成功</td>
+					</tr>
+					<tr>
+						<td>魅族MX6</td>
+						<td>金色</td>
+						<td>1499</td>
+						<td>1</td>
+						<td>1499</td>
+						<td>交易成功</td>
+					</tr>
+					<tr>
+						<td>魅族MX6</td>
+						<td>金色</td>
+						<td>1499</td>
+						<td>1</td>
+						<td>1499</td>
+						<td>交易成功</td>
+					</tr>
+				</table>
+		    </div>
 		</div>
 		<div id="track" class="hide tab-pane">
-			<h3>我的足迹</h3>
-			<div class="coll"><a href="#">小米2s</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">魅蓝note3</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">小米2s</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">魅蓝note3</a>
-				<i class="fa fa-trash"></i>
-            </div>    
+		    <h3>我的足迹</h3>
+		    <div class="line">    
+			</div>
+			<div class="row">
+		        <div class="col-md-2 track-project">
+		          <a href="#">
+		              <div class="track-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="track-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 track-project">
+		          <a href="#">
+		              <div class="track-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="track-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 track-project">
+		          <a href="#">
+		              <div class="track-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="track-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 track-project">
+		          <a href="#">
+		              <div class="track-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="track-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-md-2 track-project">
+		          <a href="#">
+		              <div class="track-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="track-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 track-project">
+		          <a href="#">
+		              <div class="track-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="track-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 track-project">
+		          <a href="#">
+		              <div class="track-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="track-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 track-project">
+		          <a href="#">
+		              <div class="track-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="track-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		    </div>
 		</div>
 		<div id="collect" class="hide tab-pane">
 			<h3>我的收藏</h3>
-            <div class="coll"><a href="#">小米2s</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">魅蓝note3</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">小米2s</a>
-				<i class="fa fa-trash"></i>
-            </div> 
-            <div class="coll"><a href="#">魅蓝note3</a>
-				<i class="fa fa-trash"></i>
-            </div>    
+            <div class="line">    
+			</div>
+			<div class="row">
+		        <div class="col-md-2 collect-project">
+		          <a href="#">
+		              <div class="collect-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="collect-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 collect-project">
+		          <a href="#">
+		              <div class="collect-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="collect-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 collect-project">
+		          <a href="#">
+		              <div class="collect-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="collect-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 collect-project">
+		          <a href="#">
+		              <div class="collect-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="collect-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-md-2 collect-project">
+		          <a href="#">
+		              <div class="collect-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="collect-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 collect-project">
+		          <a href="#">
+		              <div class="collect-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="collect-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 collect-project">
+		          <a href="#">
+		              <div class="collect-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="collect-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		        <div class="col-md-2 collect-project">
+		          <a href="#">
+		              <div class="collect-img">
+		                  <img src="images/3.png"/>
+		              </div>     
+		              <div class="collect-title">
+		                  <p>小米</p>
+		              </div>    
+		          </a>
+		        </div>
+		    </div>  
 		</div>
-		<div id="share" class="hide tab-pane">
+		<!-- <div id="share" class="hide tab-pane">
 	        <h1>优惠券</h1>
 			<div class="shar">
 				<p class="shar-price">10.00元</p>
@@ -183,7 +382,7 @@
 				<p class="shar-price">10.00元</p>
 	            <p class="shar-condition">订单满299.00元使用</p>
 			</div>
-	    </div>
+	    </div> -->
 	</div>
 </div>
 
