@@ -177,7 +177,7 @@
     height: 35px;
     font-size: medium;
     color: white;
-    margin-top: 15px;
+    /*margin-top: 15px;*/
 }
 
 .blockactive {
@@ -189,11 +189,19 @@
     width: 1200px;
     margin-left: 80px;
 }
+#description{
+    /*float: left;*/
+    transform-style:preserve-3d ;
+}
 #description img{
-    width: 600px;
-    height: 600px;
-    margin:0 auto;
-    display: block;
+    width: 450px;
+    height: 450px;
+    margin:30px 50px;
+    /*display: block;*/
+}
+#description img:hover{
+   transform: rotateX(360deg);  
+
 }
 #support{
     padding: 20px 20px 20px 62px;
@@ -201,13 +209,14 @@
 #support strong{
     display: inline-block;
     padding: 8px 0 3px;
-    font-size: 16px;
+    font-size: 20px;
+    color: #b96d7f;
 }
 #support dd{
     display: block;
     padding: 10px 0 30px;
-    line-height: 18px;
-}
+    line-height: 30px;
+}   
 /*#support i{
     display: inline-block;
     width: 32px;

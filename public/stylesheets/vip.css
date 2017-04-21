@@ -102,61 +102,81 @@ table{
 	padding-left: 15px;
 	text-align: center;
 }
+
 /* 我的足迹 */
-#track img{
-	width: 200px;
-	height: 200px;
-	background: rgba(221, 221, 221, 0.19);
+.row{
+	margin-top: 25px;
+	margin-left: 10px;
 }
-.track-project{
-	margin: 30px;
+.track_img{
+    width: 200px;
+    height: 250px; 
 }
-.track-img{
-	position: relative;
+.track_img img{
+    display: block;
+    background: #fff;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    padding: 15px;
 }
-.track-title{
-	position: absolute;
-	top: 160px;
-	left: 90px;
-	font-size: 17px;
-	color: #000;
+.track_info{
+    font-size: 18px;
+    color: #555;
+    font-family: "微软雅黑";
+    line-height: 24px;
+    position: absolute;
+    left: 10px;
+    top:210px;
+    width: 200px;
+    background: rgba(230, 229, 227, 0.5);;
+    /*margin-left: 12px;*/
+    text-align: center;
 }
-#track a:hover .track-img img{
-    transform:rotate(9deg);
+#track a:hover .track_info{
+    top: 0px;
+    height: 240px;
+    font-size: 30px;
+    color: #fff;
+    line-height: 200px;
+    background: rgba(160, 156, 156, 0.5);
 }
 
 /* 我的收藏 */
-#collect img{
-	width: 200px;
-	height: 200px;
-	background: rgba(221, 221, 221, 0.19);
+.collect_img{
+    width: 200px;
+    height: 250px; 
 }
-.collect-project{
-	margin: 30px;
+.collect_img img{
+    display: block;
+    background: #fff;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    padding: 15px;
 }
-.collect-img{
-	position: relative;
+.collect_info{
+    font-size: 18px;
+    color: #555;
+    font-family: "微软雅黑";
+    line-height: 24px;
+    position: absolute;
+    left: 10px;
+    top:210px;
+    width: 200px;
+    background: rgba(230, 229, 227, 0.5);;
+    /*margin-left: 12px;*/
+    text-align: center;
 }
-.collect-title{
-	position: absolute;
-	top: 160px;
-	left: 90px;
-	font-size: 17px;
-	color: #000;
+#collect a:hover .collect_info{
+    top: 0px;
+    height: 240px;
+    font-size: 30px;
+    color: #fff;
+    line-height: 200px;
+    background: rgba(160, 156, 156, 0.5);
 }
-#collect a:hover .collect-img img{
-	transform:rotate(9deg);
-}
-/* 优惠券 */
-/*.shar{
-	margin-left: 35px;
-}
-.shar-price{
-	font-weight: bold;
-}
-.shar-condition{
-	margin-left: 50px;
-}*/
+
 /* 底部 */
  .footer {
 	clear: both;

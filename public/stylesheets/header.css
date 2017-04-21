@@ -14,6 +14,9 @@ body{
 .header .logo{
 	height: 60px;
 }
+.header .logo img{
+	padding-left: 20px;
+}
 .header a{
 	text-decoration: none;
 	color: #333;

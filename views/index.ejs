@@ -2,17 +2,11 @@
 <% include header.ejs %>
 <link rel='stylesheet' href='/stylesheets/index.css' />
 
-<!--搜索框
-<!-- <div id="search">
-	<div class="input-group" style="width: 400px;">
-	    <input type="text" class="form-control input-sm"><span class="input-group-addon btn ">搜索</span>
-	</div>
-</div> -->
-
 <!--  中间内容区 -->
 <div class ="content">
 	<!-- 商品分类(左边导航) -->
 	<div class ="catalog">
+     <span>主推品牌</span>
       <ul class="prod-nav-ul"> 
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="魅族">魅族</a>
@@ -24,57 +18,57 @@
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="小米">小米</a>
            <div class="prod-nav-li-pull">
-             <p><a href="">小米5</a></p>
-             <p><a href="">小米5s</a></p>
+             <p><a href="/good?name='小米5'">小米5</a></p>
+             <p><a href="/good?name='小米5s'">小米5s</a></p>
            </div>
          </li>
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="苹果">苹果</a>
            <div class="prod-nav-li-pull">
-             <p><a href="">Apple iPhone 6</a></p>
-             <p><a href="">iPhone 7 Plus</a></p>
+             <p><a href="/good?name='Apple iPhone 6'">Apple iPhone 6</a></p>
+             <p><a href="/good?name='iPhone 7 Plus'">iPhone 7 Plus</a></p>
            </div>
          </li>
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="华为">华为</a>
            <div class="prod-nav-li-pull">
-             <p><a href="">华为 Mate 9</a></p>
-             <p><a href="">华为 P9</a></p>
+             <p><a href="/good?name='华为 Mate 9'">华为 Mate 9</a></p>
+             <p><a href="/good?name='华为 P9'">华为 P9</a></p>
            </div>
          </li>
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="三星">三星</a>
            <div class="prod-nav-li-pull">
-             <p><a href="">三星 Galaxy C5</a></p>
-             <p><a href="">三星 Galaxy Note5</a></p>
+             <p><a href="/good?name='三星 Galaxy C5'">三星 Galaxy C5</a></p>
+             <p><a href="/good?name='三星 Galaxy Note5'">三星 Galaxy Note5</a></p>
            </div>
          </li>
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="努比亚">努比亚</a>
            <div class="prod-nav-li-pull">
-             <p><a href="">nubia N1</a></p>
-             <p><a href="">nubia Z11</a></p>
+             <p><a href="/good?name='nubia N1'">nubia N1</a></p>
+             <p><a href="/good?name='nubia Z11'">nubia Z11</a></p>
            </div>
          </li>
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="OPPO">OPPO</a>
            <div class="prod-nav-li-pull">
-             <p><a href="">OPPO A57</a></p>
-             <p><a href="">OPPO R9s</a></p>
+             <p><a href="/good?name='OPPO A57'">OPPO A57</a></p>
+             <p><a href="/good?name='OPPO R9s'">OPPO R9s</a></p>
            </div>
          </li>
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="vivo">vivo</a>
            <div class="prod-nav-li-pull">
-             <p><a href="">vivo X9Plus</a></p>
-             <p><a href="">vivo Y67</a></p>
+             <p><a href="/good?name='vivo X9Plus'">vivo X9Plus</a></p>
+             <p><a href="/good?name='vivo Y67'">vivo Y67</a></p>
            </div>
          </li>
         <li class="prod-nav-li">
            <a class="prod-nav-li-a" href="#" title="荣耀">荣耀</a>
            <div class="prod-nav-li-pull">
-             <p><a href="">荣耀5</a></p>
-             <p><a href="">荣耀V8</a></p>
+             <p><a href="/good?name='荣耀5'">荣耀5</a></p>
+             <p><a href="/good?name='荣耀V8'">荣耀V8</a></p>
            </div>
          </li>
       </ul> 
@@ -120,53 +114,53 @@
     <!-- 商品链接 -->
     <div class="project ">
       <div class="row">
-        <div class="col-md-2 projectitem" id="projectitem_0">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='小米5'" target="_blank">
               <div class="project_img">
-                  <img src="images/goods/mi5-2.jpg" width="200" height="300"/>
+                  <img src="images/goods/mi5-2.jpg" width="200" height="200"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">小米5</p>
               </div>    
           </a>
         </div>
-        <div class="col-md-2" id="projectitem_1">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='魅族MX6'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/mx6-2.jpg" width="200" height="200"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">魅族MX6</p>
               </div>    
           </a>
         </div>
-        <div class="col-md-2" id="projectitem_2">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='iPhone 7 Plus'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/apple7plus-2.jpg" width="200" height="200"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">iPhone 7 Plus</p>
               </div>    
           </a>
         </div>
-        <div class="col-md-2" id="projectitem_3">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='华为 P9'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/hwp9-2.jpg" width="200" height="200"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">华为 P9</p>
               </div>    
           </a>
         </div>
-        <div class="col-md-2" id="projectitem_4">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='三星 Galaxy Note5'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/sxNote5-2.jpg" width="200" height="200"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">三星 Galaxy Note5</p>
               </div>    
           </a>
         </div>
@@ -178,53 +172,53 @@
     </div>
     <div class="project ">
       <div class="row">
-        <div class="col-md-2" id="projectitem_5">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='nubia Z11'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/nbZ11-2.jpg" width="200" height="300"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">nubia Z11</p>
               </div>    
           </a>
         </div>
-        <div class="col-md-2" id="projectitem_6">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='OPPO R9s'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/opR9s-2.jpg" width="200" height="300"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">OPPO R9s</p>
               </div>    
           </a>
         </div>
-        <div class="col-md-2" id="projectitem_7">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='vivo Y67'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/vvY67-2.jpg" width="200" height="300"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">vivo Y67</p>
               </div>    
           </a>
         </div>
-        <div class="col-md-2" id="projectitem_8">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='荣耀5'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/ry5-3.jpg" width="200" height="300"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">荣耀5</p>
               </div>    
           </a>
         </div>
-        <div class="col-md-2" id="projectitem_9">
-          <a href="#" target="_blank">
+        <div class="col-md-2">
+          <a href="/good?name='Apple iPhone'" target="_blank">
               <div class="project_img">
-                  <img src="images/3.png" width="200" height="300"/>
+                  <img src="images/goods/apple6-4.jpg" width="200" height="300"/>
               </div>     
               <div class="project_info">
-                  <p class="title">小米</p>
+                  <p class="title">Apple iPhone</p>
               </div>    
           </a>
         </div>

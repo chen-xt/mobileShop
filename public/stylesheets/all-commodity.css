@@ -1,0 +1,103 @@
+
+/* 头部 */
+.top{
+    margin-left: 80px;
+    height: 80px;
+    padding-bottom: 10px; 
+}
+.title{
+    float: left;
+    margin-left: 30px;
+    line-height: 80px;
+    padding-top: 20px;
+    color: #b96d7f;
+    letter-spacing: 5px;
+}
+.search{
+    float: right;
+    width: 407px;
+    margin-top: 25px;
+    margin-right: 100px;
+}
+
+/* 横线 */
+.line{
+    width: 1200px;
+    margin-left: 80px;
+    clear: both;
+    background: #e6e6e6;
+    height: 2px;
+}
+
+/* 展示所有商品 */
+.content{
+	margin-left: 80px;
+	padding-top: 20px;
+	float: left;
+	background:  #f6f6f6;
+	width: 1200px;
+	padding-bottom: 40px;
+}
+.showProject{
+	border: 1px solid #eee;
+	width: 200PX;
+	height: 235px;
+	margin-left: 80px;
+	float: left;
+	margin-top: 30px;
+}
+.project_img{
+	margin: 0 auto;
+	background: #fff;
+}
+.project_img img{
+	padding: 20px;
+}
+.project_info{
+	height: 35px;
+	text-align: center;
+	font-size: 18px;
+	background-color: rgba(230, 229, 227, 0.5);
+}
+.project_info p{
+	padding-top: 5px;
+	color: rgba(78, 52, 52, 0.9);
+}
+.showProject a:hover {
+    text-decoration: none;
+}
+.showProject:hover{
+	animation:myfirst 1s;
+}
+
+@keyframes myfirst
+{
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.1);
+	}
+}
+
+/* 底部 */
+.footer {
+	clear: both;
+    background: #fff;
+    width: 1200px;
+    position: relative;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 80px;
+    border-left: 1px solid #f6f6f6;
+    border-right: 1px solid #f6f6f6;
+    /*border: 3px solid #f6f6f6;*/
+}
+.footer p {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #8e8e8e;
+    height: 20px;
+    line-height: 20px
+}

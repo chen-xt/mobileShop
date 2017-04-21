@@ -386,7 +386,6 @@ router.get("/addToCart/:id", function (req, res) {
 });
 
 
-
 //商品详情页（有错误：无法查询单条数据）
 router.get('/good', function(req, res) {
     Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
@@ -400,6 +399,23 @@ router.get('/good', function(req, res) {
          });
          /*console.log(req.query.name);
            console.log(commodity);*/
+        }               
+    }); 
+});
+
+// 所有商品展示(有错误)
+router.get('/all-commodity', function(req, res) {
+    // res.render('all-commodity', { title: '所有商品' });
+    Commodity.find({}, function(err, commodity){
+        if(err){
+            console.log("error :" + err);
+         }
+        else{
+            res.render('all-commodity', {
+            title: '所有商品',
+            commodity: commodity
+         });
+            console.log(commodity.name);
         }               
     }); 
 });

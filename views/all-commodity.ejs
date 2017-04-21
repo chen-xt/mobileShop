@@ -1,0 +1,81 @@
+
+<% include header.ejs %>
+<link rel='stylesheet' href='/stylesheets/all-commodity.css' />
+
+<!-- JS实现模糊查询 -->
+<script> 
+	function getElementsClass(classnames) {
+	    var classobj = new Array(); //定义数组 
+	    var classint = 0; //定义数组的下标 
+	    var tags = document.getElementsByTagName("*"); //获取HTML的所有标签 
+	    for (var i in tags) { //对标签进行遍历 
+	        if (tags[i].nodeType == 1) { //判断节点类型 
+	            if (tags[i].getAttribute("class") == classnames) 
+	            //判断和需要CLASS名字相同的，并组成一个数组 
+	            {
+	                classobj[classint] = tags[i];
+	                classint++;
+	            }
+	        }
+	    }
+	    return classobj; //返回组成的数组 
+	}
+
+    function search() { 
+	  	var input, filter, content, showProject,
+	  	input = document.getElementById("cartInput");
+	  	filter = input.value.toUpperCase();
+	  	content = document.getElementById("content"); 
+	    showProject = getElementsClass("showProject"); //这是一个数组
+	    alert(showProject);
+	    for (i = 0; i < showProject.length; i++) { 
+	      p = showProject[i].getElementsByTagName("p")[1]; 
+	      if (p) { 
+	        if (p.innerHTML.toUpperCase().indexOf(filter) > -1) { 
+	          showProject[i].style.display = "";       
+	        } else { 
+	          showProject[i].style.display = "none"; 
+	        } 
+	      } 
+	    } 
+	  } 
+</script> 
+
+<!-- 头部 -->
+<div class="top">
+	<!-- 购物车标题 -->
+	<div class="title">
+		<h3>所有商品</h3>
+	</div>
+	<!-- 搜索框 -->
+	<div class="input-group search">
+	  <input type="text" class="form-control" aria-describedby="basic-addon2" placeholder="搜索宝贝" id="cartInput">
+	  <!-- <span class="input-group-addon" id="basic-addon2" onclick="search()">搜索</span> -->
+    <span class="input-group-addon" id="basic-addon2">搜索</span>
+	</div>
+</div>
+
+<!-- 横线 -->
+<div class="line">    
+</div>
+
+<!-- 展示所有商品 -->
+<div class="content">
+	  <div class="showProject">
+      <a href="/good?name='<%= commodity.name %>'" target="_blank">
+          <div class="project_img">
+              <img src="images/goods/<%= commodity.imgSrc %>2.jpg" width="200" height="200"/>
+          </div>     
+          <div class="project_info">
+              <p><%= commodity.name %></p>
+          </div>    
+      </a>
+    </div>
+</div>
+
+<!-- 底部 -->
+<div class = "footer">
+  <p> 
+     All Rights Reserved. xiaoting 版权所有
+  </p>
+</div>
