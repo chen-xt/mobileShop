@@ -5,12 +5,12 @@
     <h1>修改商品</h1>
 
     <form action="#"  role="form" method="post" >
-        <input style="margin-top: 30px;" id="name" type="text" class="form-control"  name="name" value="<%= commodity.name %>" />
-        <input style="margin-top: 30px;" id="info"  class="form-control" name="info" value="<%= commodity.info %>"/>
-        <input style="margin-top: 30px;" id="color"  class="form-control" name="color" value="<%= commodity.color %>"/>
-        <input style="margin-top: 30px;" id="price"  class="form-control" name="price" value="<%= commodity.price %>"/>
-        <input style="margin-top: 30px;" id="quantity"  class="form-control" name="quantity" value="<%= commodity.quantity %>"/>
-        <input style="margin-top: 30px;" id="imgSrc"  class="form-control" name="imgSrc" value="<%= commodity.imgSrc %>"/>
+        <input style="margin-top: 30px;" id="name" type="text" class="form-control"  name="name" value="<%= commodity.name %>" placeholder="商品名称"/>
+        <input style="margin-top: 30px;" id="info"  class="form-control" name="info" value="<%= commodity.info %>" placeholder="商品描述"/>
+        <input style="margin-top: 30px;" id="color"  class="form-control" name="color" value="<%= commodity.color %>" placeholder="商品颜色"/>
+        <input style="margin-top: 30px;" id="price"  class="form-control" name="price" value="<%= commodity.price %>" placeholder="商品价格"/>
+        <input style="margin-top: 30px;" id="quantity"  class="form-control" name="quantity" value="<%= commodity.quantity %>" placeholder="商品数量"/>
+        <input style="margin-top: 30px;" id="imgSrc"  class="form-control" name="imgSrc" value="<%= commodity.imgSrc %>" placeholder="商品图片路径"/>
         <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="修改" />
         <a href="/commodity-manage" class="btn btn-success btn-block" style="margin-top: 30px;">返回商品管理</a>
     </form>

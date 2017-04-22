@@ -5,7 +5,8 @@ body{
 }
 /* 导航栏 */
 .header { 
-	padding: 20px 0;
+	/*padding: 20px 0;*/
+	padding: 35px 0px 10px 0px;
     background-color:#f6f6f6; 
     width: 1200px;
     margin-left: 80px;
@@ -15,7 +16,8 @@ body{
 	height: 60px;
 }
 .header .logo img{
-	padding-left: 20px;
+	padding-left: 30px;
+
 }
 .header a{
 	text-decoration: none;

@@ -23,7 +23,7 @@ li{
 }
 .catalog span{
     font-size: 18px;
-    padding: 7px 20px 12px 20px;
+    padding: 7px 25px 12px 25px;
     letter-spacing: 7px;
     width: 150px;
     margin: 20px auto; 
@@ -41,11 +41,11 @@ li{
     list-style: none;
     height: 35px;
     font-size: 16px;
-    line-height: 20px;
+    line-height: 15px;
     padding-top: 5px;
     position: relative;
     z-index: 1;
-    margin-top: 20px;
+    margin-top: 15px;
     text-align: center;
 }
 .prod-nav-li:hover{
@@ -66,7 +66,7 @@ li{
     padding-top: 8px;
 }
 .prod-nav-li-pull p a{
-    margin-left: 15px;
+    /*margin-left: 15px;*/
     color: #dfdbdb;
 }
 .prod-nav-li-pull{
@@ -170,7 +170,7 @@ li{
     background-color: #fff;
 }
 .module ul:after{
-    display: block;
+    /*display: block;*/
     clear: both;
 }
 .module ul li{

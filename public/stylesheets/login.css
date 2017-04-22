@@ -4,7 +4,7 @@
 	width: 1200px;
 	height: 500px;
 	margin-left: 80px;
-	margin-top: 5px;
+	/*margin-top: 0px;*/
 	background-image: url(/images/00.jpg);
 	position: relative;
 	/*background: #eee;*/
@@ -15,7 +15,7 @@
 	/*background: #6d747d;*/
 }
 .login-a{
-	float: right;
+	/*float: right;*/
 	margin-top: 20px;
 	text-decoration: none;
 	color: #333;

@@ -42,7 +42,7 @@ router.post('/reg', function(req, res, next) {
                     res.redirect('/reg');
                 }
                 else{
-                     User.create({username: username, password: password}, function(error, user) {
+                     User.create({username: username, password: password, status:0}, function(error, user) {
                         if (err) return next(err); 
                         req.session.user = user;
                         // console.log('注册成功');
@@ -54,43 +54,77 @@ router.post('/reg', function(req, res, next) {
     }    
 });
 
-// 登录(ok)
-router.get('/login', function(req, res) {
-    res.render('login', { title: '用户登录' });
+// 用户登录(ok)
+router.get('/user-login', function(req, res) {
+    res.render('user-login', { title: '用户登录' });
 });
-router.post('/login', function(req, res, next) {
+router.post('/user-login', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
     if( username == ''|| password  == ''){
-        console.log('用户名或密码不能为空');
-        req.flash('error', '用户名不存在');
-        res.redirect('/login');
+        req.flash('error', '用户名或密码不能为空');
+        res.redirect('/user-login');
     }
     else{
-       User.findOne({username: username},function(err, user){
-        if(err){
-            console.log("error :" + err);
-        }
-        else if(!user){
-            // console.log("用户名不存在");
-            req.flash('error', '用户名不存在');
-            res.redirect('/login');
-        }
-        else{
-            if(password != user.password){
-                    // console.log("密码错误"); 
+        User.findOne({username: username},function(err, user){
+            if(!user){
+                req.flash('error', '用户名不存在');
+                res.redirect('/user-login');
+            }
+            else if(user.status == 1){
+                // 判断是用户还是管理员
+                req.flash('error', '请输入正确用户类型(管理员/普通用户)的用户名'); 
+                res.redirect('/user-login');
+            }
+            else{
+                if(password != user.password){ 
                     req.flash('error', '密码错误');
-                    res.redirect('/login');
-               }else{
-                    // console.log(username); 
+                    res.redirect('/user-login');
+                 }else{
                     req.session.user = user;//保存用户信息
                     req.flash('success', '登陆成功！');
-                    res.redirect('/?userid=' + user._id);
-                    console.log(req.session.user); 
-               }
-        }       
-    }); 
-  }    
+                    res.redirect('/?userid=' + user._id);                               
+                }
+            }       
+        }); 
+    }    
+});
+
+// 管理员登录(ok)
+router.get('/manager-login', function(req, res) {
+    res.render('manager-login', { title: '管理员登录' });
+});
+router.post('/manager-login', function(req, res, next) {
+    var username = req.body.username;
+    var password = req.body.password;
+    if( username == ''|| password  == ''){
+        req.flash('error', '用户名或密码不能为空');
+        res.redirect('/user-login');
+    }
+    else{
+        User.findOne({username: username},function(err, user){
+            if(!user){
+                req.flash('error', '用户名不存在');
+                res.redirect('/manager-login');
+            }
+            else if(user.status == 0){
+                // 判断是用户还是管理员
+                req.flash('error', '请输入正确用户类型(管理员/普通用户)的用户名'); 
+                res.redirect('/manager-login');
+            }
+            else{
+                if(password != user.password){ 
+                    req.flash('error', '密码错误');
+                    res.redirect('/manager-login');
+                 }else{
+                    req.session.user = user;//保存用户信息
+                    req.flash('success', '登陆成功！');
+                    res.redirect('/?userid=' + user._id);                               
+                }
+            }      
+        }); 
+    }   
+
 });
 
 //用户管理(ok)
@@ -110,11 +144,12 @@ router.get('/addUser', function(req, res) {
 router.post('/addUser', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
+    var sex = req.body.sex;
     var QQ = req.body.QQ;
     var email = req.body.email;
     var address = req.body.address;
     var tel = req.body.tel;
-    if( username == ''|| password  == ''|| QQ  == ''|| email  == ''|| address  == ''|| tel  == ''){
+    if( username == ''|| password  == ''|| sex  == ''|| QQ  == ''|| email  == ''|| address  == ''|| tel  == ''){
         // console.log('输入框不能为空');
         req.flash('error', '输入框不能为空');
         res.redirect('/addUser');
@@ -134,6 +169,7 @@ router.post('/addUser', function(req, res) {
                  User.create({
                     username: username, 
                     password: password,
+                    sex: sex,
                     QQ: QQ, 
                     email: email, 
                     address: address,
@@ -165,7 +201,7 @@ router.get('/delUser', function(req, res) {
 
 // 修改用户信息(ok)
 router.get('/updateUser', function(req, res) {
-    var id = req.query.id;console.log(id);
+    var id = req.query.id;
     User.findOne({ _id: id}, function(err, user) {
         res.render('updateUser', {
             title: '用户信息修改',
@@ -178,6 +214,7 @@ router.post('/updateUser', function(req, res) {
     var update = {$set : { 
         username : req.body.username,
         password : req.body.password,
+        sex: req.body.sex,
         QQ : req.body.QQ,
         email : req.body.email,
         address : req.body.address,
@@ -321,7 +358,7 @@ router.get('/cart', function(req, res) {
 });
 
 // 删除购物车商品(ok)
-router.get("/delCart/:id", function (req, res) {
+router.get('/delCart/:id', function (req, res) {
     Cart.remove({"_id": req.params.id}, function (err) {
         if(err) {
             console.log(error);
@@ -334,7 +371,7 @@ router.get("/delCart/:id", function (req, res) {
 });
 
 //添加购物车商品(ok)
-router.get("/addToCart/:id", function (req, res) {
+router.get('/addToCart/:id', function (req, res) {
     if (!req.session.user) {
         req.flash('error', '用户已过期，请重新登录');
         res.redirect('/login');
@@ -385,10 +422,28 @@ router.get("/addToCart/:id", function (req, res) {
     }
 });
 
+// 所有商品展示(ok)
+router.get('/all-commodity', function(req, res) {
+    Commodity.find(function(err, commodity) {
+        res.render('all-commodity', {
+            title: '所有商品',
+            commodity: commodity
+        });
+        // console.log(commodity);
+    });
+});
+
+// 会员中心(ok)
+router.get('/vip',function(req, res){  
+        res.render('vip', {
+            title: '会员中心',          
+        });  
+});
+
 
 //商品详情页（有错误：无法查询单条数据）
 router.get('/good', function(req, res) {
-    Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
+    Commodity.findOne({name: '魅族MX6'}, function(err, commodity){
         if(err){
             console.log("error :" + err);
          }
@@ -397,39 +452,42 @@ router.get('/good', function(req, res) {
             title: '商品详情',
             commodity: commodity
          });
-         /*console.log(req.query.name);
-           console.log(commodity);*/
+         // console.log(commodity); //数据为空
+         // console.log(req.query.name); //取到数据
         }               
     }); 
 });
 
-// 所有商品展示(有错误)
-router.get('/all-commodity', function(req, res) {
-    // res.render('all-commodity', { title: '所有商品' });
-    Commodity.find({}, function(err, commodity){
-        if(err){
-            console.log("error :" + err);
-         }
-        else{
-            res.render('all-commodity', {
-            title: '所有商品',
-            commodity: commodity
-         });
-            console.log(commodity.name);
-        }               
-    }); 
+//会员中心--修改个人信息(有错误)
+router.get('/updateInformation',function(req, res){
+        res.render('vip', {
+            title: '会员中心',            
+        });
+});
+router.post('/updateInformation', function(req, res) {
+    var id = req.query.id;
+    var update = {$set : { 
+        sex: req.body.sex,
+        QQ : req.body.QQ,
+        email : req.body.email,
+        address : req.body.address,
+        tel : req.body.tel
+    }};
+    User.update({_id: id}, update, function(err){
+        if(err) {
+            console.log(error);
+        } else {    
+            req.flash('success', '保存成功！');
+            res.redirect('/vip');
+        }
+    });
 });
 
 
 
-router.get('/cart-manage', function(req, res) {
-    res.render('cart-manage', { title: '购物车管理' });
-});
-router.get('/comment', function(req, res) {
+/*router.get('/comment', function(req, res) {
     res.render('comment', { title: '留言板' });
-});
-router.get('/vip', function(req, res) {
-    res.render('vip', { title: '会员中心' });
-});
+});*/
+
 
 module.exports = router;
