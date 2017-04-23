@@ -443,7 +443,7 @@ router.get('/vip',function(req, res){
 
 //商品详情页（有错误：无法查询单条数据）
 router.get('/good', function(req, res) {
-    Commodity.findOne({name: '魅族MX6'}, function(err, commodity){
+    Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
         if(err){
             console.log("error :" + err);
          }
@@ -465,7 +465,7 @@ router.get('/updateInformation',function(req, res){
         });
 });
 router.post('/updateInformation', function(req, res) {
-    var id = req.query.id;
+    var id = req.query.id;console.log(req.query.id);
     var update = {$set : { 
         sex: req.body.sex,
         QQ : req.body.QQ,

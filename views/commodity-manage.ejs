@@ -1,54 +1,79 @@
-<% include header.ejs %>
 
-<div class="container" style="margin-top:30px;">
-	<% include alert.ejs %>
-	<div class="row">
-	    <a href="/addCommodity" type="button" class="btn btn-primary">添加商品</a>
+<% include header.ejs %>
+<link rel='stylesheet' href='/stylesheets/manage.css' />
+<script type="text/javascript">
+	$(document).click(function() { 
+  	// 隐藏alert提示消息
+	$(".alert").hide(); 
+  }); 
+</script>
+
+<div class="content">
+	<div class="container" style="margin-top:30px;">
+		<% include alert.ejs %>
+		<h3>商品列表</h3>
+		  <hr>
+		  <div class="add">
+		  	<a href="/addUser" type="button" class="btn btn-primary" style="">添加新商品</a>
+		  </div>
+		<div class="table-responsive">
+		    <table class="table table-bordered table-hover">
+		        <thead>
+		            <tr>
+		                <!-- <th>商品ID</th> -->
+		                <th>商品名称</th>
+		                <th>商品描述</th>
+		                <th>商品颜色</th>
+		                <th>商品价格</th>
+		                <th>商品数量</th>
+		                <th>商品图片路径</th>
+		                <th>操作</th>
+		            </tr>
+		        </thead>
+		        <tbody>     
+		        	 <% commodity.forEach(function( commodity ){ %>
+		                <tr>
+		                   <!--  <td>
+		                       <%= commodity._id %>
+		                   </td> -->
+		                    <td>
+		                        <%= commodity.name %>
+		                    </td>
+		                    <td>
+		                        <%= commodity.info %>
+		                    </td>
+		                    <td>
+		                        <%= commodity.color %>
+		                    </td>
+		                    <td>
+		                        <%= commodity.price %>
+		                    </td>
+		                    <td>
+		                        <%= commodity.quantity %>
+		                    </td>
+		                    <td>
+		                        <%= commodity.imgSrc %>
+		                    </td>
+		                    <td>
+		                      <a href="/delCommodity?id=<%= commodity._id %>">删除</a> | <a href="/updateCommodity?id=<%= commodity._id %>">修改</a>
+		                    </td>
+		                </tr>
+					<% }); %>
+		        </tbody>
+		    </table>
+		</div>
 	</div>
-	<div class="table-responsive">
-	    <table class="table table-bordered table-hover">
-	        <thead>
-	            <tr>
-	                <!-- <th>商品ID</th> -->
-	                <th>商品名称</th>
-	                <th>商品描述</th>
-	                <th>商品颜色</th>
-	                <th>商品价格</th>
-	                <th>商品数量</th>
-	                <th>商品图片路径</th>
-	                <th>操作</th>
-	            </tr>
-	        </thead>
-	        <tbody>     
-	        	 <% commodity.forEach(function( commodity ){ %>
-	                <tr>
-	                   <!--  <td>
-	                       <%= commodity._id %>
-	                   </td> -->
-	                    <td>
-	                        <%= commodity.name %>
-	                    </td>
-	                    <td>
-	                        <%= commodity.info %>
-	                    </td>
-	                    <td>
-	                        <%= commodity.color %>
-	                    </td>
-	                    <td>
-	                        <%= commodity.price %>
-	                    </td>
-	                    <td>
-	                        <%= commodity.quantity %>
-	                    </td>
-	                    <td>
-	                        <%= commodity.imgSrc %>
-	                    </td>
-	                    <td>
-	                      <a href="/delCommodity?id=<%= commodity._id %>">删除</a> | <a href="/updateCommodity?id=<%= commodity._id %>">修改</a>
-	                    </td>
-	                </tr>
-				<% }); %>
-	        </tbody>
-	    </table>
+	<!-- 分页 -->
+	<div class="page">
+		<a href="/commodity-manage">首页</a>
+		<a href="/commodity-manage">上一页</a>
+		<a href="/commodity-manage">下一页</a>
+		<a href="/commodity-manage">尾页</a>
 	</div>
+</div>
+<!-- 底部 -->
+<div class = "footer">
+  <p> 
+    All Rights Reserved. xiaoting 版权所有
+  </p>
 </div>

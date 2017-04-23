@@ -5,3 +5,52 @@
 	border: 1px solid #eee;
 	/*background-color:#f6f6f6;*/
 }
+.table{
+	width: 100%;
+    border: 1px solid #e1e1e1;
+    font-family: "Microsoft YaHei";
+    font-size: 15px;
+}
+th{
+	padding: 8px 0;
+    color: #333;
+    font-size: 15px;
+    font-weight: 500;
+    background: #f3f3f3;
+    border-bottom: 1px solid #E1E1E1;
+    line-height: 1.5em;
+}
+.add{
+	margin-bottom: 15px;
+}
+
+/* 分页 */
+.page {
+	margin-left: 430px;
+	margin-bottom: 20px;
+}
+.page a{
+	margin-left: 30px;
+}
+
+/* 底部 */
+.footer {
+    background: #fff;
+    width: 1200px;
+    position: relative;
+    height: 50px;
+    /*margin-top: 15px;*/
+    margin-left: 80px;
+    border-left: 1px solid #f6f6f6;
+    border-right: 1px solid #f6f6f6;
+    border: 2px solid #f6f6f6;
+
+}
+.footer p {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #8e8e8e;
+    height: 20px;
+    line-height: 20px
+}

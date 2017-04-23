@@ -16,7 +16,6 @@
 			$(".info input").hide();
 			$(".info #update").show();
 			$(".info #save").hide();
-
 		});
 	});
 </script>
@@ -85,7 +84,7 @@
 			</div>
 			<div class="info">
 				<a href="#" id="update" class="btn btn-primary">修改资料</a>
-				<a href="#" id="save" class="btn btn-primary">保存</a>
+				<a href="/updateInformation?id=<%= user._id %>" id="save" class="btn btn-primary">保存</a>
 			</div>
 		</div>
 		<div id="password" class="hide tab-pane">

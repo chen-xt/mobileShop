@@ -15,14 +15,19 @@
     for (i = 0; i < tr.length; i++) { 
       td = tr[i].getElementsByTagName("td")[1]; 
       if (td) { 
-        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) { 
+        if (td.innerText.toUpperCase().indexOf(filter) > -1) { 
           tr[i].style.display = ""; 
         } else { 
           tr[i].style.display = "none"; 
         } 
       } 
     } 
-  } 
+  }
+
+  $(document).click(function() { 
+  	// 隐藏alert提示消息
+	$(".alert").hide(); 
+  });  
 
 </script> 
 
@@ -83,6 +88,7 @@
 			</tbody>
 		</table>
 	</div>
+
 	<div class="foot" id="foot">
 		<!-- 结算部分 -->
 		<label class="fl select-all"><input type="checkbox" class="check-all check">&nbsp;全选</label>
