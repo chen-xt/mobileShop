@@ -433,20 +433,37 @@ router.get('/all-commodity', function(req, res) {
     });
 });
 
-
-// 会员中心
+// 会员中心(ok)
 router.get('/vip',function(req, res){  
-    User.find({username: req.session.user.username},function(err, user) {
-        res.render('vip', {
-            title: '会员中心',
-            user: user
-        });
-        console.log(req.session.user);
-   });
+    res.render('vip', {
+        title: '会员中心',          
+    });  
 });
 
 
-//会员中心--修改个人资料(有错误)
+//商品详情页（有错误：无法查询单条数据）
+router.get('/good', function(req, res) {
+    Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
+        if(err){
+            console.log("error :" + err);
+         }
+        else{
+            res.render('good', {
+            title: '商品详情',
+            commodity: commodity
+         });
+         // console.log(commodity); //数据为空
+         // console.log(req.query.name); //取到数据
+        }               
+    }); 
+});
+
+//会员中心--修改个人信息(有错误)
+router.get('/updateInformation',function(req, res){
+        res.render('vip', {
+            title: '会员中心',            
+        });
+});
 router.post('/updateInformation', function(req, res) {
     var id = req.query.id;console.log(req.query.id);
     var update = {$set : { 
@@ -467,21 +484,10 @@ router.post('/updateInformation', function(req, res) {
 });
 
 
-//商品详情页（有错误：无法查询单条数据）
-router.get('/good', function(req, res) {
-    Commodity.findOne({name: '魅族MX6'}, function(err, commodity){
-        // console.log(req.params.id);
-        if(err){
-            console.log("error :" + err);
-         }
-        else{
-            res.render('good', {
-            title: '商品详情',
-            commodity: commodity
-         });
-        }               
-    }); 
-});
+
+/*router.get('/comment', function(req, res) {
+    res.render('comment', { title: '留言板' });
+});*/
 
 
 module.exports = router;
