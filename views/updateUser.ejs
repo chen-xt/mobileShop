@@ -1,18 +1,29 @@
 
 <% include header.ejs %>
+<link rel='stylesheet' href='/stylesheets/common.css' />
 
-<div style="margin:100px auto;width: 500px;" class="add_c">
-    <h1>修改用户信息</h1>
 
-    <form action="#"  role="form" method="post" >
-        <input style="margin-top: 30px;" id="username" type="text" class="form-control"  name="username" value="<%= user.username %>" placeholder="用户名"/>
-        <input style="margin-top: 30px;" id="password" class="form-control" name="password" value="<%= user.password %>" placeholder="用户密码"/>
-        <input style="margin-top: 30px;" id="sex" class="form-control" name="sex" value="<%= user.sex %>" placeholder="性别"/>
-        <input style="margin-top: 30px;" id="QQ" type="text" class="form-control"  name="QQ" value="<%= user.QQ %>" />
-        <input style="margin-top: 30px;" id="email" class="form-control" name="email" value="<%= user.email %>" />
-        <input style="margin-top: 30px;" id="address" class="form-control" name="address" value="<%= user.address %>" placeholder="QQ"/>
-         <input style="margin-top: 30px;" id="tel" class="form-control" name="tel" value="<%= user.tel %>" placeholder="用户邮箱"/>
-        <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="修改" />
-        <a href="/user-manage" class="btn btn-success btn-block" style="margin-top: 30px;">返回用户管理</a>
-    </form>
+<div class="content">
+    <div class="common">
+        <% include alert.ejs %>
+        <h1>修改用户信息</h1>
+        <form action="#"  role="form" method="post" >
+            <input style="margin-top: 30px;" id="username" type="text" class="form-control"  name="username" value="<%= user.username %>" placeholder="用户名"/>
+            <input style="margin-top: 30px;" id="password" class="form-control" name="password" value="<%= user.password %>" placeholder="用户密码"/>
+            <input style="margin-top: 30px;" id="sex" class="form-control" name="sex" value="<%= user.sex %>" placeholder="性别"/>
+            <input style="margin-top: 30px;" id="QQ" type="text" class="form-control"  name="QQ" value="<%= user.QQ %>" />
+            <input style="margin-top: 30px;" id="email" class="form-control" name="email" value="<%= user.email %>" />
+            <input style="margin-top: 30px;" id="address" class="form-control" name="address" value="<%= user.address %>" placeholder="QQ"/>
+             <input style="margin-top: 30px;" id="tel" class="form-control" name="tel" value="<%= user.tel %>" placeholder="用户邮箱"/>
+            <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="修改" />
+            <a href="/user-manage" class="btn btn-success btn-block" style="margin-top: 30px;">返回用户管理</a>
+        </form>
+    </div>
+</div>
+
+<!-- 底部 -->
+<div class = "footer">
+  <p> 
+    All Rights Reserved. xiaoting 版权所有
+  </p>
 </div>

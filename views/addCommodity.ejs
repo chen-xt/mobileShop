@@ -1,18 +1,27 @@
 
 <% include header.ejs %>
+<link rel='stylesheet' href='/stylesheets/common.css' />
 
-<div style="margin:100px auto;width: 500px;" class="add_c">
-    <% include alert.ejs %>
-    <h1>添加商品</h1>
-    
-    <form action="#"  role="form" method="post" >
-        <input style="margin-top: 30px;" id="name" type="text" class="form-control"  name="name" placeholder="商品名称" />
-        <input style="margin-top: 30px;" id="info" class="form-control" name="info"  placeholder="商品描述" />
-        <input style="margin-top: 30px;" id="color" class="form-control" name="color"  placeholder="商品颜色" />
-        <input style="margin-top: 30px;" id="price" class="form-control" name="price"  placeholder="商品价格" />
-        <input style="margin-top: 30px;" id="quantity" class="form-control" name="quantity"  placeholder="商品数量" />
-        <input style="margin-top: 30px;" id="imgSrc" class="form-control" name="imgSrc"  placeholder="商品图片路径" />
-        <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="添 加" />
-        <a href="/commodity-manage" class="btn btn-success btn-block" style="margin-top: 30px;">返回商品管理</a>
-    </form>
+<div class="content">
+    <div class="common">
+        <% include alert.ejs %>
+        <h1>添加商品</h1>  
+        <form action="#"  role="form" method="post" >
+            <input style="margin-top: 30px;" id="name" type="text" class="form-control"  name="name" placeholder="商品名称" />
+            <input style="margin-top: 30px;" id="info" class="form-control" name="info"  placeholder="商品描述" />
+            <input style="margin-top: 30px;" id="color" class="form-control" name="color"  placeholder="商品颜色" />
+            <input style="margin-top: 30px;" id="price" class="form-control" name="price"  placeholder="商品价格" />
+            <input style="margin-top: 30px;" id="quantity" class="form-control" name="quantity"  placeholder="商品数量" />
+            <input style="margin-top: 30px;" id="imgSrc" class="form-control" name="imgSrc"  placeholder="商品图片路径" />
+            <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="添 加" />
+            <a href="/commodity-manage" class="btn btn-success btn-block" style="margin-top: 30px;">返回商品管理</a>
+        </form>
+    </div>
+</div>
+
+<!-- 底部 -->
+<div class = "footer">
+  <p> 
+    All Rights Reserved. xiaoting 版权所有
+  </p>
 </div>
