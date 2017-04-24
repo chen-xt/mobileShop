@@ -65,10 +65,14 @@ tr:hover{
 .info span , .info input, .pass input{
 	margin-left: 20px;
 }
+.btn{
+    margin-left: 68px;
+}
 
 .info input, #save{
 	display: none;
 }
+
 /* 密码重置 */
 .pass{
 	height: 40px;

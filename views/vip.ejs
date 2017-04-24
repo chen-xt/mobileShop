@@ -8,17 +8,22 @@
 		$("#update").click(function(){
 			$(".info span").hide();
 			$(".info input").show();
-			$(".info #update").hide();
-			$(".info #save").show();
+			$(".but #update").hide();
+			$(".but #save").show();
 		});
 		$("#save").click(function(){
 			$(".info span").show();
 			$(".info input").hide();
-			$(".info #update").show();
-			$(".info #save").hide();
+			$(".but #update").show();
+			$(".but #save").hide();
 		});
 	});
-</script>
+
+	$(document).click(function() { 
+  	// 隐藏alert提示消息
+	$(".alert").hide(); 
+  });  
+</script> 
 
 <div class="content">
 	<!-- 右边导航栏 -->
@@ -54,52 +59,60 @@
 			<!-- 横线 -->
 			<div class="line">    
 			</div>
-			<div class="info" style="margin-top: 40px;">
-				<strong>性别：</strong>
-			    <span><%= user.sex %></span>
-				<input type="text" value="<%= user.sex %>" id="sex" name="sex">
-			</div>
-			<div class="info">
-				<strong>QQ：</strong>
-				<span><%= user.QQ %></span>
-				<input type="text" value="<%= user.QQ %>" id="QQ" name="QQ">
-			</div>
-			<div class="info">
-				<strong>用户邮箱：</strong>	
-				<span><%= user.email %></span>	
-				<input type="text" value="<%= user.email %>" id="email" name="email">
-			</div>
-			<div class="info">
-				<strong>居住地址：</strong>
-				<span><%= user.address %></span>
-				<input type="text" value="<%= user.address %>" id="address" name="address">
-			</div>
-			<div class="info">
-				<strong>联系电话：</strong>
-				<span><%= user.tel %></span>
-				<input type="text" value="<%= user.tel %>" id="tel" name="tel">
-			</div>
-			<div class="info">
-				<a href="#" id="update" class="btn btn-primary">修改资料</a>
-				<a href="/updateInformation?id=<%= user._id %>" id="save" class="btn btn-primary">保存</a>
-			</div>
+			<form action="/updateInformation?id=<%= user._id %>" method="post">
+				<div class="info" style="margin-top: 40px;">
+					<strong>性别：</strong>
+				    <span><%= user.sex %></span>
+					<input type="text" value="<%= user.sex %>" id="sex" name="sex">
+				</div>
+				<div class="info">
+					<strong>QQ：</strong>
+					<span><%= user.QQ %></span>
+					<input type="text" value="<%= user.QQ %>" id="QQ" name="QQ">
+				</div>
+				<div class="info">
+					<strong>用户邮箱：</strong>	
+					<span><%= user.email %></span>	
+					<input type="text" value="<%= user.email %>" id="email" name="email">
+				</div>
+				<div class="info">
+					<strong>居住地址：</strong>
+					<span><%= user.address %></span>
+					<input type="text" value="<%= user.address %>" id="address" name="address">
+				</div>
+				<div class="info">
+					<strong>联系电话：</strong>
+					<span><%= user.tel %></span>
+					<input type="text" value="<%= user.tel %>" id="tel" name="tel">
+				</div>
+				<div class="but">
+					<input type="button" id="update" class="btn btn-primary" value="修改资料">
+					<input type="submit" id="save" class="btn btn-primary" value="保存">
+				</div>
+			</form>
 		</div>
 		<div id="password" class="hide tab-pane">
 			<h3>密码重置</h3>
 			<div class="line">    
-			</div>	
-			<div class="pass" style="margin-top: 40px;">
-				<strong>原始密码：</strong><input type="password">	
 			</div>
-			<div class="pass">
-				<strong>新密码：</strong><input type="password">
-			</div>
-			<div class="pass">
-				<strong>确认新密码：</strong><input type="password">
-			</div>
-			<div class="pass">
-				<a href="#" class="btn btn-primary">修改</a>
-			</div>
+			<form action="/updatePassword?id=<%= user._id %>" method="post">
+				<div class="pass" style="margin-top: 40px;">
+					<strong>原始密码：</strong>
+					<input type="password" id="pwd1" name="pwd1">	
+				</div>
+				<div class="pass">
+					<strong>新密码：</strong>
+					<input type="password" id="pwd2" name="pwd2">
+				</div>
+				<div class="pass">
+					<strong>确认新密码：</strong>
+					<input type="password" id="pwd3" name="pwd3">
+				</div>
+				<div class="pass">
+					<input type="submit" class="btn btn-primary" value="保存" style="width: 65px;">
+				</div>
+				<% include alert.ejs %>
+			</form>
 		</div>
 		<div id="address" class="hide tab-pane">
 			<h3>收货地址</h3>

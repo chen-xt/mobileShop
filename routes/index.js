@@ -435,11 +435,70 @@ router.get('/all-commodity', function(req, res) {
 
 // 会员中心(ok)
 router.get('/vip',function(req, res){  
-    res.render('vip', {
-        title: '会员中心',          
-    });  
+    User.findOne({username: req.session.user.username},function(err, user) {
+        if(err) {
+            console.log(error);
+        } 
+        else {
+            res.render('vip', {
+                title: '会员中心',
+                user: user
+            });
+        }
+        // console.log(user);
+   });
 });
 
+//会员中心--修改个人信息(ok)
+router.post('/updateInformation', function(req, res) {
+    var id = req.query.id;
+    var update = {$set : { 
+        sex: req.body.sex,
+        QQ : req.body.QQ,
+        email : req.body.email,
+        address : req.body.address,
+        tel : req.body.tel
+    }};
+    User.update({_id: id}, update, function(err){
+        if(err) {
+            console.log(error);
+        } else {    
+            req.flash('success', '保存成功！');
+            res.redirect('/vip');
+            console.log('保存成功！');
+        }
+    });
+});
+
+//会员中心--密码重置(ok)
+router.post('/updatePassword', function(req, res) {
+    var id = req.query.id;console.log(req.query.id);
+    if(req.body.pwd1 != req.session.user.password){
+        req.flash('error', '原始密码不匹配');
+        console.log('原始密码不匹配');
+        res.redirect('/vip#password');
+    }
+    else{
+        if(req.body.pwd2 != req.body.pwd3){
+            req.flash('error', '两次输入的密码不一致');
+            console.log('两次输入的密码不一致');
+            res.redirect('/vip#password');
+        }
+        else{
+            var update = {$set : {  password: req.body.pwd2 }};
+            User.update({_id: id}, update, function(err){
+                if(err) {
+                    console.log(error);
+                } else {    
+                    req.flash('success', '密码修改成功！');
+                    res.redirect('/vip');
+                    console.log('密码修改成功！');
+                }
+            });
+        }
+    }
+    
+});
 
 //商品详情页（有错误：无法查询单条数据）
 router.get('/good', function(req, res) {
@@ -457,33 +516,6 @@ router.get('/good', function(req, res) {
         }               
     }); 
 });
-
-//会员中心--修改个人信息(有错误)
-router.get('/updateInformation',function(req, res){
-        res.render('vip', {
-            title: '会员中心',            
-        });
-});
-router.post('/updateInformation', function(req, res) {
-    var id = req.query.id;console.log(req.query.id);
-    var update = {$set : { 
-        sex: req.body.sex,
-        QQ : req.body.QQ,
-        email : req.body.email,
-        address : req.body.address,
-        tel : req.body.tel
-    }};
-    User.update({_id: id}, update, function(err){
-        if(err) {
-            console.log(error);
-        } else {    
-            req.flash('success', '保存成功！');
-            res.redirect('/vip');
-        }
-    });
-});
-
-
 
 /*router.get('/comment', function(req, res) {
     res.render('comment', { title: '留言板' });
