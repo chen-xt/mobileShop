@@ -7,7 +7,7 @@ var CartSchema = new Schema({
     cName: String ,
     cPrice: String ,
     cColor: String ,
-    cImgSrc: String ,
+    cImgSrc: [ String ] ,
     cQuantity: Number
     // cStatus : { type: Boolean, default: false  }
 });

@@ -3,6 +3,18 @@ var router = express.Router();
 var mongoose = require('mongoose'); 
 mongoose.connect('mongodb://localhost/DB'); //连接数据库
 
+//图片上传
+var multer  = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images/goods')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+var upload = multer({ storage: storage });
+
 var User = require('../models/user');  //用户
 var Commodity = require('../models/commodity');  //商品
 var Cart = require('../models/cart');  //购物车
@@ -245,14 +257,14 @@ router.get('/commodity-manage', function(req, res) {
 router.get('/addCommodity', function(req, res) {
     res.render('addCommodity', { title: '添加商品' });
 });
-router.post('/addCommodity', function(req, res) {
+router.post('/addCommodity',upload.array('imgSrc', 5), function(req, res) {
     var name = req.body.name;
     var info = req.body.info;
     var color = req.body.color;
     var price = req.body.price;
     var quantity = req.body.quantity;
-    var imgSrc = req.body.imgSrc;
-    if( name == ''|| info  == ''|| color  == ''|| price  == ''|| quantity  == ''|| imgSrc  == ''){
+    // var imgSrc = req.body.imgSrc;
+    if( name == ''|| info  == ''|| color  == ''|| price  == ''|| quantity  == ''){
         // console.log('输入框不能为空');
         req.flash('error', '输入框不能为空');
         res.redirect('/addCommodity');
@@ -275,12 +287,19 @@ router.post('/addCommodity', function(req, res) {
                     color: color, 
                     price: price, 
                     quantity: quantity,
-                    imgSrc: imgSrc
+                    imgSrc: [
+                        req.files[0].filename,
+                        req.files[1].filename,
+                        req.files[2].filename,
+                        req.files[3].filename,
+                        req.files[4].filename
+                    ]
                 }, function(err, commodity) {
                     if (err) return next(err); 
                     // console.log('添加成功');
                     req.flash('success', '添加成功！');
                     res.redirect('/commodity-manage');
+
             });
            }       
         });
@@ -289,7 +308,7 @@ router.post('/addCommodity', function(req, res) {
 
 // 修改商品(ok)
 router.get('/updateCommodity', function(req, res) {
-    var id = req.query.id;console.log(id);
+    var id = req.query.id;
     Commodity.findOne({ _id: id}, function(err, commodity) {
         res.render('updateCommodity', {
             title: '商品修改',
@@ -297,7 +316,7 @@ router.get('/updateCommodity', function(req, res) {
         });
    });
 });
-router.post('/updateCommodity', function(req, res) {
+router.post('/updateCommodity',upload.array('imgSrc', 5), function(req, res) {
     var id = req.query.id;
     var update = {$set : { 
         name : req.body.name,
@@ -305,13 +324,18 @@ router.post('/updateCommodity', function(req, res) {
         color : req.body.color,
         price : req.body.price,
         quantity : req.body.quantity,
-        imgSrc : req.body.imgSrc
+        imgSrc: [
+                   req.files[0].filename,
+                   req.files[1].filename,
+                   req.files[2].filename,
+                   req.files[3].filename,
+                   req.files[4].filename
+                ]
     }};
     Commodity.update({_id: id}, update, function(err){
         if(err) {
             console.log(error);
         } else {
-            // console.log('修改成功!');
             req.flash('success', '修改成功！');
             res.redirect('/commodity-manage');
         }
@@ -516,10 +540,6 @@ router.get('/good', function(req, res) {
         }               
     }); 
 });
-
-/*router.get('/comment', function(req, res) {
-    res.render('comment', { title: '留言板' });
-});*/
 
 
 module.exports = router;

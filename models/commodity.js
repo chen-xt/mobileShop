@@ -7,7 +7,7 @@ var CommoditySchema = new Schema({
     color: String,
     price: Number,
     quantity: Number,
-    imgSrc: String
+    imgSrc: [ String ] //定义为数组
 });
 
 module.exports = mongoose.model('Commodity', CommoditySchema);

@@ -69,7 +69,7 @@
 			  <% for(var i in cart){ if(!cart[i].cId) continue %>
 				<tr>
 					<td><input type="checkbox" class="check-one check"></td>
-					<td class="goods"><img src="images/goods/<%= cart[i].cImgSrc %>1.jpg" alt=""><span><%= cart[i].cName %></span></td>
+					<td class="goods"><img src="images/goods/<%= cart[i].cImgSrc[0] %>" alt=""><span><%= cart[i].cName %></span></td>
 					<td><%= cart[i].cColor %></td>
 					<td class="price"><%= cart[i].cPrice %></td>
 					<td class="count">

@@ -8,11 +8,11 @@
         <div class="imgbox">
             <!-- 商品大图 -->
             <a class="smallimg" href="#">
-                <img id="smallimg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>1.jpg">
+                <img id="smallimg" alt="加载中..." src="images/goods/<%= commodity.imgSrc[0] %>">
             </a>
             <!--商品细节大图-->
             <div class="bigbox">
-                <img id="bimg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>1.jpg">
+                <img id="bimg" alt="加载中..." src="images/goods/<%= commodity.imgSrc[0] %>">
             </div>
             <!--大图上的显示区域遮罩层-->
             <div id="layer">
@@ -24,23 +24,23 @@
             <ul id="imgslist">
                 <li class="imglist selected">
                     <!-- 商品小图 -->
-                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>1.jpg">
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc[0] %>">
                 </li>
                 <li class="imglist">
                     <!-- 商品小图 -->
-                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>2.jpg">
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc[1] %>">
                 </li>
                 <li class="imglist">
                     <!-- 商品小图 -->
-                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>3.jpg">
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc[2] %>">
                 </li>
                 <li class="imglist">
                     <!-- 商品小图 -->
-                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>4.jpg">
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc[3] %>">
                 </li>
                 <li class="imglist">
                     <!-- 商品小图 -->
-                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc %>5.jpg">
+                    <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc[4] %>">
                 </li>
             </ul>
         </div><!-- class="imgsbox" -->
@@ -82,7 +82,7 @@
 
 <!--显示高清大图-->
 <div id="showbigimg">
-    <img src="images/goods/<%= commodity.imgSrc %>1.jpg" id="bigimg">
+    <img src="images/goods/<%= commodity.imgSrc[0] %>" id="bigimg">
 </div>
 
 <!-- 商品详情和售后保障 -->
@@ -98,10 +98,10 @@
     <div id="myTabContent" class="tab-content">
        <div class="tab-pane fade in active" id="description">
           <!-- <div class="des-img"> -->
-            <img src="images/goods/<%= commodity.imgSrc %>1.jpg">
-            <img src="images/goods/<%= commodity.imgSrc %>2.jpg">
-            <img src="images/goods/<%= commodity.imgSrc %>3.jpg">
-            <img src="images/goods/<%= commodity.imgSrc %>4.jpg">
+            <img src="images/goods/<%= commodity.imgSrc[0] %>">
+            <img src="images/goods/<%= commodity.imgSrc[1] %>">
+            <img src="images/goods/<%= commodity.imgSrc[2] %>">
+            <img src="images/goods/<%= commodity.imgSrc[3] %>">
             <!--<img src="images/goods/hwp9-1.jpg"> -->
           <!-- </div> -->
           
