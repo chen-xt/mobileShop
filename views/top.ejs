@@ -1,0 +1,52 @@
+
+<style type="text/css">
+	#top{
+	    width: 50px;
+	    height: 50px;
+	    /*background-color: #f6f6f6;*/
+	    /*color: #fff;*/
+	    line-height: 52px;
+	    /*overflow: hidden;*/
+	    transition: all .5s;
+	    cursor: pointer;
+	    position:fixed;
+	    display:none;
+	    bottom:100px;
+	    right:15px;
+	}
+	#top img{
+	    display:block;
+	    width:50px;
+	    height: 50px;
+	}    
+</style>
+<script type="text/javascript">
+  $(function(){
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function () {
+            $(window).scroll(function(){
+                if ($(window).scrollTop()>100){
+                    $("#top").fadeIn(1000);//淡入
+                }
+                else
+                {
+                    $("#top").fadeOut(1000);//淡出
+                }
+            });
+ 
+            //当点击跳转链接后，回到页面顶部位置
+ 
+            $("#top").click(function(){
+                $('body,html').animate({scrollTop:0},800);
+                return false;
+            });
+        });
+   });
+</script>
+
+
+<!-- 回到顶部 -->
+<div id="top">
+  <!-- <i class="glyphicon glyphicon-menu-up fa-lg"></i> -->
+  <a href="#top"><img src="images/top.png"></a>
+</div>

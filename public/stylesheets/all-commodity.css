@@ -34,6 +34,7 @@
 	margin-left: 80px;
 	padding-top: 20px;
 	float: left;
+    height: 600px;
 	background:  #f6f6f6;
 	width: 1200px;
 	padding-bottom: 40px;
@@ -78,6 +79,17 @@
 	to {
 		transform: scale(1.1);
 	}
+}
+
+/* 分页 */
+.page {
+    margin-left: 430px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 750px;
+}
+.page a{
+    margin-left: 30px;
 }
 
 /* 底部 */

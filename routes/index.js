@@ -141,13 +141,30 @@ router.post('/manager-login', function(req, res, next) {
 
 //用户管理(ok)
 router.get('/user-manage', function(req, res) {
-   User.find(function(err, user) {
-        res.render('user-manage', {
-            title: '用户管理',
-            user: user
+   var page = Number(req.query.page || 1);//当前页
+   var limit = 3;//每页显示的条数
+
+   User.count().then(function(count){
+        //计算总页数
+        pages = Math.ceil(count/limit);//向上取整
+        //取值不能超过pages
+        page = Math.min(page, pages);
+        //取值不能小于1
+        page = Math.max(page, 1);
+
+        var skip = (page - 1) * limit;//忽略跳过的条数
+
+        User.find().limit(limit).skip(skip).then(function( user) {
+            res.render('user-manage', {
+                title: '用户管理',
+                user: user,
+                page: page,
+                pages: pages
+            });
         });
    });
 });
+
 
 //添加用户(ok)
 router.get('/addUser', function(req, res) {
@@ -244,11 +261,31 @@ router.post('/updateUser', function(req, res) {
 });
 
 //商品管理(ok)
+//limit(Nuumber):限制获取的数据条数
+//skip(Nuumber):忽略数据的条数
 router.get('/commodity-manage', function(req, res) {
-   Commodity.find(function(err, commodity) {
-        res.render('commodity-manage', {
-            title: '商品管理',
-            commodity: commodity
+  var page = Number(req.query.page || 1);//当前页
+  var limit = 5;//每页显示的条数
+  
+  Commodity.count().then(function(count){
+        console.log(count);//打印总数
+        //计算总页数
+        pages = Math.ceil(count/limit);//向上取整
+        //取值不能超过pages
+        page = Math.min(page, pages);
+        //取值不能小于1
+        page = Math.max(page, 1);
+
+        var skip = (page - 1) * limit;//忽略跳过的条数
+
+        Commodity.find().limit(limit).skip(skip).then(function( commodity) {
+            res.render('commodity-manage', {
+                title: '商品管理',
+                commodity: commodity,
+                page: page,
+                pages: pages
+            });
+            console.log(page);
         });
    });
 });
@@ -448,13 +485,30 @@ router.get('/addToCart/:id', function (req, res) {
 
 // 所有商品展示(ok)
 router.get('/all-commodity', function(req, res) {
-    Commodity.find(function(err, commodity) {
-        res.render('all-commodity', {
-            title: '所有商品',
-            commodity: commodity
+    var page = Number(req.query.page || 1);//当前页
+    var limit = 8;//每页显示的条数
+
+    Commodity.count().then(function(count){
+        console.log(count);//打印总数
+        //计算总页数
+        pages = Math.ceil(count/limit);//向上取整
+        //取值不能超过pages
+        page = Math.min(page, pages);
+        //取值不能小于1
+        page = Math.max(page, 1);
+
+        var skip = (page - 1) * limit;//忽略跳过的条数
+
+        Commodity.find().limit(limit).skip(skip).then(function( commodity) {
+            res.render('all-commodity', {
+                title: '所有商品',
+                commodity: commodity,
+                page: page,
+                pages: pages
+            });
+            console.log(page);
         });
-        // console.log(commodity);
-    });
+   });
 });
 
 // 会员中心(ok)

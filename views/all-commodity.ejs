@@ -1,5 +1,6 @@
 
 <% include header.ejs %>
+<% include top.ejs %>
 <link rel='stylesheet' href='/stylesheets/all-commodity.css' />
 
 <!-- JS实现模糊查询 -->
@@ -67,6 +68,14 @@
       </a>
     </div>
   <% } %>
+
+  <!-- 分页 -->
+  <div class="page">
+    <a href="/all-commodity?page=1">首页</a>
+    <a href="/all-commodity?page=<%= page-1 %>">上一页</a>
+    <a href="/all-commodity?page=<%= page+1 %>">下一页</a>
+    <a href="/all-commodity?page=<%= pages %>">尾页</a>
+  </div>
 </div>
 
 <!-- 底部 -->

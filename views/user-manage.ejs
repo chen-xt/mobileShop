@@ -1,5 +1,6 @@
 
 <% include header.ejs %>
+<% include top.ejs %>
 <link rel='stylesheet' href='/stylesheets/manage.css' />
 <script type="text/javascript">
 	$(document).click(function() { 
@@ -64,6 +65,13 @@
 	        </tbody>
 		  </table>
 	  </div>
+	</div>
+	<!-- 分页 -->
+	<div class="page">
+		<a href="/user-manage?page=1">首页</a>
+		<a href="/user-manage?page=<%= page-1 %>">上一页</a>
+		<a href="/user-manage?page=<%= page+1 %>">下一页</a>
+		<a href="/user-manage?page=<%= pages %>">尾页</a>
 	</div>
 </div>
 
