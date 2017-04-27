@@ -18,6 +18,7 @@
 			$(".but #update").show();
 			$(".but #save").hide();
 		});
+
 	});
 
 	$(document).click(function() { 
@@ -119,45 +120,39 @@
 			<h3>收货地址</h3>
 			<div class="line">    
 			</div>
-			<div style="margin-top: 40px;">
-				<table class="addr">
-					<tr>
-						<th class="col-md-1">收货人</th>
-						<th class="col-md-5">详细地址</th>
-						<th class="col-md-1">邮政编码</th>
-						<th class="col-md-1">电话</th>
-						<th class="col-md-1">操作</th>
-					</tr>
-					<tr>
-						<td>陈小婷</td>
-						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
-						<td>354300</td>
-						<td>183483984</td>
-						<td><a href="#">修改</a>|<a href="#">删除</a></td>
-					</tr>
-					<tr>
-						<td>陈小婷</td>
-						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
-						<td>354300</td>
-						<td>183483984</td>
-						<td><a href="#">修改</a>|<a href="#">删除</a></td>
-					</tr>
-					<tr>
-						<td>陈小婷</td>
-						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
-						<td>354300</td>
-						<td>183483984</td>
-						<td><a href="#">修改</a>|<a href="#">删除</a></td>
-					</tr>
-					<tr>
-						<td>陈小婷</td>
-						<td>福建省南平市武夷山市武夷大道16号武夷学院仁智15A</td>
-						<td>354300</td>
-						<td>183483984</td>
-						<td><a href="#">修改</a>|<a href="#">删除</a></td>
-					</tr>
-				</table>
+			<div class="add">
+		  		<a href="/addAddress" type="button" class="btn btn-primary" style="">添加收货地址</a>
 		    </div>
+			<form action="/updateAddress?id=<%= user._id %>" metho
+				<div style="margin-top: 40px;">
+					<table class="addr">
+						<tr>
+							<th class="col-md-1">收货人</th>
+							<th class="col-md-5">详细地址</th>
+							<th class="col-md-1">邮政编码</th>
+							<th class="col-md-1">联系电话</th>
+							<th class="col-md-1">操作</th>
+						</tr>
+						<tr>
+							<% address.forEach(function( address ){ %>
+							<td>
+								<%= address.addrName %>	
+							</td>
+							<td>
+								<%= address.addr %>
+							</td>
+							<td>
+								<%= address.code %>
+							</td>
+							<td>
+								<%= address.tel %>
+							</td>
+							<td><a href="/updateAddress?id=<%= address._id %>">修改</a>|<a href="/delAddress?id=<%= address._id %>">删除</a></td>
+						</tr>
+						<% }); %>
+					</table>
+			    </div>
+		    </form>
 		</div>
 		<div id="order" class="hide tab-pane">
 			<h3>我的订单</h3>

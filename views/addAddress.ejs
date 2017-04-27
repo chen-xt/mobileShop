@@ -1,0 +1,26 @@
+
+<% include header.ejs %>
+<% include top.ejs %>
+<link rel='stylesheet' href='/stylesheets/common.css' />
+
+<div class="content">
+    <div class="common">
+        <% include alert.ejs %>
+        <h1>添加收货地址</h1>  
+        <form action=""  role="form" method="post">
+            <input style="margin-top: 30px;" id="addrName" type="text" class="form-control"  name="addrName" placeholder="收货人" />
+            <input style="margin-top: 30px;" id="addr" class="form-control" name="addr"  placeholder="详细地址" />
+            <input style="margin-top: 30px;" id="code" class="form-control" name="code"  placeholder="邮政编码" />
+            <input style="margin-top: 30px;" id="tel" class="form-control" name="tel"  placeholder="联系电话" />
+            <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="添 加" />
+            <a href="/vip" class="btn btn-success btn-block" style="margin-top: 30px;">返回会员中心</a>
+        </form>
+    </div>
+</div>
+
+<!-- 底部 -->
+<div class = "footer">
+  <p> 
+    All Rights Reserved. xiaoting 版权所有
+  </p>
+</div>

@@ -104,6 +104,11 @@ table{
 	/*height: 40px;*/
 	border: 1px solid #eee;
 }
+/* .addr input{
+    display: none;
+} */
+
+
 /* 我的订单 */
 .order td{
 	padding-left: 15px;

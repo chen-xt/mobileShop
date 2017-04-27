@@ -18,6 +18,7 @@ var upload = multer({ storage: storage });
 var User = require('../models/user');  //用户
 var Commodity = require('../models/commodity');  //商品
 var Cart = require('../models/cart');  //购物车
+var Address = require('../models/Address');  //收货地址
 
 /* GET home page. */
 
@@ -518,9 +519,14 @@ router.get('/vip',function(req, res){
             console.log(error);
         } 
         else {
-            res.render('vip', {
-                title: '会员中心',
-                user: user
+            Address.find({ uId: req.session.user._id },function(err, address) {
+                res.render('vip', {
+                    title: '会员中心',
+                    user: user,
+                    address: address
+                });
+                // console.log(address);
+                // console.log(user);
             });
         }
         // console.log(user);
@@ -550,7 +556,7 @@ router.post('/updateInformation', function(req, res) {
 
 //会员中心--密码重置(ok)
 router.post('/updatePassword', function(req, res) {
-    var id = req.query.id;console.log(req.query.id);
+    var id = req.query.id;
     if(req.body.pwd1 != req.session.user.password){
         req.flash('error', '原始密码不匹配');
         console.log('原始密码不匹配');
@@ -574,8 +580,91 @@ router.post('/updatePassword', function(req, res) {
                 }
             });
         }
+    }  
+});
+
+//会员中心--收货地址修改( ok)
+router.get('/updateAddress', function(req, res) {
+    var id = req.query.id;
+    Address.findOne({ _id: id },function(err, address) {
+        res.render('updateAddress', {
+            title: '修改收货地址',
+            address: address
+        });
+    });
+});
+router.post('/updateAddress', function(req, res) {
+    var id = req.query.id;
+    var addrName = req.body.addrName;
+    var addr = req.body.addr;
+    var code = req.body.code;
+    var tel = req.body.tel;
+    if( addrName == ''|| addr  == ''|| code  == ''|| tel  == ''){
+        req.flash('error', '输入框不能为空');
+        console.log('输入框不能为空');
+        res.redirect('/vip');
     }
-    
+    else{
+        var update = {$set : { 
+            addrName: addrName,
+            addr : addr,
+            code : code,
+            tel : tel
+        }};
+        Address.update({_id: id}, update, function(err){
+            if(err) {
+                console.log(error);
+            } else {    
+                req.flash('success', '成功修改收货地址！');
+                res.redirect('/vip');
+                console.log('成功修改收货地址！');
+            }
+        });
+    }
+});
+
+//会员中心--收货地址增加(ok)
+router.get('/addAddress', function(req, res) {
+      res.render('addAddress', { title: '增加收货地址' });
+});
+router.post('/addAddress', function(req, res) {
+    var uId = req.session.user._id;console.log(req.session.user._id);
+    var addrName = req.body.addrName;console.log(req.body.addrName);
+    var addr = req.body.addr;
+    var code = req.body.code;
+    var tel = req.body.tel;
+    if( addrName == ''|| addr  == ''|| code  == ''|| tel  == ''){
+        req.flash('error', '输入框不能为空');
+        res.redirect('/addAddress');
+    }
+    else{
+       Address.create({
+            uId: uId,
+            addrName: addrName, 
+            addr: addr,
+            code: code,
+            tel: tel
+        }, function(err, address) {
+            if (err) return next(err); 
+            req.flash('success', '成功添加收货地址！');
+            res.redirect('/vip');
+            console.log(address);
+       });
+    }    
+});
+
+//会员中心--收货地址删除(ok)
+router.get('/delAddress', function(req, res) {
+    var id = req.query.id;
+    Address.remove({ _id: id}, function(err) {
+        if(err) {
+            console.log(error);
+        } else {
+            // console.log('删除成功');
+            req.flash('success', '删除成功！');
+            res.redirect('/vip');         
+        }
+    });  
 });
 
 //商品详情页（有错误：无法查询单条数据）
