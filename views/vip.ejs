@@ -19,6 +19,14 @@
 			$(".but #save").hide();
 		});
 
+		//菜单切换显示不同内容,修改后还是在那个菜单显示页中
+		$("#list").find("li").click(function() {
+     		var index = $(this).index();
+     		$("#content > div").eq(index).show().siblings().hide();
+     	}).eq(0).click();
+     	var hash = window.location.hash;
+     	$('[href="'+hash+'"]').parent().click();
+
 	});
 
 	$(document).click(function() { 
@@ -33,7 +41,7 @@
 		<div class="name">
 			<!-- <h2>陈小婷</h2> -->
 		</div>
-		<ul class="nav nav-pills nav-stacked">
+		<ul class="nav nav-pills nav-stacked" id="list">
 			<li>
 				<a href="#infomation" title="个人资料">个人资料</a>
 			</li>
@@ -55,9 +63,9 @@
 		</ul>
 	</div>
 	<!-- 具体内容显示区 -->
-	<div class="tab-content">
-		<div id="infomation" class="active tab-pane">
-			<h3>个人资料</h3>
+	<div class="tab-content" id="content">
+		<div class="tab-pane">
+			<h3><%= user.username %>的个人资料</h3>
 			<!-- 横线 -->
 			<div class="line">    
 			</div>
@@ -93,14 +101,14 @@
 				</div>
 			</form>
 		</div>
-		<div id="password" class="hide tab-pane">
+		<div class="tab-pane">
 			<h3>密码重置</h3>
 			<div class="line">    
 			</div>
 			<form action="/updatePassword?id=<%= user._id %>" method="post">
 				<div class="pass" style="margin-top: 40px;">
 					<strong>原始密码：</strong>
-					<input type="password" id="pwd1" name="pwd1">	
+					<input type="password" id="pwd1" name="pwd1">
 				</div>
 				<div class="pass">
 					<strong>新密码：</strong>
@@ -113,18 +121,17 @@
 				<div class="pass">
 					<input type="submit" class="btn btn-primary" value="保存" style="width: 65px;">
 				</div>
-				<% include alert.ejs %>
 			</form>
 		</div>
-		<div id="address" class="hide tab-pane">
-			<h3>收货地址</h3>
+		<div class="tab-pane">
+			<h3><%= user.username %>的收货地址</h3>
 			<div class="line">    
 			</div>
 			<div class="add">
 		  		<a href="/addAddress" type="button" class="btn btn-primary" style="">添加收货地址</a>
 		    </div>
-			<form action="/updateAddress?id=<%= user._id %>" metho
-				<div style="margin-top: 40px;">
+			<form action="/updateAddress?id=<%= user._id %>" method="post">
+				<div style="margin-top: 30px;">
 					<table class="addr">
 						<tr>
 							<th class="col-md-1">收货人</th>
@@ -154,8 +161,8 @@
 			    </div>
 		    </form>
 		</div>
-		<div id="order" class="hide tab-pane">
-			<h3>我的订单</h3>
+		<div class="tab-pane">
+			<h3><%= user.username %>的订单</h3>
 			<div class="line">    
 			</div>
 			 <div style="margin-top: 40px;">
@@ -195,13 +202,13 @@
 				</table>
 		    </div>
 		</div>
-		<div id="track" class="hide tab-pane">
-		    <h3>我的足迹</h3>
+		<div class="tab-pane">
+		    <h3><%= user.username %>的足迹</h3>
 		    <div class="line">    
 			</div>
 			<div class="row">
 		        <div class="col-md-3">
-		          <a href="/good?name='小米5'" target="_blank">
+		          <a href="/good?name=小米5">
 		              <div class="track_img">
 		                  <img src="images/goods/mi5-2.jpg" width="200" height="200"/>
 		              </div>     
@@ -211,7 +218,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='魅族MX6'" target="_blank">
+		          <a href="/good?name=魅族MX6">
 		              <div class="track_img">
 		                  <img src="images/goods/mx6-2.jpg" width="200" height="200"/>
 		              </div>     
@@ -221,7 +228,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='iPhone 7 Plus'" target="_blank">
+		          <a href="/good?name=iPhone 7 Plus">
 		              <div class="track_img">
 		                  <img src="images/goods/apple7plus-2.jpg" width="200" height="200"/>
 		              </div>     
@@ -231,7 +238,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='华为 P9'" target="_blank">
+		          <a href="/good?name=华为 P9">
 		              <div class="track_img">
 		                  <img src="images/goods/hwp9-2.jpg" width="200" height="200"/>
 		              </div>     
@@ -243,7 +250,7 @@
 		    </div>
 		    <div class="row">
 		        <div class="col-md-3">
-		          <a href="/good?name='nubia Z11'" target="_blank">
+		          <a href="/good?name=nubia Z11">
 		              <div class="track_img">
 		                  <img src="images/goods/nbZ11-2.jpg" width="200" height="300"/>
 		              </div>     
@@ -253,7 +260,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='OPPO R9s'" target="_blank">
+		          <a href="/good?name=OPPO R9s">
 		              <div class="track_img">
 		                  <img src="images/goods/opR9s-2.jpg" width="200" height="300"/>
 		              </div>     
@@ -263,7 +270,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='vivo Y67'" target="_blank">
+		          <a href="/good?name=vivo Y67">
 		              <div class="track_img">
 		                  <img src="images/goods/vvY67-2.jpg" width="200" height="300"/>
 		              </div>     
@@ -273,7 +280,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='荣耀5'" target="_blank">
+		          <a href="/good?name=荣耀5">
 		              <div class="track_img">
 		                  <img src="images/goods/ry5-3.jpg" width="200" height="300"/>
 		              </div>     
@@ -284,13 +291,13 @@
 		        </div>
 			</div>
 		</div>
-		<div id="collect" class="hide tab-pane">
-			<h3>我的收藏</h3>
+		<div class="tab-pane">
+			<h3><%= user.username %>的收藏</h3>
             <div class="line">    
 			</div>
 			<div class="row">
 		        <div class="col-md-3">
-		          <a href="/good?name='nubia Z11'" target="_blank">
+		          <a href="/good?name=nubia Z11">
 		              <div class="collect_img">
 		                  <img src="images/goods/nbZ11-2.jpg" width="200" height="300"/>
 		              </div>     
@@ -300,7 +307,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='OPPO R9s'" target="_blank">
+		          <a href="/good?name=OPPO R9s">
 		              <div class="collect_img">
 		                  <img src="images/goods/opR9s-2.jpg" width="200" height="300"/>
 		              </div>     
@@ -310,7 +317,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='vivo Y67'" target="_blank">
+		          <a href="/good?name=vivo Y67">
 		              <div class="collect_img">
 		                  <img src="images/goods/vvY67-2.jpg" width="200" height="300"/>
 		              </div>     
@@ -320,7 +327,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='荣耀5'" target="_blank">
+		          <a href="/good?name=荣耀5">
 		              <div class="collect_img">
 		                  <img src="images/goods/ry5-3.jpg" width="200" height="300"/>
 		              </div>     
@@ -332,7 +339,7 @@
 			</div>
 		    <div class="row">
 		        <div class="col-md-3">
-		          <a href="/good?name='小米5'" target="_blank">
+		          <a href="/good?name=小米5">
 		              <div class="collect_img">
 		                  <img src="images/goods/mi5-2.jpg" width="200" height="200"/>
 		              </div>     
@@ -342,7 +349,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='魅族MX6'" target="_blank">
+		          <a href="/good?name=魅族MX6">
 		              <div class="collect_img">
 		                  <img src="images/goods/mx6-2.jpg" width="200" height="200"/>
 		              </div>     
@@ -352,7 +359,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='iPhone 7 Plus'" target="_blank">
+		          <a href="/good?name=iPhone 7 Plus">
 		              <div class="collect_img">
 		                  <img src="images/goods/apple7plus-2.jpg" width="200" height="200"/>
 		              </div>     
@@ -362,7 +369,7 @@
 		          </a>
 		        </div>
 		        <div class="col-md-3">
-		          <a href="/good?name='华为 P9'" target="_blank">
+		          <a href="/good?name=华为 P9">
 		              <div class="collect_img">
 		                  <img src="images/goods/hwp9-2.jpg" width="200" height="200"/>
 		              </div>     

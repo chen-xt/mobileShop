@@ -58,7 +58,7 @@
 <div class="content">
 	<% for(var i in commodity){ if(!commodity[i].name) continue %>
 	<div class="showProject">
-      <a href="/good?name='<%= commodity[i].name %>'">
+      <a href="/good?name=<%= commodity[i].name %>">
           <div class="project_img">
               <img src="images/goods/<%= commodity[i].imgSrc[1] %>" width="200" height="200"/>
           </div>     

@@ -137,7 +137,6 @@ router.post('/manager-login', function(req, res, next) {
             }      
         }); 
     }   
-
 });
 
 //用户管理(ok)
@@ -165,7 +164,6 @@ router.get('/user-manage', function(req, res) {
         });
    });
 });
-
 
 //添加用户(ok)
 router.get('/addUser', function(req, res) {
@@ -222,7 +220,6 @@ router.get('/delUser', function(req, res) {
         if(err) {
             console.log(error);
         } else {
-            // console.log('删除成功');
             req.flash('success', '删除成功！');
             res.redirect('/user-manage');         
         }
@@ -254,7 +251,6 @@ router.post('/updateUser', function(req, res) {
         if(err) {
             console.log(error);
         } else {
-            // console.log('修改成功!');
             req.flash('success', '修改成功！');
             res.redirect('/user-manage');
         }
@@ -269,7 +265,7 @@ router.get('/commodity-manage', function(req, res) {
   var limit = 5;//每页显示的条数
   
   Commodity.count().then(function(count){
-        console.log(count);//打印总数
+        // console.log(count);//打印总数
         //计算总页数
         pages = Math.ceil(count/limit);//向上取整
         //取值不能超过pages
@@ -286,7 +282,6 @@ router.get('/commodity-manage', function(req, res) {
                 page: page,
                 pages: pages
             });
-            console.log(page);
         });
    });
 });
@@ -303,7 +298,6 @@ router.post('/addCommodity',upload.array('imgSrc', 5), function(req, res) {
     var quantity = req.body.quantity;
     // var imgSrc = req.body.imgSrc;
     if( name == ''|| info  == ''|| color  == ''|| price  == ''|| quantity  == ''){
-        // console.log('输入框不能为空');
         req.flash('error', '输入框不能为空');
         res.redirect('/addCommodity');
     }
@@ -548,7 +542,7 @@ router.post('/updateInformation', function(req, res) {
             console.log(error);
         } else {    
             req.flash('success', '保存成功！');
-            res.redirect('/vip');
+            res.redirect('/vip#infomation');
             console.log('保存成功！');
         }
     });
@@ -575,12 +569,14 @@ router.post('/updatePassword', function(req, res) {
                     console.log(error);
                 } else {    
                     req.flash('success', '密码修改成功！');
-                    res.redirect('/vip');
+                    res.redirect('/vip#information');
                     console.log('密码修改成功！');
                 }
             });
         }
     }  
+    console.log(req.session.user.password);
+        console.log(req.body.pwd1);
 });
 
 //会员中心--收货地址修改( ok)
@@ -602,7 +598,7 @@ router.post('/updateAddress', function(req, res) {
     if( addrName == ''|| addr  == ''|| code  == ''|| tel  == ''){
         req.flash('error', '输入框不能为空');
         console.log('输入框不能为空');
-        res.redirect('/vip');
+        res.redirect('/vip#address');
     }
     else{
         var update = {$set : { 
@@ -616,7 +612,7 @@ router.post('/updateAddress', function(req, res) {
                 console.log(error);
             } else {    
                 req.flash('success', '成功修改收货地址！');
-                res.redirect('/vip');
+                res.redirect('/vip#address');
                 console.log('成功修改收货地址！');
             }
         });
@@ -635,7 +631,7 @@ router.post('/addAddress', function(req, res) {
     var tel = req.body.tel;
     if( addrName == ''|| addr  == ''|| code  == ''|| tel  == ''){
         req.flash('error', '输入框不能为空');
-        res.redirect('/addAddress');
+        res.redirect('/addAddress#address');
     }
     else{
        Address.create({
@@ -645,10 +641,12 @@ router.post('/addAddress', function(req, res) {
             code: code,
             tel: tel
         }, function(err, address) {
-            if (err) return next(err); 
-            req.flash('success', '成功添加收货地址！');
-            res.redirect('/vip');
-            console.log(address);
+            if(err) {
+                console.log(err);
+            } else{
+                req.flash('success', '成功添加收货地址！');
+            res.redirect('/vip#address');
+            }   
        });
     }    
 });
@@ -662,14 +660,14 @@ router.get('/delAddress', function(req, res) {
         } else {
             // console.log('删除成功');
             req.flash('success', '删除成功！');
-            res.redirect('/vip');         
+            res.redirect('/vip#address');         
         }
     });  
 });
 
-//商品详情页（有错误：无法查询单条数据）
+//商品详情页（ok）
 router.get('/good', function(req, res) {
-    Commodity.findOne({name: '魅蓝note5'}, function(err, commodity){
+    Commodity.findOne({name: req.query.name}, function(err, commodity){
         if(err){
             console.log("error :" + err);
          }
@@ -678,8 +676,7 @@ router.get('/good', function(req, res) {
             title: '商品详情',
             commodity: commodity
          });
-         // console.log(commodity); //数据为空
-         // console.log(req.query.name); //取到数据
+            console.log(req.query.name);
         }               
     }); 
 });

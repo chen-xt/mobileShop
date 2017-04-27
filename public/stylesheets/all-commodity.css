@@ -4,6 +4,9 @@
     margin-left: 80px;
     height: 80px;
     padding-bottom: 10px; 
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    width: 1200px;
 }
 .title{
     float: left;

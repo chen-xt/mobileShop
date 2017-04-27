@@ -19,7 +19,7 @@ tr:hover{
 	width: 1200px;
 	margin-left: 80px; 
 	/*background: #F0F8FF;*/
-	height: 600px;
+	height: 650px;
 	/*margin-top: 5px;*/
 }
 
@@ -66,7 +66,7 @@ tr:hover{
 	margin-left: 20px;
 }
 .btn{
-    margin-left: 68px;
+    margin-left: 38px;
 }
 
 .info input, #save{
@@ -81,12 +81,18 @@ tr:hover{
 	font-size: 18px;
 }
 /* 收货地址 */
+.add{
+    margin-bottom: 15px;
+}
 table{
 	border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #eee;
     width: 930px;
     font-size: 16px;
+}
+.add{
+    margin-top: 30px;
 }
 .addr, .order{
 	margin-left: 15px;
@@ -104,11 +110,6 @@ table{
 	/*height: 40px;*/
 	border: 1px solid #eee;
 }
-/* .addr input{
-    display: none;
-} */
-
-
 /* 我的订单 */
 .order td{
 	padding-left: 15px;
