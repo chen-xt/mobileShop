@@ -19,6 +19,10 @@ th{
     background: #f3f3f3;
     border-bottom: 1px solid #E1E1E1;
     line-height: 1.5em;
+    text-align: center;
+}
+.kuan{
+    width: 300px;
 }
 .add{
 	margin-bottom: 15px;
@@ -32,7 +36,9 @@ th{
 .page a{
 	margin-left: 30px;
 }
-
+td{
+    text-align: center;
+}
 /* 底部 */
 .footer {
     background: #fff;

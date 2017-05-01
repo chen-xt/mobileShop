@@ -60,7 +60,7 @@ router.post('/reg', function(req, res, next) {
                         req.session.user = user;
                         // console.log('注册成功');
                         req.flash('success', req.session.user.username + '注册成功');
-                        res.redirect('/login');
+                        res.redirect('/user-login');
                 });
                 }       
         });
@@ -551,7 +551,8 @@ router.post('/updateInformation', function(req, res) {
 //会员中心--密码重置(ok)
 router.post('/updatePassword', function(req, res) {
     var id = req.query.id;
-    if(req.body.pwd1 != req.session.user.password){
+    var pwd = req.session.user.password;
+    if(req.body.pwd1 != pwd){
         req.flash('error', '原始密码不匹配');
         console.log('原始密码不匹配');
         res.redirect('/vip#password');
@@ -576,7 +577,7 @@ router.post('/updatePassword', function(req, res) {
         }
     }  
     console.log(req.session.user.password);
-        console.log(req.body.pwd1);
+    console.log(req.body.pwd1);
 });
 
 //会员中心--收货地址修改( ok)
@@ -676,7 +677,6 @@ router.get('/good', function(req, res) {
             title: '商品详情',
             commodity: commodity
          });
-            console.log(req.query.name);
         }               
     }); 
 });
