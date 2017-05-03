@@ -3,39 +3,6 @@
 <% include top.ejs %>
 <link rel='stylesheet' href='/stylesheets/all-commodity.css' />
 
-<!-- JS实现模糊查询 -->
-<script type="text/javascript">
-  function getByClass(sClass){
-      var aResult=[];
-      var aEle=document.getElementsByTagName('*');
-      for(var i=0;i<aEle.length;i++){
-         /*当className相等时添加到数组中*/
-         if(aEle[i].className==sClass){
-              aResult.push(aEle[i]);
-          }
-      }
-      return aResult;
-  };
-
-  function search(){
-      var showProject = getByClass("showProject");
-      var input = document.getElementById("cartInput"); 
-      var filter = input.value.toUpperCase();
-      var length = showProject.length;
-      for(i = 0; i<length; i++){
-        var name = showProject[i].innerText;
-        if(name){
-           if(name.toUpperCase().indexOf(filter) > -1){
-              showProject[i].style.display = "";
-           }
-           else{
-              showProject[i].style.display = "none";
-           }
-        }     
-      }
-  }
-</script>
-
 <!-- 头部 -->
 <div class="top">
 	<!-- 购物车标题 -->
@@ -45,7 +12,7 @@
 	<!-- 搜索框 -->
 	<div class="input-group search">
 	  <input type="text" class="form-control" aria-describedby="basic-addon2" placeholder="搜索宝贝" id="cartInput">
-	  <span class="input-group-addon" id="basic-addon2" onclick="search()">搜索</span>
+	  <span class="input-group-addon" id="basic-addon2" onclick="searchCommodity()">搜索</span>
     <!-- <span class="input-group-addon" id="basic-addon2">搜索</span> -->
 	</div>
 </div>
@@ -84,3 +51,5 @@
      All Rights Reserved. xiaoting 版权所有
   </p>
 </div>
+
+<script src="/javascripts/search.js"></script>

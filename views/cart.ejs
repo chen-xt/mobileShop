@@ -3,35 +3,6 @@
 <% include top.ejs %>
 <link rel='stylesheet' href='/stylesheets/cart.css' />
 
-<!-- JS实现模糊查询 -->
-<script> 
-  function search() { 
-    // 声明变量 
-    var input, filter, table, tr, td, i; 
-    input = document.getElementById("cartInput"); 
-    filter = input.value.toUpperCase(); 
-    table = document.getElementById("cartTable"); 
-    tr = table.getElementsByTagName("tr"); 
-    // 循环表格每一行，查找匹配项 
-    for (i = 0; i < tr.length; i++) { 
-      td = tr[i].getElementsByTagName("td")[1]; 
-      if (td) { 
-        if (td.innerText.toUpperCase().indexOf(filter) > -1) { 
-          tr[i].style.display = ""; 
-        } else { 
-          tr[i].style.display = "none"; 
-        } 
-      } 
-    } 
-  }
-
-  $(document).click(function() { 
-  	// 隐藏alert提示消息
-	$(".alert").hide(); 
-  });  
-
-</script> 
-
 <!-- 头部 -->
 <div class="top">
 	<!-- 购物车标题 -->
@@ -41,7 +12,7 @@
 	<!-- 搜索框 -->
 	<div class="input-group search">
 	  <input type="text" class="form-control" aria-describedby="basic-addon2" placeholder="搜索宝贝" id="cartInput">
-	  <span class="input-group-addon" id="basic-addon2" onclick="search()">搜索</span>
+	  <span class="input-group-addon" id="basic-addon2" onclick="searchCart()">搜索</span>
 	</div>
 </div>
 
@@ -120,3 +91,5 @@
 </div>
 
 <script type="text/javascript" src="javascripts/cart.js"></script>
+<script src="/javascripts/search.js"></script>
+<script src="/javascripts/hideMessage.js"></script>
