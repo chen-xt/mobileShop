@@ -24,3 +24,15 @@ body{
 	color: #333;
 	line-height: 40px;
 }
+.header .out ul{
+	list-style: none;
+	display: none;
+	float: right;
+	top: 42px;
+	left: 20px;
+	letter-spacing: 8px;
+	position: absolute;
+}
+.header .out:hover ul{
+	display: inline;
+} 

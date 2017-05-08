@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var crypto = require('crypto');//加载生成MD5值依赖模块
 var mongoose = require('mongoose'); 
+// mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/DB'); //连接数据库
 
 //图片上传
@@ -55,7 +57,9 @@ router.post('/reg', function(req, res, next) {
                     res.redirect('/reg');
                 }
                 else{
-                     User.create({username: username, password: password, status:0}, function(error, user) {
+                     var md5 = crypto.createHash('md5');
+                     var pwd = md5.update(password).digest('base64');
+                     User.create({username: username, password: pwd, status:0}, function(error, user) {
                         if (err) return next(err); 
                         req.session.user = user;
                         // console.log('注册成功');
@@ -73,7 +77,11 @@ router.get('/user-login', function(req, res) {
 });
 router.post('/user-login', function(req, res, next) {
     var username = req.body.username;
-    var password = req.body.password;
+    // var password = req.body.password;
+    //密码用md5值表示
+    var md5 = crypto.createHash('md5');
+    var password = md5.update(req.body.password).digest('base64');
+    
     if( username == ''|| password  == ''){
         req.flash('error', '用户名或密码不能为空');
         res.redirect('/user-login');
@@ -430,7 +438,7 @@ router.get('/delCart/:id', function (req, res) {
 router.get('/addToCart/:id', function (req, res) {
     if (!req.session.user) {
         req.flash('error', '用户已过期，请重新登录');
-        res.redirect('/login');
+        res.redirect('/user-login');
     } 
     else {
         Cart.findOne({"uId": req.session.user._id, "cId": req.params.id}, function (err, cart) {

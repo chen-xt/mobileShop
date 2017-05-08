@@ -41,8 +41,14 @@
                 <a href="/user-manage" title="用户管理">用户管理</a>
               </li>   
           <% }  %>  
-              <li>
-                <a href="/logout" title="退出">退出</a>
+              <li class="out">
+                <a href="#">当前用户：<%= user.username %>
+                  <ul>
+                    <li>
+                      <a href="/logout" title="退出">退出</a>
+                    </li>
+                  </ul>
+                </a> 
               </li> 
           <%  } %>      
         </ul>              
