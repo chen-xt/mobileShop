@@ -1,3 +1,4 @@
+// 收货地址表
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 

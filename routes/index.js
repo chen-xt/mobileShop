@@ -15,12 +15,19 @@ var storage = multer.diskStorage({
     cb(null, file.originalname);
   }
 });
-var upload = multer({ storage: storage });
+var upload = multer({ 
+    storage: storage ,
+    //对上传文件进行大小限制、名称限制
+    /*limits:{
+        fileSize: 200k;
+    }*/
+});
 
 var User = require('../models/user');  //用户
 var Commodity = require('../models/commodity');  //商品
 var Cart = require('../models/cart');  //购物车
 var Address = require('../models/Address');  //收货地址
+var Collect = require('../models/Collect');  //收藏的商品
 
 /* GET home page. */
 
@@ -81,7 +88,7 @@ router.post('/user-login', function(req, res, next) {
     //密码用md5值表示
     var md5 = crypto.createHash('md5');
     var password = md5.update(req.body.password).digest('base64');
-    
+
     if( username == ''|| password  == ''){
         req.flash('error', '用户名或密码不能为空');
         res.redirect('/user-login');
@@ -92,7 +99,7 @@ router.post('/user-login', function(req, res, next) {
                 req.flash('error', '用户名不存在');
                 res.redirect('/user-login');
             }
-            else if(user.status == 1){
+            else if(user.status == 1 || user.status == 2){
                 // 判断是用户还是管理员
                 req.flash('error', '请输入正确用户类型(管理员/普通用户)的用户名'); 
                 res.redirect('/user-login');
@@ -117,7 +124,10 @@ router.get('/manager-login', function(req, res) {
 });
 router.post('/manager-login', function(req, res, next) {
     var username = req.body.username;
-    var password = req.body.password;
+    // var password = req.body.password;
+    //密码用md5值表示
+    var md5 = crypto.createHash('md5');
+    var password = md5.update(req.body.password).digest('base64');
     if( username == ''|| password  == ''){
         req.flash('error', '用户名或密码不能为空');
         res.redirect('/user-login');
@@ -162,7 +172,7 @@ router.get('/user-manage', function(req, res) {
 
         var skip = (page - 1) * limit;//忽略跳过的条数
 
-        User.find().limit(limit).skip(skip).then(function( user) {
+        User.find({status:0}).limit(limit).skip(skip).then(function( user) {
             res.render('user-manage', {
                 title: '用户管理',
                 user: user,
@@ -174,7 +184,7 @@ router.get('/user-manage', function(req, res) {
 });
 
 //添加用户(ok)
-router.get('/addUser', function(req, res) {
+/*router.get('/addUser', function(req, res) {
     res.render('addUser', { title: '添加用户' });
 });
 router.post('/addUser', function(req, res) {
@@ -219,7 +229,7 @@ router.post('/addUser', function(req, res) {
            }       
         });
     }    
-});
+});*/
 
 //删除用户(ok)
 router.get('/delUser', function(req, res) {
@@ -235,7 +245,7 @@ router.get('/delUser', function(req, res) {
 });
 
 // 修改用户信息(ok)
-router.get('/updateUser', function(req, res) {
+/*router.get('/updateUser', function(req, res) {
     var id = req.query.id;
     User.findOne({ _id: id}, function(err, user) {
         res.render('updateUser', {
@@ -263,7 +273,7 @@ router.post('/updateUser', function(req, res) {
             res.redirect('/user-manage');
         }
     });
-});
+});*/
 
 //商品管理(ok)
 //limit(Nuumber):限制获取的数据条数
@@ -486,6 +496,7 @@ router.get('/addToCart/:id', function (req, res) {
     }
 });
 
+
 // 所有商品展示(ok)
 router.get('/all-commodity', function(req, res) {
     var page = Number(req.query.page || 1);//当前页
@@ -522,16 +533,39 @@ router.get('/vip',function(req, res){
         } 
         else {
             Address.find({ uId: req.session.user._id },function(err, address) {
-                res.render('vip', {
-                    title: '会员中心',
-                    user: user,
-                    address: address
-                });
-                // console.log(address);
-                // console.log(user);
+                if(err) {
+                    console.log(error);
+                } 
+                else{
+                    var page = Number(req.query.page || 1);//当前页
+                    var limit = 8;//每页显示的条数
+                    Collect.count().then(function(count){
+                        console.log(count);//打印总数
+                        //计算总页数
+                        pages = Math.ceil(count/limit);//向上取整
+                        //取值不能超过pages
+                        page = Math.min(page, pages);
+                        //取值不能小于1
+                        page = Math.max(page, 1);
+
+                        var skip = (page - 1) * limit;//忽略跳过的条数
+
+                        Collect.find({ suId: req.session.user._id }).limit(limit).skip(skip).then(function( collect) {
+                            res.render('vip', {
+                                title: '会员中心',
+                                user: user,
+                                address: address,
+                                collect: collect,
+                                page: page,
+                                pages: pages
+                            });
+                            console.log(page);
+                            console.log(pages);
+                        });
+                    });
+                }
             });
         }
-        // console.log(user);
    });
 });
 
@@ -687,6 +721,51 @@ router.get('/good', function(req, res) {
          });
         }               
     }); 
+});
+
+// 加入收藏(图片路径读出来为空)
+router.get('/addToCollect/:id', function (req, res) {
+    if (!req.session.user) {
+        req.flash('error', '用户已过期，请重新登录');
+        res.redirect('/user-login');
+    } 
+    else {
+        Collect.findOne({"suId": req.session.user._id, "sId": req.params.id}, function (err, collect) {
+            if(err){
+                console.log("error :" + err);
+            }
+            else if(collect){
+                // 商品已经存在
+                req.flash('success', '商品已经存在');
+                res.redirect('/vip#collect');
+            }
+            else {
+                Commodity.findOne({"_id": req.params.id}, function (err, collect) {
+                    if(err){
+                        console.log("error :" + err);
+                    }
+                    else{
+                        Collect.create({
+                                suId: req.session.user._id,
+                                sId: req.params.id,
+                                sName: collect.name,
+                                sInfo: collect.info,
+                                sPrice: collect.price,
+                                sColor: collect.color,
+                                sQuantity: collect.quantity,
+                                cImgSrc: collect.imgSrc
+                            }, function(err, collect) {
+                                if (err) return next(err); 
+                                console.log('添加收藏成功');
+                                req.flash('success', '成功加入收藏！');
+                                res.redirect('/vip#collect');
+                                console.log(collect);
+                        });
+                    }       
+                });
+            }
+        });
+    }
 });
 
 

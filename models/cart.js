@@ -1,3 +1,4 @@
+// 购物车表
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 

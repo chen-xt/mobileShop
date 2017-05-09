@@ -8,19 +8,47 @@
         <% include alert.ejs %>
         <h1>添加商品</h1>  
         <form action=""  role="form" method="post"  enctype="multipart/form-data">
-            <input style="margin-top: 30px;" id="name" type="text" class="form-control"  name="name" placeholder="商品名称" />
-            <input style="margin-top: 30px;" id="info" class="form-control" name="info"  placeholder="商品描述" />
-            <input style="margin-top: 30px;" id="color" class="form-control" name="color"  placeholder="商品颜色" />
-            <input style="margin-top: 30px;" id="price" class="form-control" name="price"  placeholder="商品价格" />
-            <input style="margin-top: 30px;" id="quantity" class="form-control" name="quantity"  placeholder="商品数量" />
-            <!-- <input style="margin-top: 30px;" id="imgSrc" class="form-control" name="imgSrc"  placeholder="商品图片路径" /> -->
-            <input type="file" name="imgSrc">
-            <input type="file" name="imgSrc">
-            <input type="file" name="imgSrc">
-            <input type="file" name="imgSrc">
-            <input type="file" name="imgSrc">
-            <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="添 加" />
-            <a href="/commodity-manage" class="btn btn-success btn-block" style="margin-top: 30px;">返回商品管理</a>
+          <div class="field">
+            <span>商品名称:</span>
+            <input id="name" type="text" name="name" placeholder="添加的商品名称" />
+          </div>
+          <div class="field">
+            <span>商品描述:</span>            
+            <input id="info" name="info"  placeholder="给商品添加一些描述" />
+          </div>
+          <div class="field">
+            <span>商品颜色:</span>    
+            <input id="color" name="color"  placeholder="商品的颜色" />
+          </div>
+          <div class="field">
+            <span>商品价格:</span>              
+            <input id="price" name="price"  placeholder="给商品定个价格" />
+          </div>
+          <div class="field">
+            <span>商品数量:</span>            
+            <input id="quantity" name="quantity"  placeholder="商品的数量" />
+          </div>
+          <div>
+            <p><strong>请注意：</strong>下面上传5张商品的图片，要求图片大小不能大于200k，图片长宽必须相等
+            </p>
+              <div class="field1">
+                  <input type="file" name="imgSrc">
+              </div>
+              <div class="field1">
+                  <input type="file" name="imgSrc">
+              </div>
+              <div class="field1">
+                  <input type="file" name="imgSrc">
+              </div>
+              <div class="field1">
+                  <input type="file" name="imgSrc">
+              </div>
+              <div class="field1">
+                  <input type="file" name="imgSrc">
+              </div>
+          </div>
+          <input style="margin-top: 20px;" type="submit" class="btn btn-success btn-block" value="添 加" />
+          <a href="/commodity-manage" class="btn btn-success btn-block" style="margin-top: 20px;">返回商品管理</a>
         </form>
     </div>
 </div>
