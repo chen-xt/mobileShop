@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-	// 修改个人资料显示输入框及内容，隐藏原本显示的内容
+	//修改个人资料显示输入框及内容，隐藏原本显示的内容
 	$("#update").click(function(){
 		$(".info span").hide();
 		$(".info input").show();

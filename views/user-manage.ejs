@@ -27,33 +27,35 @@
 	            </tr>
 	        </thead>
 	        <tbody>     
-	        	 <% user.forEach(function( user ){ %>
+	        	 <% user1.forEach(function( user1 ){ %>
 	                <tr>
 	                    <td>
-	                        <%= user.username %>
+	                        <%= user1.username %>
 	                    </td>
 	                   <!--  <td>
 	                       <%= user.password %>
 	                   </td> -->
 	                    <td>
-	                        <%= user.sex %>
+	                        <%= user1.sex %>
 	                    </td>
 	                    <td>
-	                        <%= user.QQ %>
+	                        <%= user1.QQ %>
 	                    </td>
 	                    <td>
-	                        <%= user.email %>
+	                        <%= user1.email %>
 	                    </td>
 	                    <td>
-	                        <%= user.address %>
+	                        <%= user1.address %>
 	                    </td>
 	                    <td>
-	                        <%= user.tel %>
+	                        <%= user1.tel %>
 	                    </td>
-	             
+	   
 	                    <td>
-	                      <a href="/delUser?id=<%= user._id %>">删除</a> 
-	                     <!--  | <a href="/updateUser?id=<%= user._id %>">修改</a> -->
+	                      <a href="/delUser?id=<%= user1._id %>">删除</a> 
+	                      <% if(status == 2) { %>
+	                     | <a href="/updateStatus?id=<%= user1._id %>">设为管理员</a>
+	                     <% }  %> 
 	                    </td>
 	                </tr>
 				<% }); %>

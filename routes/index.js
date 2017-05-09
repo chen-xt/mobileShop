@@ -99,7 +99,7 @@ router.post('/user-login', function(req, res, next) {
                 req.flash('error', '用户名不存在');
                 res.redirect('/user-login');
             }
-            else if(user.status == 1 || user.status == 2){
+            else if(user.status == 1){
                 // 判断是用户还是管理员
                 req.flash('error', '请输入正确用户类型(管理员/普通用户)的用户名'); 
                 res.redirect('/user-login');
@@ -111,7 +111,8 @@ router.post('/user-login', function(req, res, next) {
                  }else{
                     req.session.user = user;//保存用户信息
                     req.flash('success', '登陆成功！');
-                    res.redirect('/?userid=' + user._id);                               
+                    //now=1说明是用户登录
+                    res.redirect('/?userid=' + user._id +'&&now=1' );                               
                 }
             }       
         }); 
@@ -140,7 +141,7 @@ router.post('/manager-login', function(req, res, next) {
             }
             else if(user.status == 0){
                 // 判断是用户还是管理员
-                req.flash('error', '请输入正确用户类型(管理员/普通用户)的用户名'); 
+                req.flash('error', '请输入正确用户类型(管理员/用户)的用户名'); 
                 res.redirect('/manager-login');
             }
             else{
@@ -150,7 +151,8 @@ router.post('/manager-login', function(req, res, next) {
                  }else{
                     req.session.user = user;//保存用户信息
                     req.flash('success', '登陆成功！');
-                    res.redirect('/?userid=' + user._id);                               
+                    //now=2说明是管理员登录
+                    res.redirect('/?userid=' + user._id+'&&now=2');                               
                 }
             }      
         }); 
@@ -164,7 +166,7 @@ router.get('/user-manage', function(req, res) {
 
    User.count().then(function(count){
         //计算总页数
-        pages = Math.ceil(count/limit);//向上取整
+        pages = Math.ceil((count-1)/limit);//向上取整
         //取值不能超过pages
         page = Math.min(page, pages);
         //取值不能小于1
@@ -175,10 +177,12 @@ router.get('/user-manage', function(req, res) {
         User.find({status:0}).limit(limit).skip(skip).then(function( user) {
             res.render('user-manage', {
                 title: '用户管理',
-                user: user,
+                user1: user,
                 page: page,
-                pages: pages
+                pages: pages,
+                status: req.session.user.status
             });
+             console.log(req.session.user.status);
         });
    });
 });
@@ -314,7 +318,6 @@ router.post('/addCommodity',upload.array('imgSrc', 5), function(req, res) {
     var color = req.body.color;
     var price = req.body.price;
     var quantity = req.body.quantity;
-    // var imgSrc = req.body.imgSrc;
     if( name == ''|| info  == ''|| color  == ''|| price  == ''|| quantity  == ''){
         req.flash('error', '输入框不能为空');
         res.redirect('/addCommodity');
@@ -349,7 +352,6 @@ router.post('/addCommodity',upload.array('imgSrc', 5), function(req, res) {
                     // console.log('添加成功');
                     req.flash('success', '添加成功！');
                     res.redirect('/commodity-manage');
-
             });
            }       
         });
@@ -723,7 +725,20 @@ router.get('/good', function(req, res) {
     }); 
 });
 
-// 加入收藏(图片路径读出来为空)
+// 设置为管理员(还有问题)
+router.get('/updateStatus', function(req, res) {
+    var id = req.query.id;
+    User.update({_id: id}, {$set : {  status: 1 }}, function(err){
+        if(err) {
+            console.log(error);
+        } else {
+            console.log('设置管理员成功');
+            res.redirect('/user-manage');
+        }
+    });  
+});
+
+// 加入收藏(ok)
 router.get('/addToCollect/:id', function (req, res) {
     if (!req.session.user) {
         req.flash('error', '用户已过期，请重新登录');
@@ -753,13 +768,12 @@ router.get('/addToCollect/:id', function (req, res) {
                                 sPrice: collect.price,
                                 sColor: collect.color,
                                 sQuantity: collect.quantity,
-                                cImgSrc: collect.imgSrc
+                                sImgSrc: collect.imgSrc
                             }, function(err, collect) {
                                 if (err) return next(err); 
                                 console.log('添加收藏成功');
-                                req.flash('success', '成功加入收藏！');
+                                // req.flash('success', '成功加入收藏！');
                                 res.redirect('/vip#collect');
-                                console.log(collect);
                         });
                     }       
                 });
