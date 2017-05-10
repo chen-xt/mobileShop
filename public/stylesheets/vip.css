@@ -139,8 +139,8 @@ table{
     font-family: "微软雅黑";
     line-height: 24px;
     position: absolute;
-    left: 10px;
-    top:210px;
+    left: 15px;
+    top:200px;
     width: 200px;
     background: rgba(230, 229, 227, 0.5);;
     /*margin-left: 12px;*/
@@ -174,11 +174,11 @@ table{
     font-family: "微软雅黑";
     line-height: 24px;
     position: absolute;
-    left: 10px;
-    top:210px;
+    left: 15px;
+    top:200px;
     width: 200px;
     background: rgba(230, 229, 227, 0.5);;
-    /*margin-left: 12px;*/
+    margin-left: 12px;
     text-align: center;
 }
 #collect a:hover .collect_info{
@@ -189,6 +189,27 @@ table{
     line-height: 200px;
     background: rgba(160, 156, 156, 0.5);
 }
+.del{
+    position: absolute;
+    top: 5px;
+    left: 190px;
+    display: none;
+}
+.del a{
+    color: black;
+    display: none;
+}
+/* 取消收藏 */
+/* .collect object span{
+    color: black;
+}
+.collect object {
+    visibility: hidden;
+}
+.collect:hover object {
+    visibility: visible;
+} */
+
 
 /* 分页 */
 .page {

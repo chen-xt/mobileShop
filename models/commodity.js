@@ -8,7 +8,8 @@ var CommoditySchema = new Schema({
     color: String, //商品颜色
     price: Number, //商品价格
     quantity: Number, //商品数量
-    imgSrc: [ String ] //定义为数组
+    imgSrc: [ String ], //定义为数组
+    time: Date
 });
 
 module.exports = mongoose.model('Commodity', CommoditySchema);

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var crypto = require('crypto');//加载生成MD5值依赖模块
 var mongoose = require('mongoose'); 
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/DB'); //连接数据库
 
 //图片上传
@@ -18,9 +18,9 @@ var storage = multer.diskStorage({
 var upload = multer({ 
     storage: storage ,
     //对上传文件进行大小限制、名称限制
-    /*limits:{
-        fileSize: 200k;
-    }*/
+    limits:{
+        fileSize: 400*1024 //限制为400k
+    }
 });
 
 var User = require('../models/user');  //用户
@@ -66,7 +66,7 @@ router.post('/reg', function(req, res, next) {
                 else{
                      var md5 = crypto.createHash('md5');
                      var pwd = md5.update(password).digest('base64');
-                     User.create({username: username, password: pwd, status:0}, function(error, user) {
+                     User.create({username: username, password: pwd, status:0, time: new Date()}, function(error, user) {
                         if (err) return next(err); 
                         req.session.user = user;
                         // console.log('注册成功');
@@ -112,7 +112,7 @@ router.post('/user-login', function(req, res, next) {
                     req.session.user = user;//保存用户信息
                     req.flash('success', '登陆成功！');
                     //now=1说明是用户登录
-                    res.redirect('/?userid=' + user._id +'&&now=1' );                               
+                    res.redirect('/?userid=' + user._id );                               
                 }
             }       
         }); 
@@ -152,7 +152,7 @@ router.post('/manager-login', function(req, res, next) {
                     req.session.user = user;//保存用户信息
                     req.flash('success', '登陆成功！');
                     //now=2说明是管理员登录
-                    res.redirect('/?userid=' + user._id+'&&now=2');                               
+                    res.redirect('/?userid=' + user._id);                               
                 }
             }      
         }); 
@@ -173,8 +173,8 @@ router.get('/user-manage', function(req, res) {
         page = Math.max(page, 1);
 
         var skip = (page - 1) * limit;//忽略跳过的条数
-
-        User.find({status:0}).limit(limit).skip(skip).then(function( user) {
+        
+        User.find({"$or":[{"status":"0"},{"status":1}]}).sort({"time":-1}).limit(limit).skip(skip).then(function( user) {
             res.render('user-manage', {
                 title: '用户管理',
                 user1: user,
@@ -182,7 +182,7 @@ router.get('/user-manage', function(req, res) {
                 pages: pages,
                 status: req.session.user.status
             });
-             console.log(req.session.user.status);
+             // console.log(req.session.user.status);
         });
    });
 });
@@ -297,7 +297,7 @@ router.get('/commodity-manage', function(req, res) {
 
         var skip = (page - 1) * limit;//忽略跳过的条数
 
-        Commodity.find().limit(limit).skip(skip).then(function( commodity) {
+        Commodity.find().sort({"time":-1}).limit(limit).skip(skip).then(function( commodity) {
             res.render('commodity-manage', {
                 title: '商品管理',
                 commodity: commodity,
@@ -346,7 +346,8 @@ router.post('/addCommodity',upload.array('imgSrc', 5), function(req, res) {
                         req.files[2].filename,
                         req.files[3].filename,
                         req.files[4].filename
-                    ]
+                    ],
+                    time: new Date() //获取当前时间
                 }, function(err, commodity) {
                     if (err) return next(err); 
                     // console.log('添加成功');
@@ -540,6 +541,8 @@ router.get('/vip',function(req, res){
                 } 
                 else{
                     var page = Number(req.query.page || 1);//当前页
+                    console.log(req.url);
+                    console.log(req.query.page);
                     var limit = 8;//每页显示的条数
                     Collect.count().then(function(count){
                         console.log(count);//打印总数
@@ -780,6 +783,20 @@ router.get('/addToCollect/:id', function (req, res) {
             }
         });
     }
+});
+
+// 取消收藏
+router.get('/removeCollect', function(req, res) {
+    var id = req.query.id;
+    console.log(id);
+    Collect.remove({sId: id}, function(err) {
+        if(err) {
+            console.log(error);
+        } else {
+            console.log('成功取消收藏');
+            res.redirect('/vip#collect');         
+        }
+    });  
 });
 
 

@@ -3,6 +3,14 @@
 <% include top.ejs %>
 <link rel='stylesheet' href='/stylesheets/vip.css' />
 
+<!-- <script type="text/javascript">
+	$(document).ready(function(){
+		$(".collect").hover(function(){
+	   		$(".del").css("display","block");
+		});
+	});
+</script> -->
+
 <div class="content">
 	<!-- 右边导航栏 -->
 	<div class="guide">
@@ -177,15 +185,35 @@
 			<div class="row">
 				<% for(var i in collect){ if(!collect[i].sName) continue %>
 		        <div class="col-md-3">
-		          <a href="/good?name=<%= collect[i].sName %>">
-		              <div class="track_img">
-		                  <img src="images/goods/<%= collect[i].sImgSrc[1] %>" width="200" height="200"/>
-		              </div>     
-		              <div class="track_info">
-		                  <p class="title"><%= collect[i].sName %></p>
-		              </div>    
-		          </a>
+		          <div class="collect">
+			          <a href="/good?name=<%= collect[i].sName %>">
+			              <div class="collect_img">
+			                  <img src="images/goods/<%= collect[i].sImgSrc[1] %>" width="200" height="200"/>
+			              </div>
+			              <div class="collect_info">
+			                  <p class="title"><%= collect[i].sName %></p>
+			              </div>    
+			          </a>
+		          </div>
+		          <div class="del">
+		          	<a href="/removeCollect?id=<%= collect[i].sId %>" title="取消收藏"><span class="glyphicon glyphicon-trash" id="del"></span></a>
+		          </div>
 		        </div>
+		        <!-- 可以隐藏删除 -->
+		        <!-- <div class="col-md-3 collect">
+		        			       	<a href="/good?name=<%= collect[i].sName %>" style="display: block;">
+		        				       	<object>	
+		        			       		   <a href="/removeCollect?id=<%= collect[i].sId %>" title="取消收藏">
+		        			       		   	<span class="glyphicon glyphicon-trash" id="del">
+		        			       		   	</span>
+		        			       		   </a>
+		        			       		</object>
+		        			       	    <img src="images/goods/<%= collect[i].sImgSrc[1] %>" width="200" height="200" class="collect_img"/>
+		        			       	    <div class="title collect_info">
+		        			       		  <%= collect[i].sName %>
+		        			       	    </div>
+		        			       	</a>
+		        		       	</div> -->
 		      <% } %>
 		    </div>
 		    <!-- 分页 -->
@@ -204,40 +232,40 @@
 			<div class="row">
 		        <div class="col-md-3">
 		          <a href="/good?name=nubia Z11">
-		              <div class="collect_img">
+		              <div class="track_img">
 		                  <img src="images/goods/nbZ11-2.jpg" width="200" height="300"/>
 		              </div>     
-		              <div class="collect_info">
+		              <div class="track_info">
 		                  <p class="title">nubia Z11</p>
 		              </div>    
 		          </a>
 		        </div>
 		        <div class="col-md-3">
 		          <a href="/good?name=OPPO R9s">
-		              <div class="collect_img">
+		              <div class="track_img">
 		                  <img src="images/goods/opR9s-2.jpg" width="200" height="300"/>
 		              </div>     
-		              <div class="collect_info">
+		              <div class="track_info">
 		                  <p class="title">OPPO R9s</p>
 		              </div>    
 		          </a>
 		        </div>
 		        <div class="col-md-3">
 		          <a href="/good?name=vivo Y67">
-		              <div class="collect_img">
+		              <div class="track_img">
 		                  <img src="images/goods/vvY67-2.jpg" width="200" height="300"/>
 		              </div>     
-		              <div class="collect_info">
+		              <div class="track_info">
 		                  <p class="title">vivo Y67</p>
 		              </div>    
 		          </a>
 		        </div>
 		        <div class="col-md-3">
 		          <a href="/good?name=荣耀5">
-		              <div class="collect_img">
+		              <div class="track_img">
 		                  <img src="images/goods/ry5-3.jpg" width="200" height="300"/>
 		              </div>     
-		              <div class="collect_info">
+		              <div class="track_info">
 		                  <p class="title">荣耀5</p>
 		              </div>    
 		          </a>
@@ -246,40 +274,40 @@
 		    <div class="row">
 		        <div class="col-md-3">
 		          <a href="/good?name=小米5">
-		              <div class="collect_img">
+		              <div class="track_img">
 		                  <img src="images/goods/mi5-2.jpg" width="200" height="200"/>
 		              </div>     
-		              <div class="collect_info">
+		              <div class="track_info">
 		                  <p class="title">小米5</p>
 		              </div>    
 		          </a>
 		        </div>
 		        <div class="col-md-3">
 		          <a href="/good?name=魅族MX6">
-		              <div class="collect_img">
+		              <div class="track_img">
 		                  <img src="images/goods/mx6-2.jpg" width="200" height="200"/>
 		              </div>     
-		              <div class="collect_info">
+		              <div class="track_info">
 		                  <p class="title">魅族MX6</p>
 		              </div>    
 		          </a>
 		        </div>
 		        <div class="col-md-3">
 		          <a href="/good?name=iPhone 7 Plus">
-		              <div class="collect_img">
+		              <div class="track_img">
 		                  <img src="images/goods/apple7plus-2.jpg" width="200" height="200"/>
 		              </div>     
-		              <div class="collect_info">
+		              <div class="track_info">
 		                  <p class="title">iPhone 7 Plus</p>
 		              </div>    
 		          </a>
 		        </div>
 		        <div class="col-md-3">
 		          <a href="/good?name=华为 P9">
-		              <div class="collect_img">
+		              <div class="track_img">
 		                  <img src="images/goods/hwp9-2.jpg" width="200" height="200"/>
 		              </div>     
-		              <div class="collect_info">
+		              <div class="track_info">
 		                  <p class="title">华为 P9</p>
 		              </div>    
 		          </a>
