@@ -6,7 +6,7 @@
 }
 .common{
 	margin: 100px auto;
-	width: 500px;
+	width: 600px;
 }
 .field{
     height: 70px;
@@ -20,7 +20,7 @@
     border: 0px;
 }
 input{
-    width: 400px;
+    width: 450px;
     padding: 6px 12px;
     font-size: 14px;
     color: #555;

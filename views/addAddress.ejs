@@ -8,12 +8,24 @@
         <% include alert.ejs %>
         <h1>添加收货地址</h1>  
         <form action=""  role="form" method="post">
-            <input style="margin-top: 30px;" id="addrName" type="text" class="form-control"  name="addrName" placeholder="收货人" />
-            <input style="margin-top: 30px;" id="addr" class="form-control" name="addr"  placeholder="详细地址" />
-            <input style="margin-top: 30px;" id="code" class="form-control" name="code"  placeholder="邮政编码" />
-            <input style="margin-top: 30px;" id="tel" class="form-control" name="tel"  placeholder="联系电话" />
-            <input style="margin-top: 30px;" type="submit" class="btn btn-success btn-block" value="添 加" />
-            <a href="/vip" class="btn btn-success btn-block" style="margin-top: 30px;">返回会员中心</a>
+            <div class="field">
+                <span>收货人:</span>
+                <input style="margin-top: 30px;" id="addrName" type="text" name="addrName" placeholder="添加收货人姓名" />
+            </div>
+            <div class="field">
+                <span>详细地址:</span>
+                <input style="margin-top: 30px;" id="addr" name="addr"  placeholder="添加收货人的收货详细地址" />
+            </div>
+            <div class="field">
+                <span>邮政编码:</span>
+                <input style="margin-top: 30px;" id="code" name="code"  placeholder="添加收货地址当地邮政编码" />
+            </div>
+            <div class="field">
+                <span>联系电话:</span>
+                <input style="margin-top: 30px;" id="tel" name="tel"  placeholder="添加收货人的联系电话" />
+            </div>
+            <input style="margin-top: 20px;width: 87%;margin-left: 20px;" type="submit" class="btn btn-success" value="添 加" />
+            <a href="/vip" class="btn btn-success" style="margin-top: 20px;width: 87%;margin-left: 20px;">返回会员中心</a>
         </form>
     </div>
 </div>

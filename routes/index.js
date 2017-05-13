@@ -36,7 +36,7 @@ router.get('/', function(req, res) {
 	  res.render('index', { title: '主页' });
 });
 
-//注册(ok)
+//用户注册(ok)
 router.get('/reg', function(req, res) {
     res.render('reg', { title: '用户注册' });
 });
@@ -50,7 +50,7 @@ router.post('/reg', function(req, res, next) {
         res.redirect('/reg');
     }else if(password != password1){
         // console.log('密码不一致');
-        req.flash("error", '两次输入密码不一致！');
+        req.flash("error", '两次输入密码不一致，请重新输入！');
         res.redirect('/reg');
     }
     else{
@@ -60,7 +60,7 @@ router.post('/reg', function(req, res, next) {
                 }
                 else if(user){
                     // console.log("用户名已存在");
-                    req.flash("error", '用户名已存在');
+                    req.flash("error", '用户名已经存在，请重新注册！');
                     res.redirect('/reg');
                 }
                 else{
@@ -90,13 +90,13 @@ router.post('/user-login', function(req, res, next) {
     var password = md5.update(req.body.password).digest('base64');
 
     if( username == ''|| password  == ''){
-        req.flash('error', '用户名或密码不能为空');
+        req.flash('error', '输入框不能为空！');
         res.redirect('/user-login');
     }
     else{
         User.findOne({username: username},function(err, user){
             if(!user){
-                req.flash('error', '用户名不存在');
+                req.flash('error', '该用户名不存在');
                 res.redirect('/user-login');
             }
             else if(user.status == 1){
@@ -106,7 +106,7 @@ router.post('/user-login', function(req, res, next) {
             }
             else{
                 if(password != user.password){ 
-                    req.flash('error', '密码错误');
+                    req.flash('error', '密码错误，请重新登录！');
                     res.redirect('/user-login');
                  }else{
                     req.session.user = user;//保存用户信息
@@ -130,13 +130,13 @@ router.post('/manager-login', function(req, res, next) {
     var md5 = crypto.createHash('md5');
     var password = md5.update(req.body.password).digest('base64');
     if( username == ''|| password  == ''){
-        req.flash('error', '用户名或密码不能为空');
+        req.flash('error', '用户名或密码不能为空！');
         res.redirect('/user-login');
     }
     else{
         User.findOne({username: username},function(err, user){
             if(!user){
-                req.flash('error', '用户名不存在');
+                req.flash('error', '用户名不存在！');
                 res.redirect('/manager-login');
             }
             else if(user.status == 0){
@@ -146,12 +146,11 @@ router.post('/manager-login', function(req, res, next) {
             }
             else{
                 if(password != user.password){ 
-                    req.flash('error', '密码错误');
+                    req.flash('error', '密码错误！');
                     res.redirect('/manager-login');
                  }else{
                     req.session.user = user;//保存用户信息
                     req.flash('success', '登陆成功！');
-                    //now=2说明是管理员登录
                     res.redirect('/?userid=' + user._id);                               
                 }
             }      
@@ -319,7 +318,7 @@ router.post('/addCommodity',upload.array('imgSrc', 5), function(req, res) {
     var price = req.body.price;
     var quantity = req.body.quantity;
     if( name == ''|| info  == ''|| color  == ''|| price  == ''|| quantity  == ''){
-        req.flash('error', '输入框不能为空');
+        req.flash('error', '输入框不能为空！');
         res.redirect('/addCommodity');
     }
     else{
@@ -330,7 +329,7 @@ router.post('/addCommodity',upload.array('imgSrc', 5), function(req, res) {
             else if(commodity){
                 // console.log("商品已经存在");
                 console.log(commodity);
-                req.flash('error', '商品已经存在');
+                req.flash('error', '该商品已经存在！');
                 res.redirect('/addCommodity');
             }
             else{
@@ -499,7 +498,6 @@ router.get('/addToCart/:id', function (req, res) {
     }
 });
 
-
 // 所有商品展示(ok)
 router.get('/all-commodity', function(req, res) {
     var page = Number(req.query.page || 1);//当前页
@@ -600,14 +598,14 @@ router.post('/updatePassword', function(req, res) {
     var id = req.query.id;
     var pwd = req.session.user.password;
     if(req.body.pwd1 != pwd){
-        req.flash('error', '原始密码不匹配');
-        console.log('原始密码不匹配');
+        req.flash('error', '原始密码不匹配！');
+        console.log('原始密码不匹配！');
         res.redirect('/vip#password');
     }
     else{
         if(req.body.pwd2 != req.body.pwd3){
-            req.flash('error', '两次输入的密码不一致');
-            console.log('两次输入的密码不一致');
+            req.flash('error', '两次输入的密码不一致！');
+            console.log('两次输入的密码不一致！');
             res.redirect('/vip#password');
         }
         else{
@@ -644,7 +642,7 @@ router.post('/updateAddress', function(req, res) {
     var code = req.body.code;
     var tel = req.body.tel;
     if( addrName == ''|| addr  == ''|| code  == ''|| tel  == ''){
-        req.flash('error', '输入框不能为空');
+        req.flash('error', '输入框不能为空！');
         console.log('输入框不能为空');
         res.redirect('/vip#address');
     }
@@ -678,7 +676,7 @@ router.post('/addAddress', function(req, res) {
     var code = req.body.code;
     var tel = req.body.tel;
     if( addrName == ''|| addr  == ''|| code  == ''|| tel  == ''){
-        req.flash('error', '输入框不能为空');
+        req.flash('error', '输入框不能为空！');
         res.redirect('/addAddress#address');
     }
     else{
@@ -736,6 +734,7 @@ router.get('/updateStatus', function(req, res) {
             console.log(error);
         } else {
             console.log('设置管理员成功');
+            req.flash('success', '设置管理员成功！');
             res.redirect('/user-manage');
         }
     });  
