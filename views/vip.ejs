@@ -3,20 +3,9 @@
 <% include top.ejs %>
 <link rel='stylesheet' href='/stylesheets/vip.css' />
 
-<!-- <script type="text/javascript">
-	$(document).ready(function(){
-		$(".collect").hover(function(){
-	   		$(".del").css("display","block");
-		});
-	});
-</script> -->
-
 <div class="content">
 	<!-- 右边导航栏 -->
 	<div class="guide">
-		<div class="name">
-			<!-- <h2>陈小婷</h2> -->
-		</div>
 		<ul class="nav nav-pills nav-stacked" id="list">
 			<li>
 				<a href="#infomation" title="个人资料">个人资料</a>
@@ -184,36 +173,20 @@
 			</div>
 			<div class="row">
 				<% for(var i in collect){ if(!collect[i].sName) continue %>
-		        <div class="col-md-3">
-		          <div class="collect">
-			          <a href="/good?name=<%= collect[i].sName %>">
-			              <div class="collect_img">
-			                  <img src="images/goods/<%= collect[i].sImgSrc[1] %>" width="200" height="200"/>
-			              </div>
-			              <div class="collect_info">
-			                  <p class="title"><%= collect[i].sName %></p>
-			              </div>    
-			          </a>
-		          </div>
-		          <div class="del">
-		          	<a href="/removeCollect?id=<%= collect[i].sId %>" title="取消收藏"><span class="glyphicon glyphicon-trash" id="del"></span></a>
-		          </div>
-		        </div>
-		        <!-- 可以隐藏删除 -->
-		        <!-- <div class="col-md-3 collect">
-		        			       	<a href="/good?name=<%= collect[i].sName %>" style="display: block;">
-		        				       	<object>	
-		        			       		   <a href="/removeCollect?id=<%= collect[i].sId %>" title="取消收藏">
-		        			       		   	<span class="glyphicon glyphicon-trash" id="del">
-		        			       		   	</span>
-		        			       		   </a>
-		        			       		</object>
-		        			       	    <img src="images/goods/<%= collect[i].sImgSrc[1] %>" width="200" height="200" class="collect_img"/>
-		        			       	    <div class="title collect_info">
-		        			       		  <%= collect[i].sName %>
-		        			       	    </div>
-		        			       	</a>
-		        		       	</div> -->
+		        <div class="col-md-3 collect">
+			       	<a href="/good?name=<%= collect[i].sName %>" style="display: block;">
+				       	<object>	
+			       		   <a href="/removeCollect?id=<%= collect[i].sId %>" title="取消收藏">
+			       		   	<span class="glyphicon glyphicon-trash">
+			       		   	</span>
+			       		   </a>
+			       		</object>
+			       	    <img src="images/goods/<%= collect[i].sImgSrc[1] %>" class="collect_img"/>
+			       	    <div class="title collect_info">
+			       		  <%= collect[i].sName %>
+			       	    </div>
+			       	</a>
+		       	</div> 
 		      <% } %>
 		    </div>
 		    <!-- 分页 -->

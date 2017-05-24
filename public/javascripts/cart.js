@@ -62,7 +62,6 @@ window.onload=function(){
 		tds[5].innerHTML=SubTotal.toFixed(2);
 	}
 
-
 	for(var i=0,len=checkInputs.length;i<len;i++){
 		checkInputs[i].onclick=function(){
 			if(this.className==='check-all check'){//判断是否是全选框

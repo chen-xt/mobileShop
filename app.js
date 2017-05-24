@@ -32,7 +32,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 //提供session支持
 app.use(session({
     resave: false,
@@ -58,7 +57,6 @@ app.use(function(req, res, next){
 });
 */
 app.use(function(req, res, next){
-    console.log("视图交互");
     //res.locals.xxx实现xxx变量全局化，在其他页面直接访问变量名即可
     //访问session数据：用户信息
     res.locals.user = req.session.user;

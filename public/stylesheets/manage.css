@@ -27,7 +27,10 @@ th{
 .add{
 	margin-bottom: 15px;
 }
-
+/* 设置管理员 */
+/* .setManager:visited{
+   color: rgba(238,238,238,0.7);
+}  */
 /* 分页 */
 .page {
 	margin-left: 430px;

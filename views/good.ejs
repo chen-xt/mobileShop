@@ -5,7 +5,9 @@
 <link rel='stylesheet' href='/stylesheets/good.css' />
 
 <div id="goodshow">
+    <!-- 左边商品图片 -->
     <div id="imags" style="overflow: visible">
+        <!-- 大图 -->
         <div class="imgbox">
             <!-- 商品大图 -->
             <a class="smallimg" href="#">
@@ -18,8 +20,7 @@
             <!--大图上的显示区域遮罩层-->
             <div id="layer">
             </div>
-        </div><!-- class="imgbox" -->
-        
+        </div>  
         <!--缩略图-->
         <div class="imgsbox">
             <ul id="imgslist">
@@ -44,38 +45,36 @@
                     <img class="simg" alt="加载中..." src="images/goods/<%= commodity.imgSrc[4] %>">
                 </li>
             </ul>
-        </div><!-- class="imgsbox" -->
-    </div><!-- id="imags" -->
-
+        </div>
+    </div>
+    <!-- 右边商品信息 -->
     <div id="imgtxt">
-        <h2><%= commodity.name %></h2>
-        <div class="goodinfo">
-             <!-- 魅族 MX6 4GB+32GB 全网通公开版 香槟金 移动联通电信4G手机 双卡双待 -->
-             <%= commodity.info %>
+        <h2>
+            <span class="price"><%= commodity.name %></span>
+        </h2>
+        <div class="goodinfo" style="font-size: 15px;">
+           <%= commodity.info %>
         </div>
         <div class="goodinfo">
-            价格&nbsp;&nbsp;&nbsp;&nbsp;<span class="price">
-            ￥<%= commodity.price %></span>
+            <span class="price">价格</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            ￥<%= commodity.price %>
         </div>
         <div class="goodinfo">
-            配送&nbsp;&nbsp;&nbsp;&nbsp;<span class="price">包邮</span>
-        </div>
-        <div class="goodinfo" id="color">颜色&nbsp;&nbsp;&nbsp;&nbsp;
-            <!-- <p class="block">月光银</p>
-            <p class="block">玫瑰金</p>
-            <p class="block">香槟金</p> -->
-            <%= commodity.color %>
+            <span class="price">配送</span>&nbsp;&nbsp;&nbsp;&nbsp;包邮
         </div>
         <div class="goodinfo">
-            数量：&nbsp;&nbsp;&nbsp;&nbsp;<%= commodity.quantity %>
+            <span class="price">颜色</span>&nbsp;&nbsp;&nbsp;&nbsp;<%= commodity.color %>
         </div>
         <div class="goodinfo">
-            <input type="button" value="立即购买" class="btngood" id="btnbuy"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a id="btnadd" class="btn btngood" href="/addToCart/<%= commodity._id %>">加入购物车</a>
-            <a id="btnadd" class="btn btngood" href="/addToCollect/<%= commodity._id %>">加入收藏</a>
+            <span class="price">数量</span>&nbsp;&nbsp;&nbsp;&nbsp;<%= commodity.quantity %>
         </div>
-    </div><!-- id="imgtxt" -->
-</div><!-- id="goodshow" -->
+        <div class="goodinfo" style="margin-top: 13px;">
+            <a class="btn btngood" href="#">立即购买</a>
+            <a class="btn btngood" href="/addToCart/<%= commodity._id %>">加入购物车</a>
+            <a class="btn btngood" href="/addToCollect/<%= commodity._id %>">加入收藏</a>
+        </div>
+    </div>
+</div>
 
 <!--显示高清大图-->
 <div id="showbigimg">
@@ -94,14 +93,10 @@
     </ul>
     <div id="myTabContent" class="tab-content">
        <div class="tab-pane fade in active" id="description">
-          <!-- <div class="des-img"> -->
             <img src="images/goods/<%= commodity.imgSrc[0] %>">
             <img src="images/goods/<%= commodity.imgSrc[1] %>">
             <img src="images/goods/<%= commodity.imgSrc[2] %>">
             <img src="images/goods/<%= commodity.imgSrc[3] %>">
-            <!--<img src="images/goods/hwp9-1.jpg"> -->
-          <!-- </div> -->
-          
        </div>
        <div class="tab-pane fade" id="support">
           <dl>
@@ -113,40 +108,34 @@
                 本产品全国联保，享受三包服务，质保期为：一年质保
                 <br>
                 如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，15日内换货，15日以上在质保期内享受免费保修等三包服务！
-                <br>
-                (注:如厂家在商品介绍中有售后保障的说明,则此商品按照厂家说明执行售后保障服务。) 售后服务电话：1010-9000
             </dd>
             <dt>
                 <!-- <i class="goods"></i> -->
                 <strong>本店承诺</strong>
             </dt>
             <dd>
-                my phone平台销售并发货的商品，由平台提供发票和相应的售后服务。请您放心购买！
-                <br>
-                注：因厂家会在没有任何提前通知的情况下更改产品包装、产地或者一些附件，本司不能确保客户收到的货物与商城图片、产地、附件说明完全一致。只能确保为原厂正货！并且保证与当时市场上同样主流新品一致。若本商城没有及时更新，请大家谅解！
+                MYFHONE平台销售并发货的商品，由平台提供发票和相应的售后服务。请您放心购买！
             </dd>
             <dt>
                 <!-- <i class="goods"></i> -->
                 <strong>正品行货</strong>
             </dt>
             <dd>
-                京东商城向您保证所售商品均为正品行货，京东自营商品开具机打发票或电子发票。
+                MYFHONE平台向您保证所售商品均为正品行货，MYFHONE平台商品开具机打发票或电子发票。
             </dd>
             <dt>
                 <!-- <i class="goods"></i> -->
                 <strong>全国联保</strong>
             </dt>
             <dd>
-                凭质保证书及京东商城发票，可享受全国联保服务（奢侈品、钟表除外；奢侈品、钟表由京东联系保修，享受法定三包售后服务），与您亲临商场选购的商品享受相同的质量保证。京东商城还为您提供具有竞争力的商品价格和运费政策，请您放心购买！
-                <br>
-                注：因厂家会在没有任何提前通知的情况下更改产品包装、产地或者一些附件，本司不能确保客户收到的货物与商城图片、产地、附件说明完全一致。只能确保为原厂正货！并且保证与当时市场上同样主流新品一致。若本商城没有及时更新，请大家谅解！ 
+                凭质保证书及京东商城发票，可享受全国联保服务（奢侈品、钟表除外；奢侈品、钟表由京东联系保修，享受法定三包售后服务），与您亲临MYFHONE平台选购的商品享受相同的质量保证。MYFHONE平台还为您提供具有竞争力的商品价格和运费政策，请您放心购买！ 
             </dd>
             <dt>
                 <!-- <i class="goods"></i> -->
                 <strong>无忧退换货</strong>
             </dt>
             <dd>
-                客户购买京东自营商品7日内（含7日，自客户收到商品之日起计算），在保证商品完好的前提下，可无理由退货。（部分商品除外，详情请见各商品细则） 
+                客户购买MYFHONE平台商品7日内（含7日，自客户收到商品之日起计算），在保证商品完好的前提下，可无理由退货。（部分商品除外，详情请见各商品细则） 
             </dd>
           </dl>
        </div>
@@ -160,6 +149,5 @@
   </p>
 </div>
 
-<!-- <script src="javascripts/publicgood.js"></script> -->
-<script type="text/javascript" src="javascripts/mejqzoom.js"></script>
+<script type="text/javascript" src="javascripts/good.js"></script>
 

@@ -23,6 +23,7 @@
 <!-- 购物车内容 -->
 <div class ="content">
   <% include alert.ejs %>
+    <!-- 购物车的商品排列 -->
 	<div class="cart">
 		<table id="cartTable">
 			<!-- 展示商品 -->
@@ -51,7 +52,6 @@
 					</td>
 					<td class="subtoal"><%= cart[i].cPrice %></td>
 					<td class="operation">
-					<!-- <span class="delete btn btn-primary">删除</span> -->
 					<a href="/delCart/<%= cart[i]._id %>">删除</a>
 					</td>
 				</tr>
@@ -60,7 +60,7 @@
 			</tbody>
 		</table>
 	</div>
-
+	<!-- 购物车的底部结算 -->
 	<div class="foot" id="foot">
 		<!-- 结算部分 -->
 		<label class="fl select-all"><input type="checkbox" class="check-all check">&nbsp;全选</label>
@@ -73,7 +73,7 @@
 			<span class="arrow down">︾</span>
 		</div>
 		<div class="selected-view">
-		<!-- 弹层（预览浮层） -->
+		 <!-- 弹层（预览浮层） -->
 			<div id="selectedViewList" class="clearfix">
 				<!-- <div><img src="images/1.jpg"><span>取消选择</span></div> -->
 			</div>

@@ -3,27 +3,28 @@
     margin: 0;
     padding: 0;
 }
+/* 中间商品图片和商品详情 */
 #goodshow {
     width: 1200px;
     height: 520px;
     border: 1px solid #e4e4e4;
-    /*margin-top: 20px;*/
     margin-left: 80px;
+}
+/* 左边商品图片 */
+#imags{
+    margin-left: 50px;
 }
 #imags li {
     float: left;
 }
-#imags, #imgtxt, #recommend {
+#imags, #imgtxt{
     float: left;
     overflow: hidden; /*否则超出宽度图片还是会显示，清除浮动*/
     margin: 20px;
 }
-#imags{
-    margin-left: 50px;
-}
-#imags, #bigimgs, #bigimgs li, #bigimgs img, #smallimgs {
+/* #imags, #bigimgs, #bigimgs li, #bigimgs img, #smallimgs {
     width: 400px;
-}
+} */
 .imgbox {
     width: 400px;
     height: 400px;
@@ -59,16 +60,18 @@
     width: 1000px;
     height: 1000px;;
 }
+/* 遮罩 */
 #layer {
     width: 128px;
     height: 128px;
     background: url(../images/mask.png) repeat 0 0;
     position: absolute;
     top: 0px;
-    left: 0px;/**visibility 属性规定元素是否可见*/
+    left: 0px;/*visibility 属性规定元素是否可见*/
     visibility: hidden;
     cursor: move;
 }
+/* 缩略图 */
 #imgslist {
     list-style-type: none;
     width: 100%;
@@ -82,7 +85,7 @@
     border: 2px solid transparent;
 }
 .selected {
-    border: 2px solid #cc6688;
+    border: 2px solid #ddd;
 }
 .imglist,.simg {
     width: 70px;
@@ -107,15 +110,15 @@
     color: #4d4d4d;
     font-weight: bold;
 }
-#num {
+/* #num {
     width: 60px;
     height: 30px;
-}
-.imgsbox {
+} */
+ .imgsbox {
     width: 400px;
     height: 84px;
     position: relative;
-}
+} 
 #showbigimg {
     position: absolute;
     margin: auto;
@@ -123,7 +126,7 @@
     top: 0px;
     right: 0px;
     bottom: 0px;
-    width: 800px;
+    width: 600px;
     height: 500px;
     line-height: 500px;
     text-align: center;
@@ -139,7 +142,6 @@
 #imags, #bigimgs, #bigimgs li, #bigimgs img, #smallimgs {
     width: 400px;
 }
-
 #bigimgs > ul {
     width: 100000px; /*存储所有图片，通过位置切换显示*/
     position: absolute;
@@ -155,20 +157,6 @@
     padding-bottom: 8px;
     font-size: 13px;
 }
-.block {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    width: 45px;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-    border: 1px solid #e4e4e4;
-    margin-right: 8px;
-}
-.block:hover {
-    border: 1px solid #241f20;
-}
 .btngood {
     border: none;
     outline: none;
@@ -178,11 +166,11 @@
     font-size: medium;
     color: white;
     /*margin-top: 15px;*/
+    margin-right: 12px;
 }
-
-.blockactive {
+/* .blockactive {
     border: 1px solid #cc6688;
-}
+} */
 
 /* 商品详情和售后保障 */
 .detail{
@@ -201,7 +189,6 @@
 }
 #description img:hover{
    transform: rotateX(360deg);  
-
 }
 #support{
     padding: 20px 20px 20px 62px;
@@ -217,14 +204,7 @@
     padding: 10px 0 30px;
     line-height: 30px;
 }   
-/*#support i{
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    padding-right: 10px;
-    vertical-align: bottom;
-}*/
+
 /* 底部 */
 .footer {
     background: #fff;

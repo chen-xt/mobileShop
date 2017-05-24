@@ -9,35 +9,36 @@ $(function() {
 			$(".bigbox").show();
 			//计算百分比
 			var sx = event.pageX, //鼠标在页面上的位置
-					sy = event.pageY,
-					ox = $(this).offset().left, //小图在页面上的偏移量
-					oy = $(this).offset().top,
-					cWidth = sx - ox, //鼠标在小图上的宽高
-					cHeight = sy - oy,
-					simgwidth = $("#smallimg").width(), //小图片的宽高
-					simgheight = $("#smallimg").height(),
-			//大图片的宽高
-					bimgwidth = $("#bimg").width(),
-					bimgheight = $("#bimg").height(),
-			//大图片显示区域的大小的一半
-					boxwidth = $(".bigbox").width() / 2,
-					boxheight = $(".bigbox").height() / 2,
-			////得出鼠标位置占图片大小的百分比
-					x = (cWidth / simgwidth).toFixed(2),
-					y = (cHeight / simgheight).toFixed(2),
-			//细节大图全部显示时临界百分比，即细节大图在显示区域的上下左右的距离不能小于大图显示区域宽或高的一半
-			//鼠标在小图左侧移动时，全部显示细节大图时的最小宽占比
-					minpercx = ((boxwidth + 2) / bimgwidth).toFixed(2), //+2,是边框的大小
-			//鼠标在小图上侧移动时，全部显示细节大图时的最小高占比
-					minpercy = ((boxheight + 2) / bimgheight).toFixed(2),
-			//鼠标在小图右侧移动时，全部显示细节大图时的最大宽占比
-					maxpercx = 1 - minpercx,
-			//鼠标在小图下侧移动时，全部显示细节大图时的最大高占比
-					maxpercy = 1 - minpercy,
-			//遮罩层的大小的一半
-					layerwidth = $("#layer").width() / 2,
-					layerheight = $("#layer").height() / 2,
-					bx, by; //保存大图显示中心位置坐标
+				sy = event.pageY,
+				ox = $(this).offset().left, //小图在页面上的偏移量
+				oy = $(this).offset().top,
+				cWidth = sx - ox, //鼠标在小图上的宽高
+				cHeight = sy - oy,
+				//小图片的宽高
+				simgwidth = $("#smallimg").width(), 
+				simgheight = $("#smallimg").height(),
+			    //大图片(商品细节大图)的宽高
+				bimgwidth = $("#bimg").width(),
+				bimgheight = $("#bimg").height(),
+			    //大图片显示区域的大小的一半
+				boxwidth = $(".bigbox").width() / 2,
+				boxheight = $(".bigbox").height() / 2,
+			    //得出鼠标位置占图片大小的百分比
+				x = (cWidth / simgwidth).toFixed(2),
+				y = (cHeight / simgheight).toFixed(2),
+				//细节大图全部显示时临界百分比，即细节大图在显示区域的上下左右的距离不能小于大图显示区域宽或高的一半
+				//鼠标在小图左侧移动时，全部显示细节大图时的最小宽占比
+				minpercx = ((boxwidth + 2) / bimgwidth).toFixed(2), //+2,是边框的大小
+				//鼠标在小图上侧移动时，全部显示细节大图时的最小高占比
+				minpercy = ((boxheight + 2) / bimgheight).toFixed(2),
+				//鼠标在小图右侧移动时，全部显示细节大图时的最大宽占比
+				maxpercx = 1 - minpercx,
+				//鼠标在小图下侧移动时，全部显示细节大图时的最大高占比
+				maxpercy = 1 - minpercy,
+				//遮罩层的大小的一半
+				layerwidth = $("#layer").width() / 2,
+				layerheight = $("#layer").height() / 2,
+				bx, by; //保存大图显示中心位置坐标
 			//$("#preview-img").width() * x小于等于250
 			if (x <= minpercx) {
 				x = minpercx;
@@ -88,7 +89,7 @@ $(function() {
        var srcvalue=$("#smallimg").attr("src");
 		$("#showbigimg").attr("src",srcvalue);
 		$("#showbigimg").css("display","block");
-		event.stopPropagation();
+		event.stopPropagation();//停止事件的传播，阻止它被分派到其他 Document 节点
 	});
 	//鼠标移出高清大图时，isState=true;
 	$("#showbigimg").mouseout(function(){

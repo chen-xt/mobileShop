@@ -8,16 +8,11 @@
 	  <% include alert.ejs %>
 	  <h3>用户列表</h3>
 	  <hr>
-<!-- 	  <div class="add">
-	<a href="/addUser" type="button" class="btn btn-primary" >添加新用户</a>
-</div> -->
 	  <div class="table-responsive">
 		  <table class="table table-bordered table-hover">
 	        <thead>
 	            <tr>
-	                <!-- <th>商品ID</th> -->
 	                <th>用户名</th>
-	                <!-- <th>密码</th> -->
 	                <th>性别</th>
 	                <th>QQ</th>
 	                <th>用户邮箱</th>
@@ -32,9 +27,6 @@
 	                    <td>
 	                        <%= user1.username %>
 	                    </td>
-	                   <!--  <td>
-	                       <%= user.password %>
-	                   </td> -->
 	                    <td>
 	                        <%= user1.sex %>
 	                    </td>
@@ -54,7 +46,7 @@
 	                    <td>
 	                      <a href="/delUser?id=<%= user1._id %>">删除</a> 
 	                      <% if(status == 2) { %>
-	                     | <a href="/updateStatus?id=<%= user1._id %>">设为管理员</a>
+	                     | <a href="/updateStatus?id=<%= user1._id %>" class="setManager">设为管理员</a>
 	                     <% }  %> 
 	                    </td>
 	                </tr>
