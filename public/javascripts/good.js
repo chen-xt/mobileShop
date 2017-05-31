@@ -4,29 +4,30 @@ $(function() {
 	var isState = false;
 	//鼠标在图片上移动时，显示遮罩层区域的细节图
 	$(".imgbox").mousemove(function(event) {
-		var imgstate = $("#showbigimg").css("display")
+		var imgstate = $("#showbigimg").css("display");//高清图的显示状态
 		if(imgstate==="none"){//如果高清图没有显示就执行细节图显示，否则不执行任何操作
-			$(".bigbox").show();
+			$(".bigbox").show();//显示商品细节大图
 			//计算百分比
 			var sx = event.pageX, //鼠标在页面上的位置
 				sy = event.pageY,
 				ox = $(this).offset().left, //小图在页面上的偏移量
 				oy = $(this).offset().top,
-				cWidth = sx - ox, //鼠标在小图上的宽高
+				//鼠标在小图上的宽高
+				cWidth = sx - ox, 
 				cHeight = sy - oy,
-				//小图片的宽高
+				//商品大图的宽高（400*400）
 				simgwidth = $("#smallimg").width(), 
 				simgheight = $("#smallimg").height(),
-			    //大图片(商品细节大图)的宽高
+			    //商品细节大图的宽高（1000*1000）
 				bimgwidth = $("#bimg").width(),
 				bimgheight = $("#bimg").height(),
-			    //大图片显示区域的大小的一半
+			    //商品细节大图显示区域（400*400）的大小的一半
 				boxwidth = $(".bigbox").width() / 2,
 				boxheight = $(".bigbox").height() / 2,
 			    //得出鼠标位置占图片大小的百分比
 				x = (cWidth / simgwidth).toFixed(2),
 				y = (cHeight / simgheight).toFixed(2),
-				//细节大图全部显示时临界百分比，即细节大图在显示区域的上下左右的距离不能小于大图显示区域宽或高的一半
+				//细节大图全部显示时临界百分比，即细节大图在显示区域的上下左右的距离不能小于商品细节大图显示区域宽或高的一半
 				//鼠标在小图左侧移动时，全部显示细节大图时的最小宽占比
 				minpercx = ((boxwidth + 2) / bimgwidth).toFixed(2), //+2,是边框的大小
 				//鼠标在小图上侧移动时，全部显示细节大图时的最小高占比
@@ -35,7 +36,7 @@ $(function() {
 				maxpercx = 1 - minpercx,
 				//鼠标在小图下侧移动时，全部显示细节大图时的最大高占比
 				maxpercy = 1 - minpercy,
-				//遮罩层的大小的一半
+				//遮罩层的大小（128*128）的一半
 				layerwidth = $("#layer").width() / 2,
 				layerheight = $("#layer").height() / 2,
 				bx, by; //保存大图显示中心位置坐标

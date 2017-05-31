@@ -33,7 +33,7 @@ var Collect = require('../models/Collect');  //收藏的商品
 
 //首页(ok)
 router.get('/', function(req, res) {
-	  res.render('index', { title: '主页' });
+	res.render('index', { title: '主页' });
 });
 
 //用户注册(ok)
@@ -59,20 +59,19 @@ router.post('/reg', function(req, res, next) {
                     console.log("error :" + err);
                 }
                 else if(user){
-                    // console.log("用户名已存在");
                     req.flash("error", '用户名已经存在，请重新注册！');
                     res.redirect('/reg');
                 }
                 else{
-                     var md5 = crypto.createHash('md5');
-                     var pwd = md5.update(password).digest('base64');
-                     User.create({username: username, password: pwd, status:0, time: new Date()}, function(error, user) {
+                    var md5 = crypto.createHash('md5');//创建一个Hash实例
+                    var pwd = md5.update(password).digest('base64');
+                    User.create({username: username, password: pwd, status:0, time: new Date()}, function(error, user) {
                         if (err) return next(err); 
                         req.session.user = user;
                         // console.log('注册成功');
                         req.flash('success', req.session.user.username + '注册成功');
                         res.redirect('/user-login');
-                });
+                    });
                 }       
         });
     }    
@@ -84,7 +83,6 @@ router.get('/user-login', function(req, res) {
 });
 router.post('/user-login', function(req, res, next) {
     var username = req.body.username;
-    // var password = req.body.password;
     //密码用md5值表示
     var md5 = crypto.createHash('md5');
     var password = md5.update(req.body.password).digest('base64');
@@ -111,7 +109,6 @@ router.post('/user-login', function(req, res, next) {
                  }else{
                     req.session.user = user;//保存用户信息
                     req.flash('success', '登陆成功！');
-                    //now=1说明是用户登录
                     res.redirect('/?userid=' + user._id );                               
                 }
             }       
@@ -125,7 +122,6 @@ router.get('/manager-login', function(req, res) {
 });
 router.post('/manager-login', function(req, res, next) {
     var username = req.body.username;
-    // var password = req.body.password;
     //密码用md5值表示
     var md5 = crypto.createHash('md5');
     var password = md5.update(req.body.password).digest('base64');
@@ -162,9 +158,8 @@ router.post('/manager-login', function(req, res, next) {
 router.get('/all-commodity', function(req, res) {
     var page = Number(req.query.page || 1);//当前页
     var limit = 8;//每页显示的条数
-
     Commodity.count().then(function(count){
-        console.log(count);//打印总数
+        //count为总数
         //计算总页数
         pages = Math.ceil(count/limit);//向上取整
         //取值不能超过pages
@@ -181,7 +176,6 @@ router.get('/all-commodity', function(req, res) {
                 page: page,
                 pages: pages
             });
-            console.log(page);
         });
    });
 });
@@ -191,12 +185,12 @@ router.get('/good', function(req, res) {
     Commodity.findOne({name: req.query.name}, function(err, commodity){
         if(err){
             console.log("error :" + err);
-         }
+        }
         else{
             res.render('good', {
-            title: '商品详情',
-            commodity: commodity
-         });
+                title: '商品详情',
+                commodity: commodity
+            });
         }         
     }); 
 });
@@ -229,8 +223,9 @@ router.get('/delCart/:id', function (req, res) {
     if (!req.session.user) {
             req.flash('error', '用户已过期，请重新登录');
             res.redirect('/user-login');
-        } else{
-                Cart.remove({"_id": req.params.id}, function (err) {
+        } 
+        else{
+            Cart.remove({"_id": req.params.id}, function (err) {
                 if(err) {
                     console.log(error);
                 } else {
@@ -310,8 +305,8 @@ router.get('/vip',function(req, res){
                 } 
                 else{
                     var page = Number(req.query.page || 1);//当前页
-                    console.log(req.url);
-                    console.log(req.query.page);
+                    /*console.log(req.url);
+                    console.log(req.query.page);*/
                     var limit = 8;//每页显示的条数
                     Collect.count().then(function(count){
                         console.log(count);//打印总数
@@ -321,9 +316,7 @@ router.get('/vip',function(req, res){
                         page = Math.min(page, pages);
                         //取值不能小于1
                         page = Math.max(page, 1);
-
                         var skip = (page - 1) * limit;//忽略跳过的条数
-
                         Collect.find({ suId: req.session.user._id }).limit(limit).skip(skip).then(function( collect) {
                             res.render('vip', {
                                 title: '会员中心',
@@ -376,7 +369,9 @@ router.post('/updatePassword', function(req, res) {
     }else{
         var id = req.query.id;
         var pwd = req.session.user.password;
-        if(req.body.pwd1 != pwd){
+        var md5 = crypto.createHash('md5');//创建一个Hash实例
+        var pwd1 = md5.update(req.body.pwd1).digest('base64');
+        if(pwd1 != pwd){
             req.flash('error', '原始密码不匹配！');
             console.log('原始密码不匹配！');
             res.redirect('/vip#password');
@@ -388,7 +383,9 @@ router.post('/updatePassword', function(req, res) {
                 res.redirect('/vip#password');
             }
             else{
-                var update = {$set : {  password: req.body.pwd2 }};
+                var md5 = crypto.createHash('md5');
+                var pwd2 = md5.update(req.body.pwd2).digest('base64');
+                var update = {$set : {  password: pwd2 }};
                 User.update({_id: id}, update, function(err){
                     if(err) {
                         console.log(error);
@@ -572,7 +569,7 @@ router.get('/user-manage', function(req, res) {
         res.redirect('/manager-login');
     }else {
        var page = Number(req.query.page || 1);//当前页
-       var limit = 3;//每页显示的条数
+       var limit = 6;//每页显示的条数
        User.count().then(function(count){
             //计算总页数
             pages = Math.ceil((count-1)/limit);//向上取整
@@ -580,10 +577,8 @@ router.get('/user-manage', function(req, res) {
             page = Math.min(page, pages);
             //取值不能小于1
             page = Math.max(page, 1);
-
             var skip = (page - 1) * limit;//忽略跳过的条数
             var name = req.session.user.username;
-            console.log(name);
             // User.find({"$or":[{"status":0},{"status":1}]}).sort({"time":-1}).limit(limit).skip(skip).then(function( user) {
             User.find({username:{$ne:name},status:{$lt:2}}).sort({"time":-1}).limit(limit).skip(skip).then(function( user) {
                 res.render('user-manage', {
@@ -655,9 +650,7 @@ router.get('/commodity-manage', function(req, res) {
             page = Math.min(page, pages);
             //取值不能小于1
             page = Math.max(page, 1);
-
             var skip = (page - 1) * limit;//忽略跳过的条数
-
             Commodity.find().sort({"time":-1}).limit(limit).skip(skip).then(function( commodity) {
                 res.render('commodity-manage', {
                     title: '商品管理',
@@ -793,7 +786,7 @@ router.get('/delCommodity', function(req, res) {
 
 // 设置为管理员(ok)
 router.get('/updateStatus', function(req, res) {
-     if (!req.session.user) {
+    if (!req.session.user) {
         req.flash('error', '用户已过期，请重新登录');
         res.redirect('/manager-login');
     }else{

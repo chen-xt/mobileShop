@@ -1,5 +1,5 @@
 
-// 实现商品模糊查询 
+  // 获取class值
   function getByClass(sClass){
       var aResult=[];
       var aEle=document.getElementsByTagName('*');
@@ -12,14 +12,16 @@
       return aResult;
   };
 
+  // 实现所有商品模糊查询 
   function searchCommodity(){
       var showProject = getByClass("showProject");
-      var input = document.getElementById("cartInput"); 
+      var input = document.getElementById("cartInput"); //获取搜索内容
       var filter = input.value.toUpperCase();
       var length = showProject.length;
       for(i = 0; i<length; i++){
         var name = showProject[i].innerText;
         if(name){
+           //indexOf()方法可返回某个指定的字符串值在字符串中首次出现的位置
            if(name.toUpperCase().indexOf(filter) > -1){
               showProject[i].style.display = "";
            }
@@ -30,7 +32,7 @@
       }
   }
 
-// 实现购物车模糊查询 
+  // 实现购物车模糊查询 
   function searchCart() { 
     // 声明变量 
     var input, filter, table, tr, td, i; 

@@ -29,7 +29,9 @@
 			<!-- 展示商品 -->
 			<thead>
 			  <tr>
-				<th><label><input type="checkbox" class="check-all check">&nbsp;全选<label></th>
+				<th>
+					<label><input type="checkbox" class="check-all check">&nbsp;全选<label>
+				</th>
 				<th>商品</th>
 				<th>颜色</th>
 				<th>单价</th>
@@ -41,18 +43,29 @@
 			<tbody>
 			  <% for(var i in cart){ if(!cart[i].cId) continue %>
 				<tr>
-					<td><input type="checkbox" class="check-one check"></td>
-					<td class="goods"><img src="images/goods/<%= cart[i].cImgSrc[0] %>" alt=""><span><%= cart[i].cName %></span></td>
-					<td><%= cart[i].cColor %></td>
-					<td class="price"><%= cart[i].cPrice %></td>
+					<td>
+						<input type="checkbox" class="check-one check">
+					</td>
+					<td class="goods">
+						<img src="images/goods/<%= cart[i].cImgSrc[0] %>" alt="">
+						<span><%= cart[i].cName %></span>
+					</td>
+					<td>
+						<%= cart[i].cColor %>
+					</td>
+					<td class="price">
+						<%= cart[i].cPrice %>
+					</td>
 					<td class="count">
 						<span class="reduce"></span>
 						<input type="text" class="count-input" value="<%= cart[i].cQuantity %>">
 						<span class="add">+</span>
 					</td>
-					<td class="subtoal"><%= cart[i].cPrice %></td>
+					<td class="subtoal">
+						<%= cart[i].cPrice %>
+					</td>
 					<td class="operation">
-					<a href="/delCart/<%= cart[i]._id %>">删除</a>
+						<a href="/delCart/<%= cart[i]._id %>">删除</a>
 					</td>
 				</tr>
 				<% } %>
@@ -63,10 +76,14 @@
 	<!-- 购物车的底部结算 -->
 	<div class="foot" id="foot">
 		<!-- 结算部分 -->
-		<label class="fl select-all"><input type="checkbox" class="check-all check">&nbsp;全选</label>
+		<label class="fl select-all">
+			<input type="checkbox" class="check-all check">&nbsp;全选
+		</label>
 		<a href="#" class="fl delete" id="deleteAll">删除已勾选商品</a>
 		<div class="fr closing">结算</div>
-		<div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
+		<div class="fr total">
+			合计：￥<span id="priceTotal">0.00</span>
+		</div>
 		<div class="fr selected" id="selected">已选商品
 			<span id="selectedTotal">0</span>件
 			<span class="arrow up">︽</span>

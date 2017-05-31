@@ -34,11 +34,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //提供session支持
 app.use(session({
-    resave: false,
-    saveUninitialized: true,
+    resave: false,//即使 session 没有被修改，也保存 session 值，默认为 true
+    saveUninitialized: true,//指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid
     secret:'secret',
     cookie:{
-        maxAge: 1000*60*30
+        maxAge: 1000*60*30  //30分钟
     },
     store: new MongoStore({   //创建新的mongodb数据库
        db: 'session',      //数据库的名称
@@ -47,15 +47,6 @@ app.use(session({
     })
 }));
 
-/*// 中间件传递信息
-app.use(function(req, res, next){
-    res.locals.user = req.session.user;
-    var err = req.session.error;
-    res.locals.message = '';
-    if (err) res.locals.message = '<div class="alert alert-danger" style="margin-bottom: 20px;color:red;">' + err + '</div>';
-    next();
-});
-*/
 app.use(function(req, res, next){
     //res.locals.xxx实现xxx变量全局化，在其他页面直接访问变量名即可
     //访问session数据：用户信息
